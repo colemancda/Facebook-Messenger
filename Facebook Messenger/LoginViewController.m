@@ -29,7 +29,7 @@
     if (self) {
         // Initialization code here.
         
-        NSLog(@"hey");
+        
     }
     
     return self;

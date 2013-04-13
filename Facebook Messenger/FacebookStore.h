@@ -11,25 +11,14 @@
 
 @interface FacebookStore : NSObject
 {
-    // Account Store
-    ACAccountStore *_accountStore;
+    
     
 }
 
 + (FacebookStore *)sharedStore;
 
-#pragma mark - Properties
-
-@property (readonly) BOOL isFacebookAccountSetup;
-
-#pragma mark - Request Access to Accounts
-
--(void)fetchFacebookAccountsWithCompletion:(void (^) (NSArray *accounts, NSError *error))completionBlock;
-
--(void)fetchSelectedFacebookAccountWithCompletion:(void (^) (ACAccount *account, NSError *error))completionBlock;
-
 #pragma mark
 
-
+@property ACAccount *account;
 
 @end
