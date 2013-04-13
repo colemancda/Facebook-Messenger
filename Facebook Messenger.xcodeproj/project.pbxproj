@@ -19,6 +19,8 @@
 		6E8F461817199BEB00066CDA /* FacebookStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F461717199BEB00066CDA /* FacebookStore.m */; };
 		6E8F46211719ADEC00066CDA /* LoadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F461F1719ADEC00066CDA /* LoadingViewController.m */; };
 		6E8F46221719ADEC00066CDA /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E8F46201719ADEC00066CDA /* LoadingViewController.xib */; };
+		6EFE256E1719E9D100CC97C6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFE256C1719E9D100CC97C6 /* LoginViewController.m */; };
+		6EFE256F1719E9D100CC97C6 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EFE256D1719E9D100CC97C6 /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,10 @@
 		6E8F461E1719ADEC00066CDA /* LoadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingViewController.h; sourceTree = "<group>"; };
 		6E8F461F1719ADEC00066CDA /* LoadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingViewController.m; sourceTree = "<group>"; };
 		6E8F46201719ADEC00066CDA /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
+		6EFE25681719CE1C00CC97C6 /* Facebook Messenger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Facebook Messenger.entitlements"; sourceTree = "<group>"; };
+		6EFE256B1719E9D100CC97C6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		6EFE256C1719E9D100CC97C6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		6EFE256D1719E9D100CC97C6 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,7 @@
 		6E0CD3D41704EB0A001AF453 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6EFE25681719CE1C00CC97C6 /* Facebook Messenger.entitlements */,
 				6E0CD3D51704EB0A001AF453 /* Facebook Messenger-Info.plist */,
 				6E0CD3D61704EB0A001AF453 /* InfoPlist.strings */,
 				6E0CD3D91704EB0A001AF453 /* main.m */,
@@ -127,9 +134,8 @@
 		6E0CD3FD1705020E001AF453 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6E8F461E1719ADEC00066CDA /* LoadingViewController.h */,
-				6E8F461F1719ADEC00066CDA /* LoadingViewController.m */,
-				6E8F46201719ADEC00066CDA /* LoadingViewController.xib */,
+				6EFE256A1719E9B900CC97C6 /* Login */,
+				6EFE25691719E98200CC97C6 /* Loading */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -150,6 +156,26 @@
 				6E0CD40017050235001AF453 /* Message.m */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		6EFE25691719E98200CC97C6 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				6E8F461E1719ADEC00066CDA /* LoadingViewController.h */,
+				6E8F461F1719ADEC00066CDA /* LoadingViewController.m */,
+				6E8F46201719ADEC00066CDA /* LoadingViewController.xib */,
+			);
+			name = Loading;
+			sourceTree = "<group>";
+		};
+		6EFE256A1719E9B900CC97C6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				6EFE256B1719E9D100CC97C6 /* LoginViewController.h */,
+				6EFE256C1719E9D100CC97C6 /* LoginViewController.m */,
+				6EFE256D1719E9D100CC97C6 /* LoginViewController.xib */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +233,7 @@
 				6E0CD3DE1704EB0A001AF453 /* Credits.rtf in Resources */,
 				6E0CD3E41704EB0B001AF453 /* MainMenu.xib in Resources */,
 				6E8F46221719ADEC00066CDA /* LoadingViewController.xib in Resources */,
+				6EFE256F1719E9D100CC97C6 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +249,7 @@
 				6E0CD40117050235001AF453 /* Message.m in Sources */,
 				6E8F461817199BEB00066CDA /* FacebookStore.m in Sources */,
 				6E8F46211719ADEC00066CDA /* LoadingViewController.m in Sources */,
+				6EFE256E1719E9D100CC97C6 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,10 +345,12 @@
 		6E0CD3E81704EB0B001AF453 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Facebook Messenger/Facebook Messenger.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Facebook Messenger/Facebook Messenger-Prefix.pch";
 				INFOPLIST_FILE = "Facebook Messenger/Facebook Messenger-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -329,10 +359,12 @@
 		6E0CD3E91704EB0B001AF453 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Facebook Messenger/Facebook Messenger.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Facebook Messenger/Facebook Messenger-Prefix.pch";
 				INFOPLIST_FILE = "Facebook Messenger/Facebook Messenger-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

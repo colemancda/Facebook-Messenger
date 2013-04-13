@@ -41,7 +41,7 @@
         if (!accounts) {
             [NSApp performSelectorOnMainThread:@selector(presentError:) withObject:error waitUntilDone:YES];
             
-            [NSApp terminate:self];
+            // [NSApp terminate:self];
         }
         else {
             NSLog(@"Accounts: '%@'", accounts);

@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 // app ID
-const NSString *kFacebookAppID = @"147666458740407";
+const NSString *kFacebookAppID = @"317725598329762";
 
 // asking ACAccountStore for Account
 const NSInteger kErrorCodeFacebookNoAccountSetup = 401;
@@ -83,42 +83,28 @@ const NSInteger kErrorCodeFacebookAccountAccessDenied = 402;
     ACAccountType *facebookAccountType = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
     
     // request access to accounts
-    NSDictionary *requestAccountAccessOptions = @{ACFacebookAppIdKey: kFacebookAppID,
-                                                  ACFacebookPermissionsKey : @[@"email"]};
+    NSDictionary *requestAccountAccessOptions = @{ACFacebookAppIdKey: kFacebookAppID};
     
-    [_accountStore requestAccessToAccountsWithType:facebookAccountType options:requestAccountAccessOptions completion:^(BOOL granted, NSError *error)
+    [_accountStore requestAccessToAccountsWithType:facebookAccountType
+                                           options:requestAccountAccessOptions
+                                        completion:^(BOOL granted, NSError *error)
      {
-         // if another error occurred
-         if (error) {
-             completionBlock(nil, error);
-             return;
-         }
-         
          // if access is denied
          if (!granted) {
              
-             NSString *errorDescription = NSLocalizedString(@"Access to your Facebook account was denied", @"Access to your Facebook account was denied");
+             NSString *errorDescription = NSLocalizedString(@"Access to your Facebook accounts was denied", @"Access to your Facebook accounts was denied");
              
-             NSString *errorSuggestion = NSLocalizedString(@"Enable access to your Facebook account in Settings", @"Enable access to your Facebook account in Settings");
-             
-             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorDescription,
-                                        NSLocalizedRecoverySuggestionErrorKey : errorSuggestion};
+             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: errorDescription};
              
              NSError *grantedError = [NSError errorWithDomain:kErrorDomain
                                                          code:kErrorCodeFacebookAccountAccessDenied
                                                      userInfo:userInfo];
              
              completionBlock(nil, grantedError);
-             return;
          }
          
-         // success!
-         NSArray *facebookAccounts = [_accountStore accountsWithAccountType:facebookAccountType];
          
-         completionBlock(facebookAccounts, nil);
-         return;
      }];
-    
 }
 
 @end

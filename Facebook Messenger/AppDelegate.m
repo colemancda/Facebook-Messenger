@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "LoadingViewController.h"
+#import "LoginViewController.h"
 
 NSString *const kErrorDomain = @"com.ColemanCDA.FacebookMessenger.ErrorDomain";
 
@@ -20,8 +21,13 @@ NSString *const kErrorDomain = @"com.ColemanCDA.FacebookMessenger.ErrorDomain";
     // Insert code here to initialize your application
     
     // launch loading window
-    self.rootViewController = [[LoadingViewController alloc] init];
+    self.rootViewController = [[LoginViewController alloc] init];
     
+}
+
+-(BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender
+{
+    return YES;
 }
 
 #pragma mark - Properties
