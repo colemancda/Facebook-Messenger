@@ -30,6 +30,7 @@
 		6E9FA3DB18144DDC00785A09 /* FBConversationComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DA18144DDC00785A09 /* FBConversationComment.m */; };
 		6E9FA3E1181466A900785A09 /* FBMConversationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */; };
 		6E9FA3E2181466A900785A09 /* FBMConversationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */; };
+		6E9FA3E618146FAB00785A09 /* FBMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,8 @@
 		6E9FA3DE181466A900785A09 /* FBMConversationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMConversationWindowController.h; sourceTree = "<group>"; };
 		6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMConversationWindowController.m; sourceTree = "<group>"; };
 		6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMConversationWindowController.xib; sourceTree = "<group>"; };
+		6E9FA3E418146FAB00785A09 /* FBMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMessageCellView.h; sourceTree = "<group>"; };
+		6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMessageCellView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,7 @@
 				6E9FA38818138ECE00785A09 /* MainMenu.xib */,
 				6E9FA38B18138ECE00785A09 /* Images.xcassets */,
 				6E9FA3B01813A6BE00785A09 /* FBModel.xcdatamodeld */,
+				6E9FA3E318146F8600785A09 /* Views */,
 				6E9FA3B41813B25A00785A09 /* Controllers */,
 				6E9FA3B31813ADFF00785A09 /* Models */,
 				6E9FA3AF18138F9200785A09 /* Stores */,
@@ -249,6 +253,15 @@
 				6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */,
 			);
 			name = Conversation;
+			sourceTree = "<group>";
+		};
+		6E9FA3E318146F8600785A09 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E9FA3E418146FAB00785A09 /* FBMessageCellView.h */,
+				6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +369,7 @@
 				6E9FA3AE18138F7A00785A09 /* FBMStore.m in Sources */,
 				6E9FA38718138ECE00785A09 /* FBMAppDelegate.m in Sources */,
 				6E9FA3E1181466A900785A09 /* FBMConversationWindowController.m in Sources */,
+				6E9FA3E618146FAB00785A09 /* FBMessageCellView.m in Sources */,
 				6E9FA3D818144DDC00785A09 /* FBConversation.m in Sources */,
 				6E9FA38018138ECE00785A09 /* main.m in Sources */,
 				6E9FA3B8181439E500785A09 /* FBMInboxWindowController.m in Sources */,

@@ -8,18 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FBMInboxWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+@interface FBMInboxWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
 {
     NSMutableArray *_conversations;
     
     NSDateFormatter *_dateFormatter;
     
     NSMutableDictionary *_conversationWCs;
+    
+    NSDate *_lastNetRefresh;
 }
 
 @property (weak) IBOutlet NSTableView *tableView;
 
--(void)refreshConversationsFromNet;
+-(void)refreshConversationsFromNetWithErrorAlert:(BOOL)errorAlert;
 
 -(void)refreshConversationsFromCache;
 

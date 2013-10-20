@@ -53,6 +53,8 @@
 
 -(void)refreshConversationsFromCache
 {
+    NSLog(@"Refreshing conversations from local cache");
+    
     FBMAppDelegate *appDelegate = [NSApp delegate];
     
     [appDelegate.store.context performBlockAndWait:^{
@@ -87,18 +89,27 @@
     }];
 }
 
--(void)refreshConversationsFromNet
+-(void)refreshConversationsFromNetWithErrorAlert:(BOOL)errorAlert
 {
+    NSLog(@"Refreshing conversations from net");
+    
+    _lastNetRefresh = [NSDate date];
+    
     FBMAppDelegate *appDelegate = [NSApp delegate];
     
     [appDelegate.store requestInboxWithCompletionBlock:^(NSError *error) {
        
         if (error) {
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if (errorAlert) {
                 
-                [NSApp presentError:error];
-            }];
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    [NSApp presentError:error];
+                }];
+            }
+            
+            NSLog(@"Error downloading inbox");
             
             return;
         }
@@ -181,6 +192,20 @@
     
 }
 
+#pragma mark - Window Notification
+
+-(void)windowDidBecomeKey:(NSNotification *)notification
+{
+    NSTimeInterval interval = [_lastNetRefresh timeIntervalSinceNow];
+    
+    // to not make to many calls, we only refresh if this hasn't refreshed in a while
+    
+    if (interval > 20) {
+        
+        [self refreshConversationsFromNetWithErrorAlert:NO];
+    }
+}
+
 #pragma mark - Actions
 
 -(void)clickedRow:(id)sender
@@ -199,8 +224,13 @@
     
     if (!conversationWC) {
         
-        [_conversationWCs setObject:[[FBMConversationWindowController alloc] init]
+        conversationWC = [[FBMConversationWindowController alloc] init];
+        
+        [_conversationWCs setObject:conversationWC
                              forKey:conversationID];
+        
+        // set model object
+        conversationWC.conversation = conversation;
     }
     
     [conversationWC.window makeKeyAndOrderFront:self];
