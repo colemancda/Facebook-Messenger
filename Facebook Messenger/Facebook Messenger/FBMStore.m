@@ -236,7 +236,8 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
             for (NSDictionary *conversationDictionary in inbox) {
                 
                 // get id
-                NSNumber *conversationID = conversationDictionary[@"id"];
+                NSString *conversationIDString = conversationDictionary[@"id"];
+                NSNumber *conversationID = [NSNumber numberWithInteger:conversationIDString.integerValue];
                 
                 // search store and find cache
                 FBConversation *conversation = (FBConversation *)[self cachedEntity:@"FBConversation"
@@ -262,12 +263,13 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
                 
                 NSArray *toArray = toDictionary[@"data"];
                 
-                NSMutableArray *conversationUsers = [[NSMutableArray alloc] init];
+                NSMutableSet *conversationUsers = [[NSMutableSet alloc] init];
                 
                 for (NSDictionary *userDictionary in toArray) {
                     
                     // get user id
-                    NSNumber *userID = userDictionary[@"id"];
+                    NSString *userIDString = userDictionary[@"id"];
+                    NSNumber *userID = [NSNumber numberWithInteger:userIDString.integerValue];
                     
                     FBUser *user = (FBUser *)[self cachedEntity:@"FBUser"
                                                          withID:userID];
@@ -288,7 +290,7 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
                 
                 NSArray *comments = commentsDictionary[@"data"];
                 
-                NSMutableArray *conversationComments = [[NSMutableArray alloc] init];
+                NSMutableSet *conversationComments = [[NSMutableSet alloc] init];
                 
                 for (NSDictionary *commentDictionary in comments) {
                     
@@ -307,7 +309,8 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
                     // parse 'from'
                     NSDictionary *fromDictionary = commentDictionary[@"from"];
                     
-                    NSNumber *fromUserID = fromDictionary[@"id"];
+                    NSString *fromUserIDString = fromDictionary[@"id"];
+                    NSNumber *fromUserID = [NSNumber numberWithInteger:fromUserIDString.integerValue];
                     
                     FBUser *fromUser = (FBUser *)[self cachedEntity:@"FBUser"
                                                              withID:fromUserID];

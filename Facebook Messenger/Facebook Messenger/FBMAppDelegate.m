@@ -66,19 +66,43 @@ NSString *const FBMAppID = @"221240951333308";
         
         NSLog(@"Using '%@' account", _store.facebookAccount.username);
         
-        // close this window and show InboxWC
+        // download inbx before showing window
         
-        if (!_inboxWC) {
+        FBMAppDelegate *appDelegate = [NSApp delegate];
+        
+        [appDelegate.store requestInboxWithCompletionBlock:^(NSError *error) {
             
-            _inboxWC = [[FBMInboxWindowController alloc] init];
-        }
-        
-        [_inboxWC.window makeKeyAndOrderFront:self];
-        
-        [self.window close];
-        
-        completionBlock(YES);
-        
+            if (error) {
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    [NSApp presentError:error];
+                    
+                }];
+                
+                return;
+            }
+            
+            NSLog(@"Got Inbox");
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+               
+                // close this window and show InboxWC
+                
+                if (!_inboxWC) {
+                    
+                    _inboxWC = [[FBMInboxWindowController alloc] init];
+                }
+                
+                [_inboxWC.window makeKeyAndOrderFront:self];
+                
+                [self.window close];
+                
+                completionBlock(YES);
+                
+            }];
+            
+        }];
     }];
 }
 
