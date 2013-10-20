@@ -134,10 +134,10 @@
         // parse response...
         NSArray *inbox = response[@"data"];
         
-        // parse conversations
-        for (NSDictionary *conversationDictionary in inbox) {
+        [_context performBlockAndWait:^{
             
-            [_context performBlockAndWait:^{
+            // parse conversations
+            for (NSDictionary *conversationDictionary in inbox) {
                 
                 NSManagedObject *conversation = [NSEntityDescription insertNewObjectForEntityForName:@"FBConversation" inManagedObjectContext:_context];
                 
@@ -160,11 +160,11 @@
                     
                     NSLog(@"%@", comment);
                     
-                    
                 }
                 
-            }];
-        }
+            }
+            
+        }];
         
         completionBlock(nil);
         

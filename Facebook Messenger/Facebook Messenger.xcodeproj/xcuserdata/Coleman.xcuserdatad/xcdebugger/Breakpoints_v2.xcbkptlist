@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Facebook Messenger/FBMStore.m"
-            timestampString = "403976149.908315"
+            timestampString = "403976679.278465"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "-requestInboxWithCompletionBlock:"
             landmarkType = "5">
             <Locations>
@@ -25,12 +25,12 @@
                   symbolName = "__44-[FBMStore requestInboxWithCompletionBlock:]_block_invoke_2"
                   moduleName = "Facebook Messenger"
                   urlString = "file:///Users/Coleman/Programming/My%20Apps/Facebook%20Messenger/Facebook%20Messenger/Facebook%20Messenger/FBMStore.m"
-                  timestampString = "403976258.781092"
+                  timestampString = "403976682.460212"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164"
-                  offsetFromSymbolStart = "876">
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "55">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -39,14 +39,30 @@
                   symbolName = "__44-[FBMStore requestInboxWithCompletionBlock:]_block_invoke_2"
                   moduleName = "Facebook Messenger"
                   urlString = "file:///Users/Coleman/Programming/My%20Apps/Facebook%20Messenger/Facebook%20Messenger/Facebook%20Messenger/FBMStore.m"
-                  timestampString = "403976258.781419"
+                  timestampString = "403976682.460701"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "164"
-                  endingLineNumber = "164"
-                  offsetFromSymbolStart = "997">
+                  startingLineNumber = "140"
+                  endingLineNumber = "140"
+                  offsetFromSymbolStart = "1466">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Facebook Messenger/FBMStore.m"
+            timestampString = "403976680.36244"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "-requestInboxWithCompletionBlock:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

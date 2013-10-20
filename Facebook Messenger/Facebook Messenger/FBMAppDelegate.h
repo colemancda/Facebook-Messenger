@@ -19,5 +19,15 @@ extern NSString *const FBMAppID;
 
 -(void)attemptToLogin:(void (^)(BOOL loggedIn))completionBlock;
 
+#pragma mark - GUI
+
+@property (weak) IBOutlet NSBox *failureBox;
+
+@property (weak) IBOutlet NSProgressIndicator *progressIndicator;
+
+#pragma mark - Actions
+
+- (IBAction)login:(id)sender;
+
 
 @end

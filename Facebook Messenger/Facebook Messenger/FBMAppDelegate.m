@@ -21,15 +21,44 @@ NSString *const FBMAppID = @"221240951333308";
     
     _store = [[FBMStore alloc] init];
     
+    // GUI
+    
+    [_failureBox setHidden:YES];
+    
+    [_progressIndicator setHidden:NO];
+    
     [self attemptToLogin:^(BOOL loggedIn) {
        
-        
-        
+        // load inbox
+        [_store requestInboxWithCompletionBlock:^(NSError *error) {
+           
+            if (error) {
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                   
+                    [NSApp presentError:error];
+                    
+                }];
+                
+                return;
+            }
+            
+            NSLog(@"Got Inbox");
+            
+        }];
     }];
 }
 
 -(void)attemptToLogin:(void (^)(BOOL))completionBlock
 {
+    // GUI
+    
+    [_failureBox setHidden:YES];
+    
+    [_progressIndicator setHidden:NO];
+    
+    [_progressIndicator startAnimation:self];
+    
     // always request access to accounts
     
     NSLog(@"Requesting access to FB accounts...");
@@ -40,11 +69,21 @@ NSString *const FBMAppID = @"221240951333308";
             
             NSLog(@"Access to account denied");
             
+            // GUI
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+               
+                [_failureBox setHidden:NO];
+                
+                [_progressIndicator setHidden:YES];
+                
+                [_progressIndicator startAnimation:self];
+                
+            }];
+            
             completionBlock(NO);
             
             return;
         }
-        
         
         NSLog(@"Using '%@' account", _store.facebookAccount.username);
         
@@ -53,4 +92,10 @@ NSString *const FBMAppID = @"221240951333308";
     }];
 }
 
+#pragma mark - Actions
+
+- (IBAction)login:(id)sender {
+    
+    
+}
 @end
