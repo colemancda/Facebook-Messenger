@@ -8,6 +8,8 @@
 
 #import "FBMStore.h"
 
+static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
+
 @implementation NSDate (FacebookDate)
 
 +(NSDateFormatter *)facebookDateFormatter
@@ -33,6 +35,26 @@
 -(NSString *)FBDateString
 {
     return [[NSDate facebookDateFormatter] stringFromDate:self];
+}
+
+@end
+
+@implementation FBMStore (Errors)
+
+-(NSError *)errorForErrorCode:(NSInteger)errorCode
+{
+    
+    
+    // unkown error
+    
+    NSString *unkownErrorDescription = NSLocalizedString(@"An unkown error occurred",
+                                                         @"Unkown Error Message");
+    
+    NSError *unkownError = [NSError errorWithDomain:ErrorDomain
+                                               code:errorCode
+                                           userInfo:@{NSLocalizedDescriptionKey: unkownErrorDescription}];
+    
+    return unkownError;
 }
 
 @end
@@ -134,6 +156,21 @@
         // parse response...
         NSArray *inbox = response[@"data"];
         
+        // json error response
+        if (!inbox) {
+            
+            NSDictionary *errorDictionary = response[@"error"];
+            
+            NSNumber *errorCode = errorDictionary[@"code"];
+            
+            NSError *error = [self errorForErrorCode:errorCode.integerValue];
+            
+            completionBlock(error);
+            
+            return;
+        }
+        
+        // parse...
         [_context performBlockAndWait:^{
             
             // parse conversations
