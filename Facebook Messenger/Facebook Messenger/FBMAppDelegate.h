@@ -11,8 +11,6 @@
 
 extern NSString *const FBMAppID;
 
-extern NSString *const SavedFBAccountIdentifierPreferenceKey;
-
 @interface FBMAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;

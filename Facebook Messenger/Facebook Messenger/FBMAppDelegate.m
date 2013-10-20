@@ -13,8 +13,6 @@
 
 NSString *const FBMAppID = @"221240951333308";
 
-NSString *const SavedFBAccountIdentifierPreferenceKey = @"SavedFBAccountIdentifier";
-
 @implementation FBMAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -32,80 +30,25 @@ NSString *const SavedFBAccountIdentifierPreferenceKey = @"SavedFBAccountIdentifi
 
 -(void)attemptToLogin:(void (^)(BOOL))completionBlock
 {
-    // success block
-    void (^successCompletionBlock) (void) = ^{
-        
-        NSLog(@"Using '%@' account", _store.facebookAccount.username);
-        
-        completionBlock(YES);
-    };
-    
     // always request access to accounts
     
     NSLog(@"Requesting access to FB accounts...");
     
-    [_store requestAccessToUserAccountsUsingAppID:FBMAppID completionBlock:^(NSError *error) {
+    [_store requestAccessToUserAccountsUsingAppID:FBMAppID completionBlock:^(BOOL success) {
         
-        if (error) {
+        if (!success) {
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                
-                [NSApp presentError:error];
-                
-                completionBlock(NO);
-                
-            }];
+            NSLog(@"Access to account denied");
+            
+            completionBlock(NO);
             
             return;
         }
         
-        // either load saved account or select one to use
         
-        NSString *savedIdentifier = [[NSUserDefaults standardUserDefaults] stringForKey:SavedFBAccountIdentifierPreferenceKey];
+        NSLog(@"Using '%@' account", _store.facebookAccount.username);
         
-        BOOL restoredAccount = NO;
-        
-        if (savedIdentifier) {
-            
-            restoredAccount = [_store selectAccountUsingIdentitfier:savedIdentifier];
-        }
-        
-        if (restoredAccount) {
-            
-            successCompletionBlock();
-            
-            return;
-        }
-        
-        // couldn't restore account, now lets try to select one using the GUI
-        
-        NSLog(@"Selecting account to use...");
-        
-        [_store selectAccountUsingWindow:self.window completionBlock:^(BOOL success) {
-            
-            if (error) {
-                
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    
-                    [NSApp presentError:error];
-                    
-                    completionBlock(NO);
-                    
-                }];
-                
-                return;
-            }
-            
-            // save selected account
-            
-            [[NSUserDefaults standardUserDefaults] setObject:_store.facebookAccount.identifier
-                                                      forKey:SavedFBAccountIdentifierPreferenceKey];
-            
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-            successCompletionBlock();
-            
-        }];
+        completionBlock(YES);
         
     }];
 }

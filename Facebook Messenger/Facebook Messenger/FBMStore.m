@@ -62,7 +62,7 @@
 }
 
 -(void)requestAccessToUserAccountsUsingAppID:(NSString *)appID
-                             completionBlock:(void (^)(NSError *))completionBlock
+                             completionBlock:(void (^)(BOOL))completionBlock
 {
     _appID = appID;
     
@@ -82,91 +82,29 @@
     
     [_accountStore requestAccessToAccountsWithType:fbAccountType options:accessOptions completion:^(BOOL granted, NSError *error) {
         
-        if (error) {
+        // access denied
+        if (!granted) {
             
-            completionBlock(error);
+            completionBlock(NO);
             return;
         }
         
-        completionBlock(nil);
+        NSArray *accounts = [_accountStore accountsWithAccountType:fbAccountType];
+        
+        // account exists but is not enabled
+        if (!accounts.count) {
+            
+            completionBlock(NO);
+            return;
+        }
+        
+        // can only have one FB account in OS X
+        
+        _facebookAccount = accounts[0];
+        
+        completionBlock(YES);
         
     }];
-}
-
--(BOOL)selectAccountUsingIdentitfier:(NSString *)identifier
-{
-    _facebookAccount = [_accountStore accountWithIdentifier:identifier];
-    
-    if (!_facebookAccount) {
-        
-        return NO;
-    }
-    
-    return YES;
-}
-
-
--(void)selectAccountUsingWindow:(NSWindow *)window
-                completionBlock:(void (^)(BOOL))completionBlock
-{
-    // set values
-    _window = window;
-    _chooseAccountBlock = completionBlock;
-    
-    ACAccountType *fbAccountType = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    
-    // get accounts
-    
-    _accountsToChooseFrom = [_accountStore accountsWithAccountType:fbAccountType];
-    
-    if (!_accountsToChooseFrom ||
-        !_accountsToChooseFrom.count) {
-        
-        completionBlock(NO);
-        
-        return;
-    }
-    
-    // create prompt for user to chose
-    
-    _chooseAccountAlert = [[NSAlert alloc] init];
-    
-    _chooseAccountAlert.messageText = NSLocalizedString(@"Choose an account to use",
-                                                        @"Choose Account Message");
-    
-    for (ACAccount *account in _accountsToChooseFrom) {
-        
-        [_chooseAccountAlert addButtonWithTitle:account.username];
-    }
-    
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        
-        // alert selector will call the completion block...
-        
-        [_chooseAccountAlert beginSheetModalForWindow:_window
-                                        modalDelegate:self
-                                       didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:)
-                                          contextInfo:nil];
-    }];
-}
-
-#pragma mark - NSAlert Selector
-
-- (void)alertDidEnd:(NSAlert *)alert
-         returnCode:(NSInteger)returnCode
-        contextInfo:(void *)contextInfo
-{
-    if (alert == _chooseAccountAlert) {
-        
-        NSInteger accountIndex = returnCode - 1000;
-        
-        _facebookAccount = _accountsToChooseFrom[accountIndex];
-        
-        // call completion block
-        _chooseAccountBlock(YES);
-        
-        return;
-    }
 }
 
 #pragma mark - Requests

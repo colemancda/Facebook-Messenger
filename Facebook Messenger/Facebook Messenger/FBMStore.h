@@ -12,15 +12,6 @@
 
 @interface FBMStore : NSObject
 
-{
-    
-    
-    // choose account temp variables
-    void (^ _chooseAccountBlock)(BOOL success);
-    NSAlert *_chooseAccountAlert;
-    NSArray *_accountsToChooseFrom;
-}
-
 @property (readonly) ACAccountStore *accountStore;
 
 @property (readonly) ACAccount *facebookAccount;
@@ -32,12 +23,7 @@
 @property (readonly) NSManagedObjectContext *context;
 
 -(void)requestAccessToUserAccountsUsingAppID:(NSString *)appID
-                             completionBlock:(void (^)(NSError *error))completionBlock;
-
--(void)selectAccountUsingWindow:(NSWindow *)window
-                completionBlock:(void (^)(BOOL success))completionBlock;
-
--(BOOL)selectAccountUsingIdentitfier:(NSString *)identifier;
+                             completionBlock:(void (^)(BOOL success))completionBlock;
 
 #pragma mark - Requests
 
