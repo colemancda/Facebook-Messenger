@@ -10,6 +10,7 @@
 #import <Social/Social.h>
 #import <Accounts/Accounts.h>
 #import "FBMStore.h"
+#import "FBMInboxWindowController.h"
 
 NSString *const FBMAppID = @"221240951333308";
 
@@ -27,38 +28,16 @@ NSString *const FBMAppID = @"221240951333308";
     
     [_progressIndicator setHidden:NO];
     
+    [_progressIndicator startAnimation:self];
+    
     [self attemptToLogin:^(BOOL loggedIn) {
+        
        
-        // load inbox
-        [_store requestInboxWithCompletionBlock:^(NSError *error) {
-           
-            if (error) {
-                
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                   
-                    [NSApp presentError:error];
-                    
-                }];
-                
-                return;
-            }
-            
-            NSLog(@"Got Inbox");
-            
-        }];
     }];
 }
 
 -(void)attemptToLogin:(void (^)(BOOL))completionBlock
 {
-    // GUI
-    
-    [_failureBox setHidden:YES];
-    
-    [_progressIndicator setHidden:NO];
-    
-    [_progressIndicator startAnimation:self];
-    
     // always request access to accounts
     
     NSLog(@"Requesting access to FB accounts...");
@@ -76,7 +55,7 @@ NSString *const FBMAppID = @"221240951333308";
                 
                 [_progressIndicator setHidden:YES];
                 
-                [_progressIndicator startAnimation:self];
+                [_progressIndicator stopAnimation:self];
                 
             }];
             
@@ -87,6 +66,17 @@ NSString *const FBMAppID = @"221240951333308";
         
         NSLog(@"Using '%@' account", _store.facebookAccount.username);
         
+        // close this window and show InboxWC
+        
+        if (!_inboxWC) {
+            
+            _inboxWC = [[FBMInboxWindowController alloc] init];
+        }
+        
+        [_inboxWC.window makeKeyAndOrderFront:self];
+        
+        [self.window close];
+        
         completionBlock(YES);
         
     }];
@@ -96,6 +86,13 @@ NSString *const FBMAppID = @"221240951333308";
 
 - (IBAction)login:(id)sender {
     
+    [self attemptToLogin:^(BOOL loggedIn) {
+       
+        
+        
+    }];
     
 }
+
+
 @end

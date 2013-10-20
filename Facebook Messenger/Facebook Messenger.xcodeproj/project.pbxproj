@@ -23,6 +23,8 @@
 		6E9FA3AB18138F4B00785A09 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9FA37718138ECE00785A09 /* CoreData.framework */; };
 		6E9FA3AE18138F7A00785A09 /* FBMStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3AD18138F7A00785A09 /* FBMStore.m */; };
 		6E9FA3B21813A6BE00785A09 /* FBModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3B01813A6BE00785A09 /* FBModel.xcdatamodeld */; };
+		6E9FA3B8181439E500785A09 /* FBMInboxWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3B6181439E500785A09 /* FBMInboxWindowController.m */; };
+		6E9FA3B9181439E500785A09 /* FBMInboxWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA3B7181439E500785A09 /* FBMInboxWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,9 @@
 		6E9FA3AC18138F7A00785A09 /* FBMStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMStore.h; sourceTree = "<group>"; };
 		6E9FA3AD18138F7A00785A09 /* FBMStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMStore.m; sourceTree = "<group>"; };
 		6E9FA3B11813A6BE00785A09 /* FBModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FBModel.xcdatamodel; sourceTree = "<group>"; };
+		6E9FA3B5181439E500785A09 /* FBMInboxWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMInboxWindowController.h; sourceTree = "<group>"; };
+		6E9FA3B6181439E500785A09 /* FBMInboxWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMInboxWindowController.m; sourceTree = "<group>"; };
+		6E9FA3B7181439E500785A09 /* FBMInboxWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMInboxWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +197,9 @@
 		6E9FA3B41813B25A00785A09 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6E9FA3B5181439E500785A09 /* FBMInboxWindowController.h */,
+				6E9FA3B6181439E500785A09 /* FBMInboxWindowController.m */,
+				6E9FA3B7181439E500785A09 /* FBMInboxWindowController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -274,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E9FA37E18138ECE00785A09 /* InfoPlist.strings in Resources */,
+				6E9FA3B9181439E500785A09 /* FBMInboxWindowController.xib in Resources */,
 				6E9FA38C18138ECE00785A09 /* Images.xcassets in Resources */,
 				6E9FA38418138ECE00785A09 /* Credits.rtf in Resources */,
 				6E9FA38A18138ECE00785A09 /* MainMenu.xib in Resources */,
@@ -298,6 +307,7 @@
 				6E9FA3AE18138F7A00785A09 /* FBMStore.m in Sources */,
 				6E9FA38718138ECE00785A09 /* FBMAppDelegate.m in Sources */,
 				6E9FA38018138ECE00785A09 /* main.m in Sources */,
+				6E9FA3B8181439E500785A09 /* FBMInboxWindowController.m in Sources */,
 				6E9FA3B21813A6BE00785A09 /* FBModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,6 +523,7 @@
 				6E9FA3A318138ECE00785A09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6E9FA3A418138ECE00785A09 /* Build configuration list for PBXNativeTarget "Facebook MessengerTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +532,7 @@
 				6E9FA3A618138ECE00785A09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -122,10 +122,23 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
         
         // can only have one FB account in OS X
         
-        _facebookAccount = accounts[0];
+        ACAccount *facebookAccount = accounts[0];
         
-        completionBlock(YES);
-        
+        // renew credentials
+        [_accountStore renewCredentialsForAccount:facebookAccount completion:^(ACAccountCredentialRenewResult renewResult, NSError *error) {
+           
+            if (renewResult != ACAccountCredentialRenewResultRenewed) {
+                
+                completionBlock(NO);
+                
+                return;
+            }
+            
+            // store account
+            _facebookAccount = facebookAccount;
+            
+            completionBlock(YES);
+        }];
     }];
 }
 
@@ -189,7 +202,9 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
                                 forKey:@"updatedTime"];
                 
                 // parse comments
-                NSArray *comments = conversationDictionary[@"comments"];
+                NSDictionary *commentsDictionary = conversationDictionary[@"comments"];
+                
+                NSArray *comments = commentsDictionary[@"data"];
                 
                 for (NSDictionary *commentDictionary in comments) {
                     
