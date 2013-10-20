@@ -13,6 +13,8 @@
     NSMutableArray *_conversations;
     
     NSDateFormatter *_dateFormatter;
+    
+    NSMutableDictionary *_conversationWCs;
 }
 
 @property (weak) IBOutlet NSTableView *tableView;
@@ -27,8 +29,8 @@
 
 -(IBAction)delete:(id)sender;
 
-#pragma mark
+#pragma mark - Actions
 
-
+-(IBAction)clickedRow:(id)sender;
 
 @end

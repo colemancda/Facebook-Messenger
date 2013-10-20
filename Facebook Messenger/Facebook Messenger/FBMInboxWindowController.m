@@ -11,6 +11,7 @@
 #import "FBMStore.h"
 #import "FBConversation.h"
 #import "FBUser.h"
+#import "FBMConversationWindowController.h"
 
 @interface FBMInboxWindowController ()
 
@@ -40,6 +41,11 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
+    // set tableview action
+    [self.tableView setDoubleAction:@selector(clickedRow:)];
+    self.tableView.target = self;
+    
+    // load from cache
     [self refreshConversationsFromCache];
 }
 
@@ -173,6 +179,31 @@
 {
     
     
+}
+
+#pragma mark - Actions
+
+-(void)clickedRow:(id)sender
+{
+    // get model object
+    FBConversation *conversation = _conversations[self.tableView.clickedRow];
+    
+    if (!_conversationWCs) {
+        _conversationWCs = [[NSMutableDictionary alloc] init];
+    }
+    
+    // search for existing WC for this conversation
+    NSNumber *conversationID = conversation.id;
+    
+    FBMConversationWindowController *conversationWC = _conversationWCs[conversationID];
+    
+    if (!conversationWC) {
+        
+        [_conversationWCs setObject:[[FBMConversationWindowController alloc] init]
+                             forKey:conversationID];
+    }
+    
+    [conversationWC.window makeKeyAndOrderFront:self];
 }
 
 

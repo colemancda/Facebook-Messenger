@@ -28,6 +28,8 @@
 		6E9FA3D518144DDB00785A09 /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3D418144DDB00785A09 /* FBUser.m */; };
 		6E9FA3D818144DDC00785A09 /* FBConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3D718144DDC00785A09 /* FBConversation.m */; };
 		6E9FA3DB18144DDC00785A09 /* FBConversationComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DA18144DDC00785A09 /* FBConversationComment.m */; };
+		6E9FA3E1181466A900785A09 /* FBMConversationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */; };
+		6E9FA3E2181466A900785A09 /* FBMConversationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,9 @@
 		6E9FA3D718144DDC00785A09 /* FBConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBConversation.m; sourceTree = "<group>"; };
 		6E9FA3D918144DDC00785A09 /* FBConversationComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConversationComment.h; sourceTree = "<group>"; };
 		6E9FA3DA18144DDC00785A09 /* FBConversationComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBConversationComment.m; sourceTree = "<group>"; };
+		6E9FA3DE181466A900785A09 /* FBMConversationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMConversationWindowController.h; sourceTree = "<group>"; };
+		6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMConversationWindowController.m; sourceTree = "<group>"; };
+		6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMConversationWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,9 +212,8 @@
 		6E9FA3B41813B25A00785A09 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6E9FA3B5181439E500785A09 /* FBMInboxWindowController.h */,
-				6E9FA3B6181439E500785A09 /* FBMInboxWindowController.m */,
-				6E9FA3B7181439E500785A09 /* FBMInboxWindowController.xib */,
+				6E9FA3DD1814668400785A09 /* Conversation */,
+				6E9FA3DC1814667800785A09 /* Inbox */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -225,6 +229,26 @@
 				6E9FA3D418144DDB00785A09 /* FBUser.m */,
 			);
 			name = NSManagedObject;
+			sourceTree = "<group>";
+		};
+		6E9FA3DC1814667800785A09 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				6E9FA3B5181439E500785A09 /* FBMInboxWindowController.h */,
+				6E9FA3B6181439E500785A09 /* FBMInboxWindowController.m */,
+				6E9FA3B7181439E500785A09 /* FBMInboxWindowController.xib */,
+			);
+			name = Inbox;
+			sourceTree = "<group>";
+		};
+		6E9FA3DD1814668400785A09 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				6E9FA3DE181466A900785A09 /* FBMConversationWindowController.h */,
+				6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */,
+				6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */,
+			);
+			name = Conversation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +328,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E9FA3E2181466A900785A09 /* FBMConversationWindowController.xib in Resources */,
 				6E9FA37E18138ECE00785A09 /* InfoPlist.strings in Resources */,
 				6E9FA3B9181439E500785A09 /* FBMInboxWindowController.xib in Resources */,
 				6E9FA38C18138ECE00785A09 /* Images.xcassets in Resources */,
@@ -330,6 +355,7 @@
 				6E9FA3DB18144DDC00785A09 /* FBConversationComment.m in Sources */,
 				6E9FA3AE18138F7A00785A09 /* FBMStore.m in Sources */,
 				6E9FA38718138ECE00785A09 /* FBMAppDelegate.m in Sources */,
+				6E9FA3E1181466A900785A09 /* FBMConversationWindowController.m in Sources */,
 				6E9FA3D818144DDC00785A09 /* FBConversation.m in Sources */,
 				6E9FA38018138ECE00785A09 /* main.m in Sources */,
 				6E9FA3B8181439E500785A09 /* FBMInboxWindowController.m in Sources */,

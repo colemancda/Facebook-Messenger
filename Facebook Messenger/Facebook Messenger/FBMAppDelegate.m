@@ -36,6 +36,27 @@ NSString *const FBMAppID = @"221240951333308";
     }];
 }
 
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication
+                    hasVisibleWindows:(BOOL)flag
+{
+    if (self.store.facebookAccount) {
+        
+        // reopen inbox window
+        [_inboxWC.window makeKeyAndOrderFront:self];
+        
+        return YES;
+    }
+    
+    if ( flag ) {
+        [self.window orderFront:self];
+    }
+    else {
+        [self.window makeKeyAndOrderFront:self];
+    }
+    
+    return YES;
+}
+
 -(void)attemptToLogin:(void (^)(BOOL))completionBlock
 {
     // always request access to accounts
