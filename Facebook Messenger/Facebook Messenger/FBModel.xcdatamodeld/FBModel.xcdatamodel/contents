@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A598" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="FBConversation" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBConversationComment" inverseName="conversation" inverseEntity="FBConversationComment" syncable="YES"/>
+    </entity>
+    <entity name="FBConversationComment" syncable="YES">
+        <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FBConversation" inverseName="comments" inverseEntity="FBConversation" syncable="YES"/>
+    </entity>
+    <entity name="FBUser" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="FBConversation" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FBConversationComment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FBUser" positionX="0" positionY="0" width="0" height="0"/>
+    </elements>
+</model>
