@@ -157,7 +157,22 @@
         cellView.textField.stringValue = toString;
     }
     
+    // check whether the conversation has unread messages
+    if (conversation.unread.boolValue ||
+        conversation.unseen.boolValue) {
+        
+        [cellView setBackgroundStyle:NSBackgroundStyleDark];
+        
+    }
+    
+    
     return cellView;
+}
+
+-(void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    
+    
 }
 
 
