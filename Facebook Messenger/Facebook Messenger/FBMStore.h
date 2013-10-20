@@ -24,6 +24,11 @@
 
 -(void)requestAccessToUserAccountsUsingAppID:(NSString *)appID
                              completionBlock:(void (^)(BOOL success))completionBlock;
+#pragma mark - Cache
+
+// entity must have id property
+-(NSManagedObject *)cachedEntity:(NSString *)entityName
+                          withID:(id)idObject;
 
 #pragma mark - Requests
 

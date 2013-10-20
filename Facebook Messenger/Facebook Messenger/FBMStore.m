@@ -7,6 +7,9 @@
 //
 
 #import "FBMStore.h"
+#import "FBUser.h"
+#import "FBConversation.h"
+#import "FBConversationComment.h"
 
 static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
 
@@ -142,6 +145,49 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
     }];
 }
 
+#pragma mark - Cache
+
+-(NSManagedObject *)cachedEntity:(NSString *)entityName
+                          withID:(id)idObject
+{
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    
+    fetch.predicate = [NSPredicate predicateWithFormat:@"id == %@", idObject];
+    
+    NSError *fetchError;
+    NSArray *result = [_context executeFetchRequest:fetch
+                                              error:&fetchError];
+    
+    if (!result) {
+        
+        [NSException raise:@"Error Executing Core Data NSFetchRequest"
+                    format:@"%@", fetchError.localizedDescription];
+        
+        return nil;
+    }
+    
+    NSManagedObject *entity;
+    
+    // not found, create new one
+    if (!result.count) {
+        
+        entity = [NSEntityDescription insertNewObjectForEntityForName:entityName
+                                               inManagedObjectContext:_context];
+        
+        [entity setValue:idObject
+                  forKey:@"id"];
+        
+    }
+    
+    // found cached object
+    else {
+        
+        entity = result[0];
+    }
+    
+    return entity;
+}
+
 #pragma mark - Requests
 
 -(void)requestInboxWithCompletionBlock:(void (^)(NSError *))completionBlock
@@ -189,33 +235,90 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
             // parse conversations
             for (NSDictionary *conversationDictionary in inbox) {
                 
-                NSManagedObject *conversation = [NSEntityDescription insertNewObjectForEntityForName:@"FBConversation" inManagedObjectContext:_context];
+                // get id
+                NSNumber *conversationID = conversationDictionary[@"id"];
                 
-                // set id
-                [conversation setValue:conversationDictionary[@"id"]
-                                forKey:@"id"];
+                // search store and find cache
+                FBConversation *conversation = (FBConversation *)[self cachedEntity:@"FBConversation"
+                                                                             withID:conversationID];
                 
                 // get updated time
-                NSDate *updatedTime = [NSDate dateFromFBDateString:conversationDictionary[@"updated_time"]];
+                conversation.updatedTime = [NSDate dateFromFBDateString:conversationDictionary[@"updated_time"]];
                 
-                [conversation setValue:updatedTime
-                                forKey:@"updatedTime"];
+                // get paging
+                NSDictionary *pagingDictionary = conversationDictionary[@"paging"];
                 
-                // parse comments
+                conversation.pagingNext = pagingDictionary[@"next"];
+                
+                conversation.pagingPrevious = pagingDictionary[@"previous"];
+                
+                // get unread and unseen
+                conversation.unread = conversationDictionary[@"unread"];
+                
+                conversation.unseen = conversationDictionary[@"unseen"];
+                
+                // parse 'to' relationship
+                NSDictionary *toDictionary = conversationDictionary[@"to"];
+                
+                NSArray *toArray = toDictionary[@"data"];
+                
+                NSMutableArray *conversationUsers = [[NSMutableArray alloc] init];
+                
+                for (NSDictionary *userDictionary in toArray) {
+                    
+                    // get user id
+                    NSNumber *userID = userDictionary[@"id"];
+                    
+                    FBUser *user = (FBUser *)[self cachedEntity:@"FBUser"
+                                                         withID:userID];
+                    
+                    user.name = userDictionary[@"name"];
+                    
+                    [conversationUsers addObject:user];
+                }
+                
+                // replace 'to' relationship
+                [conversation setValue:conversationUsers
+                                forKey:@"to"];
+                
+                
+                // parse comments...
+                
                 NSDictionary *commentsDictionary = conversationDictionary[@"comments"];
                 
                 NSArray *comments = commentsDictionary[@"data"];
                 
+                NSMutableArray *conversationComments = [[NSMutableArray alloc] init];
+                
                 for (NSDictionary *commentDictionary in comments) {
                     
-                    NSManagedObject *comment = [NSEntityDescription insertNewObjectForEntityForName:@"FBConversationComment" inManagedObjectContext:_context];
+                    // get ID
                     
-                    NSLog(@"%@", comment);
+                    NSString *commentID = commentDictionary[@"id"];
                     
+                    FBConversationComment *comment = (FBConversationComment *)[self cachedEntity:@"FBConversationComment" withID:commentID];
+                    
+                    // set values...
+                    
+                    comment.createdTime = [NSDate dateFromFBDateString:commentDictionary[@"created_time"]];
+                    
+                    comment.message = commentDictionary[@"message"];
+                    
+                    // parse 'from'
+                    NSDictionary *fromDictionary = commentDictionary[@"from"];
+                    
+                    NSNumber *fromUserID = fromDictionary[@"id"];
+                    
+                    FBUser *fromUser = (FBUser *)[self cachedEntity:@"FBUser"
+                                                             withID:fromUserID];
+                    
+                    comment.from = fromUser;
                 }
                 
+                // replace collection
+                [conversation setValue:conversationComments
+                                forKey:@"comments"];
             }
-            
         }];
         
         completionBlock(nil);
