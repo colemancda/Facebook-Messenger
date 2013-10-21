@@ -15,6 +15,8 @@
     NSMutableArray *_conversationComments;
     
     NSDate *_lastNetRefresh;
+    
+    NSDateFormatter *_dateFormatter;
 }
 
 @property FBConversation *conversation;
@@ -38,6 +40,8 @@
 #pragma mark - Change GUI
 
 -(void)updateWindowTitle;
+
+-(void)scrollToBottomOfTableView;
 
 
 @end

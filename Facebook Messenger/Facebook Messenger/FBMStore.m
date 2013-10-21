@@ -316,11 +316,16 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
                                                              withID:fromUserID];
                     
                     comment.from = fromUser;
+                    
+                    [conversationComments addObject:comment];
+                    
                 }
                 
                 // replace collection
                 [conversation setValue:conversationComments
                                 forKey:@"comments"];
+                
+                
             }
         }];
         
