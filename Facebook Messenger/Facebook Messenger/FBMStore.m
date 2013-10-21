@@ -246,13 +246,6 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
                 // get updated time
                 conversation.updatedTime = [NSDate dateFromFBDateString:conversationDictionary[@"updated_time"]];
                 
-                // get paging
-                NSDictionary *pagingDictionary = conversationDictionary[@"paging"];
-                
-                conversation.pagingNext = pagingDictionary[@"next"];
-                
-                conversation.pagingPrevious = pagingDictionary[@"previous"];
-                
                 // get unread and unseen
                 conversation.unread = conversationDictionary[@"unread"];
                 
@@ -285,8 +278,14 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
                 
                 
                 // parse comments...
-                
                 NSDictionary *commentsDictionary = conversationDictionary[@"comments"];
+                
+                // get paging
+                NSDictionary *pagingDictionary = commentsDictionary[@"paging"];
+                
+                conversation.pagingNext = pagingDictionary[@"next"];
+                
+                conversation.pagingPrevious = pagingDictionary[@"previous"];
                 
                 NSArray *comments = commentsDictionary[@"data"];
                 
