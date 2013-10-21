@@ -127,11 +127,6 @@
     // get model object
     FBConversationComment *comment = _conversationComments[row];
     
-    if (!comment.message) {
-        
-        
-    }
-    
     // set text fields
     messageCellView.textField.stringValue = comment.message;
     
@@ -148,9 +143,7 @@
         
     }
     
-    NSString *dateString = [_dateFormatter stringFromDate:comment.createdTime];
-    
-    messageCellView.dateField.stringValue = dateString;
+    messageCellView.dateField.stringValue = [_dateFormatter stringFromDate:comment.createdTime];
     
     return messageCellView;
 }

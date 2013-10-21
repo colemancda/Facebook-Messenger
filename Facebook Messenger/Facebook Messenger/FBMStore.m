@@ -305,6 +305,11 @@ static NSString *ErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
                     
                     comment.message = commentDictionary[@"message"];
                     
+                    if (!commentDictionary[@"message"]) {
+                        
+                        comment.message = @"";
+                    }
+                    
                     // parse 'from'
                     NSDictionary *fromDictionary = commentDictionary[@"from"];
                     
