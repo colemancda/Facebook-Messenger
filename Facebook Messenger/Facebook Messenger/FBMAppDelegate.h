@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 @class FBMStore, FBMInboxWindowController;
 
-extern NSString *const FBMAppID;
+extern NSString *const FBMErrorDomain;
 
 @interface FBMAppDelegate : NSObject <NSApplicationDelegate>
 

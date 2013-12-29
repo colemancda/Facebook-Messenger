@@ -7,23 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Accounts/Accounts.h>
-#import <Social/Social.h>
+@class FBMAPI;
 
 @interface FBMStore : NSObject
 
-@property (readonly) ACAccountStore *accountStore;
-
-@property (readonly) ACAccount *facebookAccount;
-
-@property (readonly) NSString *appID;
-
-@property (readonly) NSWindow *window;
-
 @property (readonly) NSManagedObjectContext *context;
 
--(void)requestAccessToUserAccountsUsingAppID:(NSString *)appID
-                             completionBlock:(void (^)(BOOL success))completionBlock;
+@property (readonly) FBMAPI *api;
+
 #pragma mark - Cache
 
 // entity must have id property

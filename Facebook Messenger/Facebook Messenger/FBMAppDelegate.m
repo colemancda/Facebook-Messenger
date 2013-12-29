@@ -12,7 +12,7 @@
 #import "FBMStore.h"
 #import "FBMInboxWindowController.h"
 
-NSString *const FBMAppID = @"221240951333308";
+NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
 
 @implementation FBMAppDelegate
 

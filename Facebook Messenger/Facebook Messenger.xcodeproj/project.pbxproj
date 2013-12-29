@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E0E3889187092A600CED6B6 /* FBMAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E3888187092A600CED6B6 /* FBMAPI.m */; };
 		6E9FA37418138ECE00785A09 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9FA37318138ECE00785A09 /* Cocoa.framework */; };
 		6E9FA37E18138ECE00785A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA37C18138ECE00785A09 /* InfoPlist.strings */; };
 		6E9FA38018138ECE00785A09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA37F18138ECE00785A09 /* main.m */; };
@@ -31,6 +32,7 @@
 		6E9FA3E1181466A900785A09 /* FBMConversationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */; };
 		6E9FA3E2181466A900785A09 /* FBMConversationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */; };
 		6E9FA3E618146FAB00785A09 /* FBMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */; };
+		6EBAE37C1870D3FA004F172A /* NSDate+FBDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6E0E3887187092A600CED6B6 /* FBMAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMAPI.h; sourceTree = "<group>"; };
+		6E0E3888187092A600CED6B6 /* FBMAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMAPI.m; sourceTree = "<group>"; };
 		6E9FA37018138ECE00785A09 /* Facebook Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Facebook Messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9FA37318138ECE00785A09 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E9FA37618138ECE00785A09 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -82,6 +86,8 @@
 		6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMConversationWindowController.xib; sourceTree = "<group>"; };
 		6E9FA3E418146FAB00785A09 /* FBMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMessageCellView.h; sourceTree = "<group>"; };
 		6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMessageCellView.m; sourceTree = "<group>"; };
+		6EBAE37A1870D3FA004F172A /* NSDate+FBDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FBDate.h"; sourceTree = "<group>"; };
+		6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FBDate.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +205,8 @@
 		6E9FA3AF18138F9200785A09 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				6E0E3887187092A600CED6B6 /* FBMAPI.h */,
+				6E0E3888187092A600CED6B6 /* FBMAPI.m */,
 				6E9FA3AC18138F7A00785A09 /* FBMStore.h */,
 				6E9FA3AD18138F7A00785A09 /* FBMStore.m */,
 			);
@@ -208,6 +216,7 @@
 		6E9FA3B31813ADFF00785A09 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6EBAE3791870D3D9004F172A /* Categories */,
 				6E9FA3C318143FA500785A09 /* NSManagedObject */,
 			);
 			name = Models;
@@ -262,6 +271,15 @@
 				6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		6EBAE3791870D3D9004F172A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6EBAE37A1870D3FA004F172A /* NSDate+FBDate.h */,
+				6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,6 +392,8 @@
 				6E9FA38018138ECE00785A09 /* main.m in Sources */,
 				6E9FA3B8181439E500785A09 /* FBMInboxWindowController.m in Sources */,
 				6E9FA3D518144DDB00785A09 /* FBUser.m in Sources */,
+				6E0E3889187092A600CED6B6 /* FBMAPI.m in Sources */,
+				6EBAE37C1870D3FA004F172A /* NSDate+FBDate.m in Sources */,
 				6E9FA3B21813A6BE00785A09 /* FBModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

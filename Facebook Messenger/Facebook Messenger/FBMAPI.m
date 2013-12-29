@@ -1,84 +1,90 @@
 //
-//  FBMStore.m
+//  FBMAPI.m
 //  Facebook Messenger
 //
-//  Created by Alsey Coleman Miller on 10/20/13.
+//  Created by Alsey Coleman Miller on 12/29/13.
 //  Copyright (c) 2013 CDA. All rights reserved.
 //
 
-#import "FBMStore.h"
-#import "FBUser.h"
-#import "FBConversation.h"
-#import "FBConversationComment.h"
+#import "FBMAPI.h"
 
-@implementation FBMStore
+NSString *const FBMAppID = @"221240951333308";
+
+@implementation FBMAPI
 
 - (id)init
 {
     self = [super init];
     if (self) {
-                
-        NSURL *modelUrl = [[NSBundle mainBundle] URLForResource:@"FBModel"
-                                                   withExtension:@"momd"];
-                
-        NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelUrl];
         
-        _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-        
-        _context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-        
-        _context.undoManager = nil;
+        _accountStore = [[ACAccountStore alloc] init];
         
     }
     return self;
 }
 
-#pragma mark - Cache
+#pragma mark - Authenticate
 
--(NSManagedObject *)cachedEntity:(NSString *)entityName
-                          withID:(id)idObject
+-(void)loginWithCompletion:(void (^)(BOOL *))completionBlock
 {
-    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    NSArray *fbPermissions = @[@"read_mailbox",
+                               @"friends_online_presence",
+                               @"user_about_me",
+                               @"user_online_presence",
+                               @"xmpp_login"];
     
-    fetch.predicate = [NSPredicate predicateWithFormat:@"id == %@", idObject];
+    NSDictionary *accessOptions = @{ACFacebookAppIdKey: FBMAppID,
+                                    ACFacebookPermissionsKey : fbPermissions};
     
-    NSError *fetchError;
-    NSArray *result = [_context executeFetchRequest:fetch
-                                              error:&fetchError];
     
-    if (!result) {
+    ACAccountType *fbAccountType = [_accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+    
+    // request access to accounts
+    
+    [_accountStore requestAccessToAccountsWithType:fbAccountType options:accessOptions completion:^(BOOL granted, NSError *error) {
         
-        [NSException raise:@"Error Executing Core Data NSFetchRequest"
-                    format:@"%@", fetchError.localizedDescription];
+        // access denied
+        if (!granted) {
+            
+            completionBlock(NO);
+            return;
+        }
         
-        return nil;
-    }
+        NSArray *accounts = [_accountStore accountsWithAccountType:fbAccountType];
+        
+        // account exists but is not enabled
+        if (!accounts.count) {
+            
+            completionBlock(NO);
+            return;
+        }
+        
+        // can only have one FB account in OS X
+        
+        ACAccount *facebookAccount = accounts[0];
+        
+        // renew credentials
+        [_accountStore renewCredentialsForAccount:facebookAccount completion:^(ACAccountCredentialRenewResult renewResult, NSError *error) {
+            
+            if (renewResult != ACAccountCredentialRenewResultRenewed) {
+                
+                completionBlock(NO);
+                
+                return;
+            }
+            
+            // store account
+            _facebookAccount = facebookAccount;
+            
+            completionBlock(YES);
+        }];
+    }];
     
-    NSManagedObject *entity;
-    
-    // not found, create new one
-    if (!result.count) {
-        
-        entity = [NSEntityDescription insertNewObjectForEntityForName:entityName
-                                               inManagedObjectContext:_context];
-        
-        [entity setValue:idObject
-                  forKey:@"id"];
-        
-    }
-    
-    // found cached object
-    else {
-        
-        entity = result[0];
-    }
-    
-    return entity;
 }
 
-#pragma mark - Requests
+#pragma mark - Request
 
--(void)requestInboxWithCompletionBlock:(void (^)(NSError *))completionBlock
+-(SLRequest *)requestInboxWithCompletionBlock:(void (^)(NSError *, NSArray *))completionBlock
 {
     NSURL *url = [NSURL URLWithString:@"https://graph.facebook.com/me/inbox"];
     
@@ -329,6 +335,7 @@
         
     }];
     
+    return request;
 }
 
 @end
