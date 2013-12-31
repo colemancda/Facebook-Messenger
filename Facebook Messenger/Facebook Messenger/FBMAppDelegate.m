@@ -11,6 +11,7 @@
 #import <Accounts/Accounts.h>
 #import "FBMStore.h"
 #import "FBMInboxWindowController.h"
+#import "FBMAPI.h"
 
 NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
 
@@ -39,7 +40,7 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication
                     hasVisibleWindows:(BOOL)flag
 {
-    if (self.store.facebookAccount) {
+    if (self.store.api.facebookAccount) {
         
         // reopen inbox window
         [_inboxWC.window makeKeyAndOrderFront:self];
@@ -63,7 +64,7 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
     
     NSLog(@"Requesting access to FB accounts...");
     
-    [_store requestAccessToUserAccountsUsingAppID:FBMAppID completionBlock:^(BOOL success) {
+    [_store.api requestAccessToFBAccount:^(BOOL success) {
         
         if (!success) {
             
@@ -85,7 +86,7 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
             return;
         }
         
-        NSLog(@"Using '%@' account", _store.facebookAccount.username);
+        NSLog(@"Using '%@' account", _store.api.facebookAccount.username);
         
         // download inbx before showing window
         

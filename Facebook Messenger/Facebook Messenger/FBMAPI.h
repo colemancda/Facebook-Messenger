@@ -20,10 +20,8 @@
 
 #pragma mark - Authenticate
 
--(void)loginWithCompletion:(void (^)(BOOL *sucess))completionBlock;
+-(void)requestAccessToFBAccount:(void (^)(BOOL success))completionBlock;
 
 #pragma mark - Requests
-
--(SLRequest *)requestInboxWithCompletionBlock:(void (^)(NSError *error, NSArray *inbox))completionBlock;
 
 @end
