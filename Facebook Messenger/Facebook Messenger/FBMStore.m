@@ -10,6 +10,7 @@
 #import "FBUser.h"
 #import "FBConversation.h"
 #import "FBConversationComment.h"
+#import "FBMAPI.h"
 
 @implementation FBMStore
 
@@ -28,6 +29,10 @@
         _context.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
         
         _context.undoManager = nil;
+        
+        // initialize API
+        
+        _api = [[FBMAPI alloc] init];
         
     }
     return self;

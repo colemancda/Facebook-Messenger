@@ -92,6 +92,8 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
         
         FBMAppDelegate *appDelegate = [NSApp delegate];
         
+        /*
+        
         [appDelegate.store requestInboxWithCompletionBlock:^(NSError *error) {
             
             if (error) {
@@ -125,6 +127,8 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
             }];
             
         }];
+         
+         */
     }];
 }
 

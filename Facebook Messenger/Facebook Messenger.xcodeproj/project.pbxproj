@@ -879,11 +879,6 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/include/libxml2,
 				);
-				"HEADER_SEARCH_PATHS[arch=*]" = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					/usr/include/libxml2,
-				);
 				INFOPLIST_FILE = "Facebook Messenger/Facebook Messenger-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -892,6 +887,7 @@
 					"/Users/Coleman/Programming/My\\ Apps/Facebook\\ Messenger/Facebook\\ Messenger/Facebook\\ Messenger/libidn",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -917,6 +913,7 @@
 					"/Users/Coleman/Programming/My\\ Apps/Facebook\\ Messenger/Facebook\\ Messenger/Facebook\\ Messenger/libidn",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
