@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "FBMStore.h"
 @class FBMStore, FBMInboxWindowController;
 
-@interface FBMAppDelegate : NSObject <NSApplicationDelegate>
+@interface FBMAppDelegate : NSObject <NSApplicationDelegate, FBMAPIDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 

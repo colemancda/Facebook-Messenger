@@ -20,6 +20,7 @@
     // Insert code here to initialize your application
     
     _store = [[FBMStore alloc] initWithAppID:@"221240951333308"];
+    _store.delegate = (id)self;
     
     // GUI
     
@@ -57,8 +58,10 @@
 
 - (IBAction)login:(id)sender {
     
+    NSLog(@"Requesting access to FB account...");
+    
     [self.store requestAccessToFBAccount:^(NSError *error) {
-       
+        
         if (error) {
             
             // GUI
@@ -77,26 +80,52 @@
             return;
         }
         
-        NSLog(@"Using '%@' account", _store.facebookAccount.username);
+        NSLog(@"Connecting using '%@' account", _store.facebookAccount.username);
         
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            // close this window and show InboxWC
-            
-            if (!_inboxWC) {
-                
-                _inboxWC = [[FBMInboxWindowController alloc] init];
-            }
-            
-            [_inboxWC.window makeKeyAndOrderFront:self];
-            
-            [self.window close];
-            
-        }];
+        [self.store connectToXMPPServer];
         
     }];
     
 }
 
+#pragma mark - FBMAPIDelegate
+
+-(void)api:(FBMAPI *)api didFinishAuthenticationWithError:(NSError *)error
+{
+    if (error) {
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            [_failureBox setHidden:NO];
+            
+            [_progressIndicator setHidden:YES];
+            
+            [_progressIndicator stopAnimation:self];
+           
+            [NSApp presentError:error];
+            
+        }];
+        
+        return;
+    }
+    
+    NSLog(@"Successfully connected to server");
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        // close this window and show InboxWC
+        
+        if (!_inboxWC) {
+            
+            _inboxWC = [[FBMInboxWindowController alloc] init];
+        }
+        
+        [_inboxWC.window makeKeyAndOrderFront:self];
+        
+        [self.window close];
+        
+    }];
+    
+}
 
 @end

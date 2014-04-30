@@ -159,8 +159,8 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
 -(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)xmlError
 {
     NSError *error = [NSError errorWithDomain:FBMErrorDomain
-                                         code:
-                                     userInfo:];
+                                         code:0
+                                     userInfo:nil];
     
     [self.delegate api:self didFinishAuthenticationWithError:error];
 }
