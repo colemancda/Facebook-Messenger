@@ -111,6 +111,10 @@
 		6EC4F8381911961C00B87BDF /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4F8231911961C00B87BDF /* DDMultiFormatter.m */; };
 		6EC4F8391911961C00B87BDF /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4F8241911961C00B87BDF /* README.txt */; };
 		6EC4F83A1911961C00B87BDF /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4F8241911961C00B87BDF /* README.txt */; };
+		6EC4F8401911982200B87BDF /* build-libidn.sh in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4F83C1911982200B87BDF /* build-libidn.sh */; };
+		6EC4F8411911982200B87BDF /* build-libidn.sh in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4F83C1911982200B87BDF /* build-libidn.sh */; };
+		6EC4F8421911982200B87BDF /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC4F83E1911982200B87BDF /* libidn.a */; };
+		6EC4F8431911982200B87BDF /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC4F83E1911982200B87BDF /* libidn.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +252,10 @@
 		6EC4F8221911961C00B87BDF /* DDMultiFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMultiFormatter.h; sourceTree = "<group>"; };
 		6EC4F8231911961C00B87BDF /* DDMultiFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMultiFormatter.m; sourceTree = "<group>"; };
 		6EC4F8241911961C00B87BDF /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		6EC4F83C1911982200B87BDF /* build-libidn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "build-libidn.sh"; sourceTree = "<group>"; };
+		6EC4F83D1911982200B87BDF /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
+		6EC4F83E1911982200B87BDF /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
+		6EC4F83F1911982200B87BDF /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +266,7 @@
 				6E4FE2FA1872785D00646455 /* libresolv.dylib in Frameworks */,
 				6E4FE2F81872780900646455 /* SystemConfiguration.framework in Frameworks */,
 				6EBAEABB18727536004F172A /* libxml2.dylib in Frameworks */,
+				6EC4F8421911982200B87BDF /* libidn.a in Frameworks */,
 				6E4FE2F61872770F00646455 /* Security.framework in Frameworks */,
 				6E9FA3AB18138F4B00785A09 /* CoreData.framework in Frameworks */,
 				6E9FA3AA18138F4100785A09 /* Social.framework in Frameworks */,
@@ -270,6 +279,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EC4F8431911982200B87BDF /* libidn.a in Frameworks */,
 				6E9FA39418138ECE00785A09 /* Cocoa.framework in Frameworks */,
 				6E9FA39318138ECE00785A09 /* XCTest.framework in Frameworks */,
 			);
@@ -281,6 +291,7 @@
 		6E5833291910A03A00DDDCBE /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				6EC4F83B1911982200B87BDF /* libidn */,
 				6EC4F80C1911961C00B87BDF /* Lumberjack */,
 				6E58421C1910A0B400DDDCBE /* GCDAsyncSocket */,
 				6E5841A71910A09600DDDCBE /* XMPPFramework */,
@@ -677,6 +688,18 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		6EC4F83B1911982200B87BDF /* libidn */ = {
+			isa = PBXGroup;
+			children = (
+				6EC4F83C1911982200B87BDF /* build-libidn.sh */,
+				6EC4F83D1911982200B87BDF /* idn-int.h */,
+				6EC4F83E1911982200B87BDF /* libidn.a */,
+				6EC4F83F1911982200B87BDF /* stringprep.h */,
+			);
+			name = libidn;
+			path = Dependencies/XMPPFramework/Vendor/libidn;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -763,6 +786,7 @@
 				6E9FA38418138ECE00785A09 /* Credits.rtf in Resources */,
 				6EC4F8391911961C00B87BDF /* README.txt in Resources */,
 				6E9FA38A18138ECE00785A09 /* MainMenu.xib in Resources */,
+				6EC4F8401911982200B87BDF /* build-libidn.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,6 +795,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EC4F83A1911961C00B87BDF /* README.txt in Resources */,
+				6EC4F8411911982200B87BDF /* build-libidn.sh in Resources */,
 				6E9FA39C18138ECE00785A09 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

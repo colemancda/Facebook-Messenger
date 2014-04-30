@@ -15,8 +15,6 @@
 
 @property (readonly) FBMStore *store;
 
--(void)attemptToLogin:(void (^)(BOOL loggedIn))completionBlock;
-
 #pragma mark - Window Controllers
 
 @property (readonly) FBMInboxWindowController *inboxWC;

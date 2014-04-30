@@ -29,16 +29,13 @@
     
     [_progressIndicator startAnimation:self];
     
-    [self attemptToLogin:^(BOOL loggedIn) {
-        
-       
-    }];
+    [self login:nil];
 }
 
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication
                     hasVisibleWindows:(BOOL)flag
 {
-    if (self.store.api.facebookAccount) {
+    if (self.store.facebookAccount) {
         
         // reopen inbox window
         [_inboxWC.window makeKeyAndOrderFront:self];
@@ -56,87 +53,46 @@
     return YES;
 }
 
--(void)attemptToLogin:(void (^)(BOOL))completionBlock
-{
-    // always request access to accounts
+#pragma mark - Actions
+
+- (IBAction)login:(id)sender {
     
-    NSLog(@"Requesting access to FB accounts...");
-    
-    [_store.api requestAccessToFBAccount:^(BOOL success) {
-        
-        if (!success) {
-            
-            NSLog(@"Access to account denied");
+    [self.store requestAccessToFBAccount:^(NSError *error) {
+       
+        if (error) {
             
             // GUI
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-               
+                
                 [_failureBox setHidden:NO];
                 
                 [_progressIndicator setHidden:YES];
                 
                 [_progressIndicator stopAnimation:self];
                 
+                [NSApp presentError:error];
+                
             }];
-            
-            completionBlock(NO);
             
             return;
         }
         
-        NSLog(@"Using '%@' account", _store.api.facebookAccount.username);
+        NSLog(@"Using '%@' account", _store.facebookAccount.username);
         
-        // download inbx before showing window
-        
-        FBMAppDelegate *appDelegate = [NSApp delegate];
-        
-        /*
-        
-        [appDelegate.store requestInboxWithCompletionBlock:^(NSError *error) {
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
-            if (error) {
+            // close this window and show InboxWC
+            
+            if (!_inboxWC) {
                 
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    
-                    [NSApp presentError:error];
-                    
-                }];
-                
-                return;
+                _inboxWC = [[FBMInboxWindowController alloc] init];
             }
             
-            NSLog(@"Got Inbox");
+            [_inboxWC.window makeKeyAndOrderFront:self];
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-               
-                // close this window and show InboxWC
-                
-                if (!_inboxWC) {
-                    
-                    _inboxWC = [[FBMInboxWindowController alloc] init];
-                }
-                
-                [_inboxWC.window makeKeyAndOrderFront:self];
-                
-                [self.window close];
-                
-                completionBlock(YES);
-                
-            }];
+            [self.window close];
             
         }];
-         
-         */
-    }];
-}
-
-#pragma mark - Actions
-
-- (IBAction)login:(id)sender {
-    
-    [self attemptToLogin:^(BOOL loggedIn) {
-       
-        
         
     }];
     
