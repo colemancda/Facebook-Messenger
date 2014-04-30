@@ -62,11 +62,17 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
         // account exists but is not enabled
         if (!accounts.count) {
             
+            NSString *description = NSLocalizedString(@"The FB account is not enabled", @"Account not enabled error description");
+            
+            NSString *suggestion = NSLocalizedString(@"Enable your FB account in System Preferences", @"Account not enabled error suggestion");
+            
             NSError *error = [NSError errorWithDomain:FBMErrorDomain
-                                                 code:<#(NSInteger)#>
-                                             userInfo:<#(NSDictionary *)#>];
+                                                 code:FBMAPIAccountNotEnabledErrorCode
+                                             userInfo:@{NSLocalizedDescriptionKey: description,
+                                                        NSLocalizedRecoverySuggestionErrorKey: suggestion}];
             
             completionBlock(error);
+            
             return;
         }
         
@@ -79,7 +85,7 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
             
             if (renewResult != ACAccountCredentialRenewResultRenewed) {
                 
-                completionBlock(NO);
+                completionBlock(error);
                 
                 return;
             }
@@ -87,7 +93,8 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
             // store account
             _facebookAccount = facebookAccount;
             
-            completionBlock(YES);
+            completionBlock(nil);
+            
         }];
     }];
 }

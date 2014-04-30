@@ -7,3 +7,6 @@
 [submodule "Facebook Messenger/Dependencies/CocoaAsyncSocket"]
 	path = Facebook Messenger/Dependencies/CocoaAsyncSocket
 	url = https://github.com/colemancda/CocoaAsyncSocket.git
+[submodule "Facebook Messenger/Dependencies/CocoaLumberjack"]
+	path = Facebook Messenger/Dependencies/CocoaLumberjack
+	url = https://github.com/CocoaLumberjack/CocoaLumberjack.git

@@ -14,6 +14,8 @@
 		<string>https://github.com/colemancda/CocoaAsyncSocket.git</string>
 		<key>D953D108-0691-452C-B1AE-DAFCD185E4AF</key>
 		<string>https://github.com/colemancda/Facebook-Messenger.git</string>
+		<key>E4B75E0F-2C52-4BD2-9C17-960E75C90FC5</key>
+		<string>https://github.com/CocoaLumberjack/CocoaLumberjack.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Facebook Messenger/Facebook Messenger.xcodeproj/project.xcworkspace</string>
@@ -35,6 +37,8 @@
 		<string>../../Facebook Messenger/facebook-ios-sdk/vendor/OHHTTPStubs/OHHTTPStubs/UnitTests/AFNetworking</string>
 		<key>D953D108-0691-452C-B1AE-DAFCD185E4AF</key>
 		<string>../../..</string>
+		<key>E4B75E0F-2C52-4BD2-9C17-960E75C90FC5</key>
+		<string>../../Dependencies/CocoaLumberjack</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/colemancda/Facebook-Messenger.git</string>
@@ -51,6 +55,14 @@
 			<string>8132258C-4CB3-4187-9514-2AE6C7DE2B62</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CocoaAsyncSocket</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E4B75E0F-2C52-4BD2-9C17-960E75C90FC5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CocoaLumberjack</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

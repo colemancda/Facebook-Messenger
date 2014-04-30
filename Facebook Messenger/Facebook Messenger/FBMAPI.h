@@ -13,6 +13,12 @@
 
 extern NSString *const FBMErrorDomain;
 
+typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
+    
+    FBMAPIAccountNotEnabledErrorCode
+    
+};
+
 @interface FBMAPI : NSObject
 
 @property (readonly) ACAccountStore *accountStore;
