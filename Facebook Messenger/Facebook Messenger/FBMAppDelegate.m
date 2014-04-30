@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 CDA. All rights reserved.
 //
 
+@import Social;
+@import Accounts;
 #import "FBMAppDelegate.h"
-#import <Social/Social.h>
-#import <Accounts/Accounts.h>
 #import "FBMStore.h"
 #import "FBMInboxWindowController.h"
 #import "FBMAPI.h"

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "XMPP.h"
 @class FBMAPI;
 
 @interface FBMStore : NSObject

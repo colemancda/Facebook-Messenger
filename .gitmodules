@@ -1,0 +1,9 @@
+[submodule "Facebook"]
+	path = Facebook
+	url = https://github.com/robbiehanson/XMPPFramework.git
+[submodule "Facebook Messenger/Dependencies/XMPPFramework"]
+	path = Facebook Messenger/Dependencies/XMPPFramework
+	url = https://github.com/robbiehanson/XMPPFramework.git
+[submodule "Facebook Messenger/Dependencies/CocoaAsyncSocket"]
+	path = Facebook Messenger/Dependencies/CocoaAsyncSocket
+	url = https://github.com/colemancda/CocoaAsyncSocket.git

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
+#import "XMPP.h"
 
 @interface FBMAPI : NSObject
 
@@ -16,12 +17,16 @@
 
 @property (readonly) ACAccount *facebookAccount;
 
-@property (readonly) NSWindow *window;
+@property XMPPStream *xmppStream;
 
 #pragma mark - Authenticate
 
 -(void)requestAccessToFBAccount:(void (^)(BOOL success))completionBlock;
 
+-(void)connectToXMPPServer:(void (^)(BOOL success))completionBlock;
+
 #pragma mark - Requests
+
+
 
 @end
