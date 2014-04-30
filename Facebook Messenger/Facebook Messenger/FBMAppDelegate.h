@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 @class FBMStore, FBMInboxWindowController;
 
-extern NSString *const FBMErrorDomain;
-
 @interface FBMAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;

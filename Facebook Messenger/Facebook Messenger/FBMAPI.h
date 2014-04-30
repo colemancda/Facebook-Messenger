@@ -11,17 +11,27 @@
 #import <Social/Social.h>
 #import "XMPP.h"
 
+extern NSString *const FBMErrorDomain;
+
 @interface FBMAPI : NSObject
 
 @property (readonly) ACAccountStore *accountStore;
 
 @property (readonly) ACAccount *facebookAccount;
 
+@property (readonly) NSString *appID;
+
+@property (readonly) NSString *token;
+
 @property XMPPStream *xmppStream;
+
+#pragma mark - Initialize
+
+-(id)initWithAppID:(NSString *)appID;
 
 #pragma mark - Authenticate
 
--(void)requestAccessToFBAccount:(void (^)(BOOL success))completionBlock;
+-(void)requestAccessToFBAccount:(void (^)(NSError *error))completionBlock;
 
 -(void)connectToXMPPServer:(void (^)(BOOL success))completionBlock;
 

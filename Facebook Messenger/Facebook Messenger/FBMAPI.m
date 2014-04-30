@@ -8,14 +8,16 @@
 
 #import "FBMAPI.h"
 
-NSString *const FBMAppID = @"221240951333308";
+NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
 
 @implementation FBMAPI
 
-- (id)init
+- (id)initWithAppID:(NSString *)appID
 {
     self = [super init];
     if (self) {
+        
+        _appID = appID;
         
         _accountStore = [[ACAccountStore alloc] init];
         
@@ -23,9 +25,14 @@ NSString *const FBMAppID = @"221240951333308";
     return self;
 }
 
+- (instancetype)init
+{
+    return [self initWithAppID:nil];
+}
+
 #pragma mark - Authenticate
 
--(void)requestAccessToFBAccount:(void (^)(BOOL))completionBlock
+-(void)requestAccessToFBAccount:(void (^)(NSError *))completionBlock
 {
     NSArray *fbPermissions = @[@"read_mailbox",
                                @"friends_online_presence",
@@ -33,7 +40,7 @@ NSString *const FBMAppID = @"221240951333308";
                                @"user_online_presence",
                                @"xmpp_login"];
     
-    NSDictionary *accessOptions = @{ACFacebookAppIdKey: FBMAppID,
+    NSDictionary *accessOptions = @{ACFacebookAppIdKey: self.appID,
                                     ACFacebookPermissionsKey : fbPermissions};
     
     
@@ -46,7 +53,7 @@ NSString *const FBMAppID = @"221240951333308";
         // access denied
         if (!granted) {
             
-            completionBlock(NO);
+            completionBlock(error);
             return;
         }
         
@@ -55,7 +62,11 @@ NSString *const FBMAppID = @"221240951333308";
         // account exists but is not enabled
         if (!accounts.count) {
             
-            completionBlock(NO);
+            NSError *error = [NSError errorWithDomain:FBMErrorDomain
+                                                 code:<#(NSInteger)#>
+                                             userInfo:<#(NSDictionary *)#>];
+            
+            completionBlock(error);
             return;
         }
         
@@ -79,6 +90,12 @@ NSString *const FBMAppID = @"221240951333308";
             completionBlock(YES);
         }];
     }];
+}
+
+-(void)connectToXMPPServer:(void (^)(BOOL))completionBlock
+{
+    
+    
 }
 
 #pragma mark - Request

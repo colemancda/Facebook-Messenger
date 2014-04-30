@@ -13,15 +13,13 @@
 #import "FBMInboxWindowController.h"
 #import "FBMAPI.h"
 
-NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
-
 @implementation FBMAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
     
-    _store = [[FBMStore alloc] init];
+    _store = [[FBMStore alloc] initWithAppID:@"221240951333308"];
     
     // GUI
     

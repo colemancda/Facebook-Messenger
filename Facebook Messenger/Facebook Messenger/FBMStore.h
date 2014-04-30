@@ -7,20 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "XMPP.h"
-@class FBMAPI;
+#import "FBMAPI.h"
 
-@interface FBMStore : NSObject
+@interface FBMStore : FBMAPI
 
 @property (readonly) NSManagedObjectContext *context;
-
-@property (readonly) FBMAPI *api;
-
-#pragma mark - Cache
-
-// entity must have id property
--(NSManagedObject *)cachedEntity:(NSString *)entityName
-                          withID:(id)idObject;
 
 #pragma mark - Requests
 
