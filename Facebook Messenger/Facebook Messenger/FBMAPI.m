@@ -10,16 +10,28 @@
 
 NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
 
+@interface FBMAPI ()
+
+@property (nonatomic) ACAccountStore *accountStore;
+
+@property (nonatomic) NSString *appID;
+
+@property ACAccount *facebookAccount;
+
+@property XMPPStream *xmppStream;
+
+@end
+
 @implementation FBMAPI
 
-- (id)initWithAppID:(NSString *)appID
+- (instancetype)initWithAppID:(NSString *)appID
 {
     self = [super init];
     if (self) {
         
-        _appID = appID;
+        self.appID = appID;
         
-        _accountStore = [[ACAccountStore alloc] init];
+        self.accountStore = [[ACAccountStore alloc] init];
         
     }
     return self;
@@ -99,14 +111,64 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
     }];
 }
 
--(void)connectToXMPPServer:(void (^)(BOOL))completionBlock
+-(void)connectToXMPPServer
 {
+    self.xmppStream = [[XMPPStream alloc] initWithFacebookAppId:self.appID];
     
+    _xmppStreamDelegateQueue = dispatch_queue_create("com.ColemanCDA.Facebook-Messenger.XMPPStreamDelegateQueue", DISPATCH_QUEUE_CONCURRENT);
+    
+    [self.xmppStream addDelegate:self delegateQueue:_xmppStreamDelegateQueue];
+    
+    NSError *error;
+    
+    // authenticate
+    
+    if (![self.xmppStream authenticateWithFacebookAccessToken:self.facebookAccount.credential.oauthToken
+                                                       error:&error]) {
+        
+        [self.delegate api:self didFinishAuthenticationWithError:error];
+        
+        return;
+    }
+    
+    // connect
+    
+    if (![self.xmppStream connectWithTimeout:5
+                                       error:&error]) {
+        
+        [self.delegate api:self didFinishAuthenticationWithError:error];
+        
+        return;
+    }
+    
+    // delegate will return
     
 }
 
-#pragma mark - Request
+-(void)logout
+{
+    self.accountStore = [[ACAccountStore alloc] init];
+    
+    self.facebookAccount = nil;
+    
+    self.xmppStream = nil;
+}
 
+#pragma mark - XMPPStreamDelegate
+
+-(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)xmlError
+{
+    NSError *error = [NSError errorWithDomain:FBMErrorDomain
+                                         code:
+                                     userInfo:];
+    
+    [self.delegate api:self didFinishAuthenticationWithError:error];
+}
+
+-(void)xmppStreamDidAuthenticate:(XMPPStream *)sender
+{
+    [self.delegate api:self didFinishAuthenticationWithError:nil];
+}
 
 
 @end

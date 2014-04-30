@@ -19,30 +19,41 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
     
 };
 
-@interface FBMAPI : NSObject
+@protocol FBMAPIDelegate;
 
-@property (readonly) ACAccountStore *accountStore;
+@interface FBMAPI : NSObject <XMPPStreamDelegate>
+{
+    dispatch_queue_t _xmppStreamDelegateQueue;
+}
+
+@property (readonly, nonatomic) ACAccountStore *accountStore;
+
+@property (readonly, nonatomic) NSString *appID;
 
 @property (readonly) ACAccount *facebookAccount;
 
-@property (readonly) NSString *appID;
+@property (readonly) XMPPStream *xmppStream;
 
-@property (readonly) NSString *token;
-
-@property XMPPStream *xmppStream;
+@property id<FBMAPIDelegate> delegate;
 
 #pragma mark - Initialize
 
--(id)initWithAppID:(NSString *)appID;
+-(instancetype)initWithAppID:(NSString *)appID;
 
 #pragma mark - Authenticate
 
 -(void)requestAccessToFBAccount:(void (^)(NSError *error))completionBlock;
 
--(void)connectToXMPPServer:(void (^)(BOOL success))completionBlock;
+-(void)connectToXMPPServer;
 
-#pragma mark - Requests
+-(void)logout;
 
+@end
 
+@protocol FBMAPIDelegate <NSObject>
+
+-(void)api:(FBMAPI *)api didFinishAuthenticationWithError:(NSError *)error;
+
+-(void)api:(FBMAPI *)api didRecieveMessage:(NSDictionary *)message;
 
 @end
