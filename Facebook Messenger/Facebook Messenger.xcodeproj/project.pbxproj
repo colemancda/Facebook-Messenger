@@ -260,6 +260,7 @@
 		6EC4F83D1911982200B87BDF /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
 		6EC4F83E1911982200B87BDF /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		6EC4F83F1911982200B87BDF /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
+		6ECF9D4B1912ED9900BEA52C /* Facebook Messenger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Facebook Messenger.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -531,6 +532,7 @@
 		6E9FA37918138ECE00785A09 /* Facebook Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				6ECF9D4B1912ED9900BEA52C /* Facebook Messenger.entitlements */,
 				6E9FA38518138ECE00785A09 /* FBMAppDelegate.h */,
 				6E9FA38618138ECE00785A09 /* FBMAppDelegate.m */,
 				6E9FA38818138ECE00785A09 /* MainMenu.xib */,
@@ -760,8 +762,16 @@
 			attributes = {
 				CLASSPREFIX = FBM;
 				LastUpgradeCheck = 0500;
-				ORGANIZATIONNAME = CDA;
+				ORGANIZATIONNAME = ColemanCDA;
 				TargetAttributes = {
+					6E9FA36F18138ECD00785A09 = {
+						DevelopmentTeam = 4W79SG34MW;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
 					6E9FA39018138ECE00785A09 = {
 						TestTargetID = 6E9FA36F18138ECD00785A09;
 					};
@@ -1037,6 +1047,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Facebook Messenger/Facebook Messenger.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Facebook Messenger/Facebook Messenger-Prefix.pch";
@@ -1067,7 +1079,7 @@
 					"$(PROJECT_DIR)/Dependencies/XMPPFramework/Vendor/facebook-ios-sdk/vendor/OCMock/Examples/iPhoneExample/Libraries",
 					"$(PROJECT_DIR)/Dependencies/XMPPFramework/Vendor/libidn",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -1079,6 +1091,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Facebook Messenger/Facebook Messenger.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Facebook Messenger/Facebook Messenger-Prefix.pch";
@@ -1109,7 +1123,7 @@
 					"$(PROJECT_DIR)/Dependencies/XMPPFramework/Vendor/facebook-ios-sdk/vendor/OCMock/Examples/iPhoneExample/Libraries",
 					"$(PROJECT_DIR)/Dependencies/XMPPFramework/Vendor/libidn",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
