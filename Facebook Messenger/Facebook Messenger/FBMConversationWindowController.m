@@ -148,6 +148,19 @@
     return 80;
 }
 
+#pragma mark - NSWindowDelegate
+
+-(void)windowDidResize:(NSNotification *)notification
+{
+    // automatically resize column
+    
+    NSTableColumn *column = self.tableView.tableColumns.firstObject;
+    
+    column.maxWidth = self.window.frame.size.width;
+    
+    column.width = self.window.frame.size.width;
+}
+
 #pragma mark - Notifications
 
 -(void)sentMessage:(NSNotification *)notification

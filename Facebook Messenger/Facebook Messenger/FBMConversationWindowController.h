@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 @class FBConversation;
 
-@interface FBMConversationWindowController : NSWindowController <NSTableViewDelegate>
+@interface FBMConversationWindowController : NSWindowController <NSTableViewDelegate, NSWindowDelegate>
 {
     NSDate *_lastNetRefresh;
     
