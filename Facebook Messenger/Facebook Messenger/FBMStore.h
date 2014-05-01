@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "FBMAPI.h"
+@class FBUser;
 
 @interface FBMStore : FBMAPI
 {
     NSManagedObjectContext *_privateContext;
+    
+    FBUser *_user; // belongs to private context
 }
 
 @property (readonly, nonatomic) NSManagedObjectContext *context;

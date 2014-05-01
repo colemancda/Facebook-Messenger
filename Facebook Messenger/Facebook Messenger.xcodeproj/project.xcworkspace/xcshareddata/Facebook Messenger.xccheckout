@@ -5,13 +5,15 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>68340BE6-62D0-48D2-99E4-7BC4C41C261E</string>
+	<string>EB1B39DA-A31D-4FCE-AEAB-1D59CF54AA61</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Facebook Messenger</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8132258C-4CB3-4187-9514-2AE6C7DE2B62</key>
 		<string>https://github.com/colemancda/CocoaAsyncSocket.git</string>
+		<key>986BE262-86B7-4B06-B629-5C4411ED2A31</key>
+		<string>https://github.com/robbiehanson/XMPPFramework.git</string>
 		<key>D953D108-0691-452C-B1AE-DAFCD185E4AF</key>
 		<string>https://github.com/colemancda/Facebook-Messenger.git</string>
 		<key>E4B75E0F-2C52-4BD2-9C17-960E75C90FC5</key>
@@ -21,20 +23,10 @@
 	<string>Facebook Messenger/Facebook Messenger.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>13762D6D-C40A-4BA9-988B-CA5734A8CF75</key>
-		<string>../../Facebook Messenger/facebook-ios-sdk</string>
-		<key>64990EDD-F57B-4391-8E97-7F25F0C419A7</key>
-		<string>../../Facebook Messenger/facebook-ios-sdk/vendor/OHHTTPStubs</string>
-		<key>78935BC2-CD74-4A22-8812-D2B9BC42F169</key>
-		<string>../../Facebook Messenger/facebook-ios-sdk/vendor/OCHamcrest/Source/XcodeCoverage</string>
-		<key>809F15DA-32BE-4D12-8551-ECFC34768A52</key>
-		<string>../../Facebook Messenger/facebook-ios-sdk/vendor/OCHamcrest</string>
 		<key>8132258C-4CB3-4187-9514-2AE6C7DE2B62</key>
 		<string>../../Dependencies/CocoaAsyncSocket</string>
-		<key>AAA4CF21-8252-4039-8213-F33F74FCD968</key>
-		<string>../../Facebook Messenger/facebook-ios-sdk/vendor/OCMock</string>
-		<key>D224A9E1-23E1-494C-B00B-BE127DC960FF</key>
-		<string>../../Facebook Messenger/facebook-ios-sdk/vendor/OHHTTPStubs/OHHTTPStubs/UnitTests/AFNetworking</string>
+		<key>986BE262-86B7-4B06-B629-5C4411ED2A31</key>
+		<string>../../Dependencies/XMPPFramework</string>
 		<key>D953D108-0691-452C-B1AE-DAFCD185E4AF</key>
 		<string>../../..</string>
 		<key>E4B75E0F-2C52-4BD2-9C17-960E75C90FC5</key>
@@ -71,6 +63,14 @@
 			<string>D953D108-0691-452C-B1AE-DAFCD185E4AF</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Facebook Messenger</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>986BE262-86B7-4B06-B629-5C4411ED2A31</string>
+			<key>IDESourceControlWCCName</key>
+			<string>XMPPFramework</string>
 		</dict>
 	</array>
 </dict>

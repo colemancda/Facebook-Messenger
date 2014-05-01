@@ -58,9 +58,18 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
 
 -(NSURLSessionDataTask *)fetchInboxWithCompletionBlock:(void (^)(NSError *error, NSArray *inbox))completionBlock;
 
+-(void)sendMessage:(NSString *)message
+     toUserWithJID:(NSString *)jid;
+
 #pragma mark - Internal
 
--(void)didRecieveXMPPMessage:(XMPPElement *)element;
+// Used by subclasses
+
+-(void)didSendMessage:(NSString *)message
+        toUserWithJID:(NSString *)jid;
+
+-(void)didRecieveMessage:(NSString *)message
+         fromUserWithJID:(NSString *)jid;
 
 @end
 
@@ -69,5 +78,9 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
 @protocol FBMAPIDelegate <NSObject>
 
 -(void)api:(FBMAPI *)api didFinishAuthenticationWithError:(NSError *)error;
+
+-(void)api:(FBMAPI *)api didSendMessage:(NSString *)message toUserWithJID:(NSString *)jid error:(NSError *)error;
+
+-(void)api:(FBMAPI *)api didRecieveMessage:(NSString *)message fromUserWithJID:(NSString *)jid;
 
 @end

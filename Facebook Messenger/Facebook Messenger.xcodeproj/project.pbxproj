@@ -63,6 +63,8 @@
 		6E58421B1910A0AD00DDDCBE /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5841E91910A0AD00DDDCBE /* XMPPStringPrep.m */; };
 		6E58421F1910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */; };
 		6E5842201910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */; };
+		6E653C1F1912C2D6004F288F /* FBUser+Jabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */; };
+		6E653C201912C2D6004F288F /* FBUser+Jabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */; };
 		6E9FA37418138ECE00785A09 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E9FA37318138ECE00785A09 /* Cocoa.framework */; };
 		6E9FA37E18138ECE00785A09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA37C18138ECE00785A09 /* InfoPlist.strings */; };
 		6E9FA38018138ECE00785A09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA37F18138ECE00785A09 /* main.m */; };
@@ -189,6 +191,8 @@
 		6E5841E91910A0AD00DDDCBE /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		6E58421D1910A0D400DDDCBE /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = Dependencies/CocoaAsyncSocket/GCD/GCDAsyncSocket.h; sourceTree = "<group>"; };
 		6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Dependencies/CocoaAsyncSocket/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
+		6E653C1D1912C2D6004F288F /* FBUser+Jabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBUser+Jabber.h"; sourceTree = "<group>"; };
+		6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBUser+Jabber.m"; sourceTree = "<group>"; };
 		6E9FA37018138ECE00785A09 /* Facebook Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Facebook Messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9FA37318138ECE00785A09 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E9FA37618138ECE00785A09 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -469,6 +473,15 @@
 			name = GCDAsyncSocket;
 			sourceTree = "<group>";
 		};
+		6E653C1C1912C2AC004F288F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				6E653C1D1912C2D6004F288F /* FBUser+Jabber.h */,
+				6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		6E9FA36718138ECD00785A09 = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +607,7 @@
 		6E9FA3C318143FA500785A09 /* NSManagedObject */ = {
 			isa = PBXGroup;
 			children = (
+				6E653C1C1912C2AC004F288F /* Categories */,
 				6E9FA3D918144DDC00785A09 /* FBConversationComment.h */,
 				6E9FA3DA18144DDC00785A09 /* FBConversationComment.m */,
 				6E9FA3D618144DDC00785A09 /* FBConversation.h */,
@@ -809,6 +823,7 @@
 			files = (
 				6E5842061910A0AD00DDDCBE /* XMPPMessage.m in Sources */,
 				6E5841FC1910A0AD00DDDCBE /* NSNumber+XMPP.m in Sources */,
+				6E653C1F1912C2D6004F288F /* FBUser+Jabber.m in Sources */,
 				6E9FA3DB18144DDC00785A09 /* FBConversationComment.m in Sources */,
 				6E5842021910A0AD00DDDCBE /* XMPPIQ.m in Sources */,
 				6E5841EC1910A0AD00DDDCBE /* XMPPDeprecatedDigestAuthentication.m in Sources */,
@@ -868,6 +883,7 @@
 				6E5841FD1910A0AD00DDDCBE /* NSNumber+XMPP.m in Sources */,
 				6EC4F8261911961C00B87BDF /* CLIColor.m in Sources */,
 				6E5842131910A0AD00DDDCBE /* GCDMulticastDelegate.m in Sources */,
+				6E653C201912C2D6004F288F /* FBUser+Jabber.m in Sources */,
 				6E5842071910A0AD00DDDCBE /* XMPPMessage.m in Sources */,
 				6E5842201910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */,
 				6E5841EF1910A0AD00DDDCBE /* XMPPDeprecatedPlainAuthentication.m in Sources */,

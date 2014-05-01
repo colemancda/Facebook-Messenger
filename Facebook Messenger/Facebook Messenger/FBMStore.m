@@ -240,6 +240,115 @@
     }];
 }
 
+#pragma mark - Internal
+
+-(void)didSendMessage:(NSString *)message
+        toUserWithJID:(NSString *)jid
+{
+    // create entity
+    
+    [_privateContext performBlockAndWait:^{
+        
+        FBConversationComment *conversationComment = (FBConversationComment *)[NSEntityDescription insertNewObjectForEntityForName:@"FBConversationComment"
+                                                                                                            inManagedObjectContext:_privateContext];
+        
+        conversationComment.message = message;
+        
+        conversationComment.createdTime = [NSDate date];
+        
+        // take apart JID
+        
+        NSString *fromUserID;
+        
+        fromUserID = [jid stringByReplacingOccurrencesOfString:@"@chat.facebook.com"
+                                                    withString:@""];
+        
+        fromUserID = [fromUserID stringByReplacingOccurrencesOfString:@"-"
+                                                           withString:@""];
+        
+        // find cached user
+        
+        FBUser *userFrom = (FBUser *)[self findOrCreateEntity:@"FBUser"
+                                                       withID:[NSNumber numberWithInteger:fromUserID.integerValue]];
+        
+        conversationComment.from = userFrom;
+        
+        // find parent conversation
+        
+        NSFetchRequest *conversationFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"FBConversation"];
+        
+        conversationFetchRequest.fetchLimit = 1;
+        
+        // create predicate
+        
+        conversationFetchRequest.predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"to"]
+                                                                    rightExpression:[NSExpression expressionForConstantValue:userFrom]
+                                                                           modifier:NSAnyPredicateModifier
+                                                                               type:NSEqualToPredicateOperatorType
+                                                                            options:NSNormalizedPredicateOption];
+        
+        // fetch
+        
+        FBConversation *conversation;
+        
+        NSError *error;
+        
+        NSArray *results = [_privateContext executeFetchRequest:conversationFetchRequest
+                                                          error:&error];
+        
+        if (error) {
+            
+            [NSException raise:@"Error executing NSFetchRequest"
+                        format:@"%@", error.localizedDescription];
+            
+            return;
+        }
+        
+        conversation = results.firstObject;
+        
+        // create cached resource if not found
+        
+        if (!conversation) {
+            
+            // create new entity
+            
+            conversation = [NSEntityDescription insertNewObjectForEntityForName:@"FBConversation"
+                                                         inManagedObjectContext:_privateContext];
+            
+            [conversation addToObject:userFrom];
+            
+        }
+        
+        // set values
+        
+        [conversation addCommentsObject:conversationComment];
+        
+        
+        // save
+        
+        if (![_privateContext save:&error]) {
+            
+            [NSException raise:NSInternalInconsistencyException
+                        format:@"%@", error];
+            
+            return;
+        }
+        
+    }];
+}
+
+-(void)didRecieveMessage:(NSString *)message
+         fromUserWithJID:(NSString *)jid
+{
+    // create entity
+    
+    [_privateContext performBlockAndWait:^{
+        
+        
+        
+    }];
+}
+
 @end
 
 #pragma mark - Categories

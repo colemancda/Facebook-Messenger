@@ -200,6 +200,11 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
     }
 }
 
+-(void)xmppStreamDidAuthenticate:(XMPPStream *)sender
+{
+    [self.delegate api:self didFinishAuthenticationWithError:nil];
+}
+
 -(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)xmlError
 {
     NSString *description = NSLocalizedString(@"Could not connect to XMPP server",
@@ -212,9 +217,19 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
     [self.delegate api:self didFinishAuthenticationWithError:error];
 }
 
--(void)xmppStreamDidAuthenticate:(XMPPStream *)sender
+-(void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message
 {
-    [self.delegate api:self didFinishAuthenticationWithError:nil];
+    // notify self
+    [self didSendMessage:message.body toUserWithJID:[message attributeStringValueForName:@"to"]];
+    
+    // notify delegate
+    [self.delegate api:self didSendMessage:message.body toUserWithJID:[message attributeStringValueForName:@"to"] error:nil];
+}
+
+-(void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error
+{
+    // notify delegate
+    [self.delegate api:self didSendMessage:message.body toUserWithJID:[message attributeStringValueForName:@"to"] error:error];
 }
 
 #pragma mark - Requests
@@ -270,6 +285,38 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
     [task resume];
     
     return task;
+}
+
+-(void)sendMessage:(NSString *)messageString
+     toUserWithJID:(NSString *)jid
+{
+    XMPPElement *body = [XMPPElement elementWithName:@"body"
+                                         stringValue:messageString];
+    
+    XMPPMessage *message = [XMPPMessage messageWithType:@"chat"
+                                                     to:[XMPPJID jidWithString:jid]];
+    
+    [message addChild:body];
+    
+    [self.xmppStream sendElement:message];
+}
+
+#pragma mark - Internal
+
+// Used by subclasses
+
+-(void)didSendMessage:(NSString *)message
+        toUserWithJID:(NSString *)jid
+{
+    
+    
+}
+
+-(void)didRecieveMessage:(NSString *)message
+         fromUserWithJID:(NSString *)jid
+{
+    
+    
 }
 
 @end
