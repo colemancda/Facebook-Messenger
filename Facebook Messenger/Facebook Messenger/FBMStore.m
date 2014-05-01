@@ -290,7 +290,7 @@
         
         conversationFetchRequest.predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"to"]
                                                                     rightExpression:[NSExpression expressionForConstantValue:userTo]
-                                                                           modifier:NSDirectPredicateModifier
+                                                                           modifier:NSAnyPredicateModifier
                                                                                type:NSEqualToPredicateOperatorType
                                                                             options:NSNormalizedPredicateOption];
         
@@ -384,7 +384,7 @@
         
         conversationFetchRequest.predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"to"]
                                                                                 rightExpression:[NSExpression expressionForConstantValue:userFrom]
-                                                                                       modifier:NSDirectPredicateModifier
+                                                                                       modifier:NSAnyPredicateModifier
                                                                                            type:NSEqualToPredicateOperatorType
                                                                                         options:NSNormalizedPredicateOption];
         
