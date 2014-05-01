@@ -263,13 +263,21 @@ NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
 
 -(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
-    [self didRecieveMessage:message.body fromUserWithJID:[message attributeStringValueForName:@"to"]];
+    NSString *messageBody = message.body;
     
-    // post notification
-    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPISentMessageNotification
-                                                        object:self
-                                                      userInfo:@{FBMAPIMessageKey: message.body,
-                                                                 FBMAPIJIDKey: [message attributeStringValueForName:@"to"]}];
+    NSString *jid = [message attributeStringValueForName:@"from"];
+    
+    if (message.body && [message attributeStringValueForName:@"from"]) {
+        
+        // notify self
+        [self didRecieveMessage:messageBody fromUserWithJID:jid];
+        
+        // post notification
+        [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPISentMessageNotification
+                                                            object:self
+                                                          userInfo:@{FBMAPIMessageKey: messageBody,
+                                                                     FBMAPIJIDKey: jid}];
+    }
 }
 
 #pragma mark - Requests
