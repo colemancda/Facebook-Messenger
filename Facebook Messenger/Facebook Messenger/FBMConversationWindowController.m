@@ -20,6 +20,11 @@
 
 @implementation FBMConversationWindowController
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(id)init
 {
     self = [self initWithWindowNibName:NSStringFromClass(self.class)
@@ -41,6 +46,15 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    
+    // setup notifications
+    
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(sentMessage:)
+                                                 name:FBMAPISentMessageNotification
+                                               object:appDelegate.store];
     
     [self updateWindowTitle];
     
@@ -135,5 +149,31 @@
     return 80;
 }
 
+#pragma mark - Notifications
+
+-(void)sentMessage:(NSNotification *)notification
+{
+    NSError *error = notification.userInfo[FBMErrorDomain];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        if (error) {
+            
+            [NSApp presentError:error
+                 modalForWindow:self.window
+                       delegate:nil
+             didPresentSelector:nil
+                    contextInfo:nil];
+
+            
+            return;
+        }
+        
+        self.textField.stringValue = @"";
+        
+        [self scrollToBottomOfTableView];
+        
+    }];
+}
 
 @end

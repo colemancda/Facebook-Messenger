@@ -24,6 +24,8 @@
 
 @property (weak) IBOutlet NSTableView *tableView;
 
+@property (weak) IBOutlet NSTextField *textField;
+
 @property (strong) IBOutlet NSArrayController *arrayController;
 
 #pragma mark - Actions
@@ -35,6 +37,10 @@
 -(void)updateWindowTitle;
 
 -(void)scrollToBottomOfTableView;
+
+#pragma mark - Notifications
+
+-(void)sentMessage:(NSNotification *)notification;
 
 
 @end
