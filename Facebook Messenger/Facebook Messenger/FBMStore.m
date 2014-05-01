@@ -113,24 +113,38 @@
                 
                 NSNumber *conversationID = [NSNumber numberWithInteger:conversationIDString.integerValue];
                 
+                // make sure the conversation has a to and from user
+                
+                NSDictionary *toDictionary = conversationDictionary[@"to"];
+                
+                NSArray *toArray = toDictionary[@"data"];
+                
+                if (toArray.count < 2) {
+                    
+                    // skip this conversation
+                    
+                    continue;
+                }
+                
                 // search store and find cache
+                
                 FBConversation *conversation = (FBConversation *)[self findOrCreateEntity:@"FBConversation"
                                                                                    withID:conversationID];
                 // add to completion block array
+                
                 [cachedInbox addObject:conversation];
                 
                 // get updated time
+                
                 conversation.updatedTime = [NSDate dateFromFBDateString:conversationDictionary[@"updated_time"]];
                 
                 // get unread and unseen
+                
                 conversation.unread = conversationDictionary[@"unread"];
                 
                 conversation.unseen = conversationDictionary[@"unseen"];
                 
                 // parse 'to' relationship
-                NSDictionary *toDictionary = conversationDictionary[@"to"];
-                
-                NSArray *toArray = toDictionary[@"data"];
                 
                 NSMutableSet *conversationUsers = [[NSMutableSet alloc] init];
                 
