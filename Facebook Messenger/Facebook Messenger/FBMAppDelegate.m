@@ -20,7 +20,13 @@
     // Insert code here to initialize your application
     
     _store = [[FBMStore alloc] initWithAppID:@"221240951333308"];
-    _store.delegate = (id)self;
+    
+    // register for notifications
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didFinishAuthentication:)
+                                                 name:FBMAPIFinishedAuthenticationNotification
+                                               object:_store];
     
     // GUI
     
@@ -88,10 +94,12 @@
     
 }
 
-#pragma mark - FBMAPIDelegate
+#pragma mark - Notifications
 
--(void)api:(FBMAPI *)api didFinishAuthenticationWithError:(NSError *)error
+-(void)didFinishAuthentication:(NSNotification *)notification
 {
+    NSError *error = notification.userInfo[FBMAPIErrorKey];
+    
     if (error) {
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{

@@ -10,6 +10,18 @@
 
 NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
 
+NSString *const FBMAPIFinishedAuthenticationNotification = @"FBMAPIFinishedAuthenticationNotification";
+
+NSString *const FBMAPISentMessageNotification = @"FBMAPISentMessageNotification";
+
+NSString *const FBMAPIRecievedMessageNotification = @"FBMAPIRecievedMessageNotification";
+
+NSString *const FBMAPIErrorKey = @"FBMAPIErrorKey";
+
+NSString *const FBMAPIMessageKey = @"FBMAPIMessageKey";
+
+NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
+
 @implementation FBMAPI (Errors)
 
 -(NSError *)errorForErrorCode:(NSInteger)errorCode
@@ -151,7 +163,9 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
     if (![self.xmppStream connectWithTimeout:5
                                        error:&error]) {
         
-        [self.delegate api:self didFinishAuthenticationWithError:error];
+        [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIFinishedAuthenticationNotification
+                                                            object:self
+                                                          userInfo:@{FBMAPIErrorKey: error}];
         
         return;
     }
@@ -181,7 +195,9 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
         
         if (![self.xmppStream secureConnection:&error]) {
             
-            [self.delegate api:self didFinishAuthenticationWithError:error];
+            [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIFinishedAuthenticationNotification
+                                                                object:self
+                                                              userInfo:@{FBMAPIErrorKey: error}];
             
             return;
         }
@@ -193,7 +209,9 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
         if (![self.xmppStream authenticateWithFacebookAccessToken:self.facebookAccount.credential.oauthToken
                                                             error:&error]) {
             
-            [self.delegate api:self didFinishAuthenticationWithError:error];
+            [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIFinishedAuthenticationNotification
+                                                                object:self
+                                                              userInfo:@{FBMAPIErrorKey: error}];
             
             return;
         }
@@ -202,7 +220,9 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
 
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
-    [self.delegate api:self didFinishAuthenticationWithError:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIFinishedAuthenticationNotification
+                                                        object:self
+                                                      userInfo:nil];
 }
 
 -(void)xmppStream:(XMPPStream *)sender didNotAuthenticate:(NSXMLElement *)xmlError
@@ -214,7 +234,9 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
                                          code:FBMAPIXMPPAuthenticationErrorCode
                                      userInfo:@{NSLocalizedDescriptionKey: description}];
     
-    [self.delegate api:self didFinishAuthenticationWithError:error];
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIFinishedAuthenticationNotification
+                                                        object:self
+                                                      userInfo:@{FBMAPIErrorKey: error}];
 }
 
 -(void)xmppStream:(XMPPStream *)sender didSendMessage:(XMPPMessage *)message
@@ -222,14 +244,32 @@ NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain
     // notify self
     [self didSendMessage:message.body toUserWithJID:[message attributeStringValueForName:@"to"]];
     
-    // notify delegate
-    [self.delegate api:self didSendMessage:message.body toUserWithJID:[message attributeStringValueForName:@"to"] error:nil];
+    // post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPISentMessageNotification
+                                                        object:self
+                                                      userInfo:@{FBMAPIMessageKey: message.body,
+                                                                 FBMAPIJIDKey: [message attributeStringValueForName:@"to"]}];
 }
 
 -(void)xmppStream:(XMPPStream *)sender didFailToSendMessage:(XMPPMessage *)message error:(NSError *)error
 {
-    // notify delegate
-    [self.delegate api:self didSendMessage:message.body toUserWithJID:[message attributeStringValueForName:@"to"] error:error];
+    // post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPISentMessageNotification
+                                                        object:self
+                                                      userInfo:@{FBMAPIMessageKey: message.body,
+                                                                 FBMAPIJIDKey: [message attributeStringValueForName:@"to"],
+                                                                 FBMAPIErrorKey: error}];
+}
+
+-(void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
+{
+    [self didRecieveMessage:message.body fromUserWithJID:[message attributeStringValueForName:@"to"]];
+    
+    // post notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPISentMessageNotification
+                                                        object:self
+                                                      userInfo:@{FBMAPIMessageKey: message.body,
+                                                                 FBMAPIJIDKey: [message attributeStringValueForName:@"to"]}];
 }
 
 #pragma mark - Requests

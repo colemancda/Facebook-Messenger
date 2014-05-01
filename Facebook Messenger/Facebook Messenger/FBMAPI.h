@@ -23,7 +23,17 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
     
 };
 
-@protocol FBMAPIDelegate;
+extern NSString *const FBMAPIFinishedAuthenticationNotification;
+
+extern NSString *const FBMAPISentMessageNotification;
+
+extern NSString *const FBMAPIRecievedMessageNotification;
+
+extern NSString *const FBMAPIErrorKey;
+
+extern NSString *const FBMAPIMessageKey;
+
+extern NSString *const FBMAPIJIDKey;
 
 @interface FBMAPI : NSObject <XMPPStreamDelegate>
 {
@@ -39,8 +49,6 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
 @property (readonly, nonatomic) XMPPStream *xmppStream;
 
 @property (readonly, nonatomic) NSURLSession *urlSession;
-
-@property id<FBMAPIDelegate> delegate;
 
 #pragma mark - Initialize
 
@@ -70,17 +78,5 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
 
 -(void)didRecieveMessage:(NSString *)message
          fromUserWithJID:(NSString *)jid;
-
-@end
-
-#pragma mark - FBMAPIDelegate
-
-@protocol FBMAPIDelegate <NSObject>
-
--(void)api:(FBMAPI *)api didFinishAuthenticationWithError:(NSError *)error;
-
--(void)api:(FBMAPI *)api didSendMessage:(NSString *)message toUserWithJID:(NSString *)jid error:(NSError *)error;
-
--(void)api:(FBMAPI *)api didRecieveMessage:(NSString *)message fromUserWithJID:(NSString *)jid;
 
 @end

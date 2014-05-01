@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FBMInboxWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
+@interface FBMInboxWindowController : NSWindowController <NSTableViewDelegate>
 {
     NSDateFormatter *_dateFormatter;
     
