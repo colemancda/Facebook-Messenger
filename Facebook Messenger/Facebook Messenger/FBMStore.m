@@ -160,6 +160,13 @@
                     user.name = userDictionary[@"name"];
                     
                     [conversationUsers addObject:user];
+                    
+                    // set _user if first
+                    
+                    if (!_user && userDictionary == toArray.firstObject) {
+                        
+                        _user = user;
+                    }
                 }
                 
                 // replace 'to' relationship
@@ -187,8 +194,7 @@
                     
                     NSString *commentID = commentDictionary[@"id"];
                     
-                    FBConversationComment *comment = (FBConversationComment *)[self findOrCreateEntity:@"FBConversationComment"
-                                                                                                withID:commentID];
+                    FBConversationComment *comment = (FBConversationComment *)[self findOrCreateEntity:@"FBConversationComment" withID:commentID];
                     
                     // set values...
                     
@@ -255,22 +261,24 @@
         
         conversationComment.createdTime = [NSDate date];
         
+        // set self as sender
+        
+        conversationComment.from = _user;
+        
         // take apart JID
         
-        NSString *fromUserID;
+        NSString *toUserID;
         
-        fromUserID = [jid stringByReplacingOccurrencesOfString:@"@chat.facebook.com"
+        toUserID = [jid stringByReplacingOccurrencesOfString:@"@chat.facebook.com"
                                                     withString:@""];
         
-        fromUserID = [fromUserID stringByReplacingOccurrencesOfString:@"-"
-                                                           withString:@""];
+        toUserID = [toUserID stringByReplacingOccurrencesOfString:@"-"
+                                                       withString:@""];
         
         // find cached user
         
-        FBUser *userFrom = (FBUser *)[self findOrCreateEntity:@"FBUser"
-                                                       withID:[NSNumber numberWithInteger:fromUserID.integerValue]];
-        
-        conversationComment.from = userFrom;
+        FBUser *userTo = (FBUser *)[self findOrCreateEntity:@"FBUser"
+                                                       withID:[NSNumber numberWithInteger:toUserID.integerValue]];
         
         // find parent conversation
         
@@ -281,7 +289,7 @@
         // create predicate
         
         conversationFetchRequest.predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"to"]
-                                                                    rightExpression:[NSExpression expressionForConstantValue:userFrom]
+                                                                    rightExpression:[NSExpression expressionForConstantValue:userTo]
                                                                            modifier:NSAnyPredicateModifier
                                                                                type:NSEqualToPredicateOperatorType
                                                                             options:NSNormalizedPredicateOption];
@@ -314,7 +322,7 @@
             conversation = [NSEntityDescription insertNewObjectForEntityForName:@"FBConversation"
                                                          inManagedObjectContext:_privateContext];
             
-            [conversation addToObject:userFrom];
+            [conversation addTo:[NSSet setWithArray:@[userTo]]];
             
         }
         
