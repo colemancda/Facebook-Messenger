@@ -19,11 +19,11 @@
     NSDate *_lastNetRefresh;
 }
 
+#pragma mark - IB Outlets
+
 @property (weak) IBOutlet NSTableView *tableView;
 
--(void)refreshConversationsFromNetWithErrorAlert:(BOOL)errorAlert;
-
--(void)refreshConversationsFromCache;
+@property (strong) IBOutlet NSArrayController *arrayController;
 
 #pragma mark - First Responder
 

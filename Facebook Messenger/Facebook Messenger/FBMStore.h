@@ -10,8 +10,11 @@
 #import "FBMAPI.h"
 
 @interface FBMStore : FBMAPI
+{
+    NSManagedObjectContext *_privateContext;
+}
 
-@property (readonly) NSManagedObjectContext *context;
+@property (readonly, nonatomic) NSManagedObjectContext *context;
 
 #pragma mark - Requests
 

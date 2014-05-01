@@ -15,7 +15,11 @@ extern NSString *const FBMErrorDomain;
 
 typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
     
-    FBMAPIAccountNotEnabledErrorCode
+    /** FB Account not enabled */
+    FBMAPIAccountNotEnabledErrorCode,
+    
+    /** Error authenticating with XMPP server */
+    FBMAPIXMPPAuthenticationErrorCode
     
 };
 
@@ -30,9 +34,11 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
 
 @property (readonly, nonatomic) NSString *appID;
 
-@property (readonly) ACAccount *facebookAccount;
+@property (readonly, nonatomic) ACAccount *facebookAccount;
 
-@property (readonly) XMPPStream *xmppStream;
+@property (readonly, nonatomic) XMPPStream *xmppStream;
+
+@property (readonly, nonatomic) NSURLSession *urlSession;
 
 @property id<FBMAPIDelegate> delegate;
 
@@ -48,7 +54,13 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
 
 -(void)logout;
 
+#pragma mark - Requests
+
+-(NSURLSessionDataTask *)fetchInboxWithCompletionBlock:(void (^)(NSError *error, NSArray *inbox))completionBlock;
+
 @end
+
+#pragma mark - FBMAPIDelegate
 
 @protocol FBMAPIDelegate <NSObject>
 
