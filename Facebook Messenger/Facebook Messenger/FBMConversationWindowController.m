@@ -155,6 +155,11 @@
     return 80;
 }
 
+-(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
+{
+    return NO;
+}
+
 #pragma mark - NSWindowDelegate
 
 -(void)windowDidResize:(NSNotification *)notification
