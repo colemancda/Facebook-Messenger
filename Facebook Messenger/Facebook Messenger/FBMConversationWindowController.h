@@ -22,6 +22,8 @@
 
 #pragma mark - IB Outlets
 
+@property (weak) IBOutlet NSScrollView *tableViewScrollView;
+
 @property (weak) IBOutlet NSTableView *tableView;
 
 @property (weak) IBOutlet NSTextField *textField;

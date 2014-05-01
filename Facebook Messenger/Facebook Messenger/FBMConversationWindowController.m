@@ -138,6 +138,13 @@
     
     messageCellView.dateField.stringValue = [_dateFormatter stringFromDate:comment.createdTime];
     
+    // scroll to bottom if last row and is hidden
+    
+    if (row == tableView.numberOfRows - 1) {
+        
+        [self scrollToBottomOfTableView];
+    }
+    
     return messageCellView;
 }
 
@@ -187,8 +194,6 @@
             
             self.textField.stringValue = @"";
         }
-        
-        [self scrollToBottomOfTableView];
         
     }];
 }

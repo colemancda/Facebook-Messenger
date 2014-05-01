@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="arrayController" destination="K2L-xn-Jea" id="t9N-YG-Ot1"/>
                 <outlet property="tableView" destination="vuo-mb-fIG" id="94W-CG-r3X"/>
+                <outlet property="tableViewScrollView" destination="vwE-gc-IqF" id="WW5-e2-AoP"/>
                 <outlet property="textField" destination="Z98-Nx-KVP" id="xdy-bs-TT2"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
