@@ -18,7 +18,5 @@
 
 #pragma mark - Requests
 
--(void)requestInboxWithCompletionBlock:(void (^)(NSError *error))completionBlock;
-
 
 @end

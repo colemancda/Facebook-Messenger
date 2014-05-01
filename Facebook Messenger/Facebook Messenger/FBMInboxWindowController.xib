@@ -106,8 +106,8 @@
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
-                                        <outlet property="dataSource" destination="-2" id="VXK-4O-sWf"/>
-                                        <outlet property="delegate" destination="-2" id="ySv-3z-2nx"/>
+                                        <binding destination="4vb-9p-z42" name="content" keyPath="arrangedObjects" id="oUf-yJ-Xvv"/>
+                                        <outlet property="delegate" destination="-2" id="okU-qK-8ev"/>
                                     </connections>
                                 </tableView>
                             </subviews>
@@ -138,6 +138,10 @@
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
         </window>
-        <arrayController mode="entity" id="4vb-9p-z42"/>
+        <arrayController mode="entity" entityName="FBConversation" automaticallyPreparesContent="YES" id="4vb-9p-z42">
+            <connections>
+                <binding destination="-3" name="managedObjectContext" keyPath="self.delegate.store.context" id="E8n-KS-zRC"/>
+            </connections>
+        </arrayController>
     </objects>
 </document>

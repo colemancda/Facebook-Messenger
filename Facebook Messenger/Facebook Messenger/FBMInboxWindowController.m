@@ -43,87 +43,31 @@
     
     // set tableview action
     [self.tableView setDoubleAction:@selector(clickedRow:)];
+    
     self.tableView.target = self;
     
-    // load from cache
-    [self refreshConversationsFromCache];
-}
-
-#pragma mark - Refresh
-
--(void)refreshConversationsFromCache
-{
-    NSLog(@"Refreshing conversations from local cache");
+    // sort descriptor
+    self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"updatedTime"
+                                                                           ascending:NO]];
+    
+    // fetch from server
     
     FBMAppDelegate *appDelegate = [NSApp delegate];
     
-    [appDelegate.store.context performBlockAndWait:^{
-       
-        NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"FBConversation"];
-        
-        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updatedTime"
-                                                                         ascending:NO];
-        
-        fetch.sortDescriptors = @[sortDescriptor];
-        
-        NSError *fetchError;
-        
-        NSArray *result = [appDelegate.store.context executeFetchRequest:fetch
-                                                                   error:&fetchError];
-        
-        if (!result) {
-            
-            [NSException raise:@"Error Executing Core Data NSFetchRequest"
-                        format:@"%@", fetchError.localizedDescription];
-            
-            return;
-        }
-        
-        _conversations = [[NSMutableArray alloc] initWithArray:result];
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-           
-            [self.tableView reloadData];
-            
-        }];
-    }];
-}
-
--(void)refreshConversationsFromNetWithErrorAlert:(BOOL)errorAlert
-{
-    NSLog(@"Refreshing conversations from net");
-    
-    _lastNetRefresh = [NSDate date];
-    
-    FBMAppDelegate *appDelegate = [NSApp delegate];
-    
-    [appDelegate.store requestInboxWithCompletionBlock:^(NSError *error) {
+    [appDelegate.store fetchInboxWithCompletionBlock:^(NSError *error, NSArray *inbox) {
        
         if (error) {
             
-            if (errorAlert) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+               
+                [NSApp presentError:error];
                 
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                    
-                    [NSApp presentError:error];
-                }];
-            }
-            
-            NSLog(@"Error downloading inbox");
+            }];
             
             return;
         }
         
-        [self refreshConversationsFromCache];
-        
     }];
-}
-
-#pragma mark - NSTableView DataSource
-
--(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-{
-    return _conversations.count;
 }
 
 #pragma mark - NSTableView Delegate
@@ -138,7 +82,7 @@
                                                                  owner:self];
     
     // get model object
-    FBConversation *conversation = _conversations[row];
+    FBConversation *conversation = self.arrayController.arrangedObjects[row];
     
     if ([identifier isEqualToString:@"updatedTime"]) {
         
@@ -192,26 +136,17 @@
     
 }
 
-#pragma mark - Window Notification
-
--(void)windowDidBecomeKey:(NSNotification *)notification
-{
-    NSTimeInterval interval = [_lastNetRefresh timeIntervalSinceNow];
-    
-    // to not make to many calls, we only refresh if this hasn't refreshed in a while
-    
-    if (interval > 20) {
-        
-        [self refreshConversationsFromNetWithErrorAlert:NO];
-    }
-}
-
 #pragma mark - Actions
 
 -(void)clickedRow:(id)sender
 {
+    if (self.tableView.clickedRow == -1) {
+        
+        return;
+    }
+    
     // get model object
-    FBConversation *conversation = _conversations[self.tableView.clickedRow];
+    FBConversation *conversation = self.arrayController.arrangedObjects[self.tableView.clickedRow];
     
     if (!_conversationWCs) {
         _conversationWCs = [[NSMutableDictionary alloc] init];

@@ -8,15 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface FBMInboxWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
+@interface FBMInboxWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 {
-    NSMutableArray *_conversations;
-    
     NSDateFormatter *_dateFormatter;
     
     NSMutableDictionary *_conversationWCs;
-    
-    NSDate *_lastNetRefresh;
 }
 
 #pragma mark - IB Outlets
