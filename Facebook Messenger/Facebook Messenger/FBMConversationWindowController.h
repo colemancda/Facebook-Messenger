@@ -9,33 +9,26 @@
 #import <Cocoa/Cocoa.h>
 @class FBConversation;
 
-@interface FBMConversationWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate, NSWindowDelegate>
-
+@interface FBMConversationWindowController : NSWindowController <NSTableViewDelegate>
 {
-    NSMutableArray *_conversationComments;
-    
     NSDate *_lastNetRefresh;
     
     NSDateFormatter *_dateFormatter;
 }
 
+#pragma mark - Represented Object
+
 @property FBConversation *conversation;
+
+#pragma mark - IB Outlets
 
 @property (weak) IBOutlet NSTableView *tableView;
 
--(void)refreshConversationFromNetWithErrorAlert:(BOOL)errorAlert;
-
--(void)refreshConversationFromCache;
-
-#pragma mark - First Responder
-
--(IBAction)newDocument:(id)sender;
-
--(IBAction)delete:(id)sender;
+@property (strong) IBOutlet NSArrayController *arrayController;
 
 #pragma mark - Actions
 
--(IBAction)clickedRow:(id)sender;
+-(IBAction)enteredText:(NSTextField *)sender;
 
 #pragma mark - Change GUI
 

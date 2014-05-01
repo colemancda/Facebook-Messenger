@@ -11,6 +11,8 @@
 #import "FBConversationComment.h"
 #import "FBUser.h"
 #import "FBMessageCellView.h"
+#import "FBMAppDelegate.h"
+#import "FBUser+Jabber.h"
 
 @interface FBMConversationWindowController ()
 
@@ -40,31 +42,29 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
+    [self updateWindowTitle];
+    
+    self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdTime" ascending:YES]];
+    
+    self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
+    
+    [self.arrayController fetch:self];
+    
+    [self.tableView reloadData];
 }
 
-#pragma mark - Refresh
+#pragma mark - Actions
 
--(void)refreshConversationFromCache
+-(void)enteredText:(NSTextField *)sender
 {
-    // sort array
+    FBMAppDelegate *appDelegate = [NSApp delegate];
     
-    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"createdTime"
-                                                           ascending:YES];
+    // user to send to...
     
-    _conversationComments = [NSMutableArray arrayWithArray:[_conversation.comments sortedArrayUsingDescriptors:@[sort]]];
+    FBUser *toUser = self.conversation.to.allObjects.firstObject;
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        
-        [self.tableView reloadData];
-        
-        [self scrollToBottomOfTableView];
-        
-    }];
-}
-
--(void)refreshConversationFromNetWithErrorAlert:(BOOL)errorAlert
-{
-    
+    [appDelegate.store sendMessage:sender.stringValue
+                     toUserWithJID:toUser.jid];
     
 }
 
@@ -95,26 +95,6 @@
     [self.tableView scrollRowToVisible:self.tableView.numberOfRows - 1];
 }
 
-#pragma mark - NSWindowDelegate
-
--(void)windowDidBecomeKey:(NSNotification *)notification
-{
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        
-        [self updateWindowTitle];
-        
-        [self refreshConversationFromCache];
-        
-    }];
-}
-
-#pragma mark - NSTableView Datasource
-
--(NSInteger)numberOfRowsInTableView:(NSTableView *)tableView
-{
-    return _conversationComments.count;
-}
-
 #pragma mark - NSTable Delegate
 
 -(NSView *)tableView:(NSTableView *)tableView
@@ -125,7 +105,7 @@
                                                                      owner:self];
     
     // get model object
-    FBConversationComment *comment = _conversationComments[row];
+    FBConversationComment *comment = self.arrayController.arrangedObjects[row];
     
     // set text fields
     messageCellView.textField.stringValue = comment.message;
