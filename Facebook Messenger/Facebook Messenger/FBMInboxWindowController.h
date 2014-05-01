@@ -25,8 +25,6 @@
 
 -(IBAction)newDocument:(id)sender;
 
--(IBAction)delete:(id)sender;
-
 #pragma mark - Actions
 
 -(IBAction)clickedRow:(id)sender;

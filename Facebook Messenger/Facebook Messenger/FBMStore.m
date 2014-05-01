@@ -249,8 +249,7 @@
     
     [_privateContext performBlockAndWait:^{
         
-        FBConversationComment *conversationComment = (FBConversationComment *)[NSEntityDescription insertNewObjectForEntityForName:@"FBConversationComment"
-                                                                                                            inManagedObjectContext:_privateContext];
+        FBConversationComment *conversationComment = (FBConversationComment *)[NSEntityDescription insertNewObjectForEntityForName:@"FBConversationComment" inManagedObjectContext:_privateContext];
         
         conversationComment.message = message;
         

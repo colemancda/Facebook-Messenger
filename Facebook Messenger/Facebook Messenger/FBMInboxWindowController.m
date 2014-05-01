@@ -130,7 +130,9 @@
     return cellView;
 }
 
--(void)tableViewSelectionDidChange:(NSNotification *)notification
+#pragma mark - First Responder
+
+-(void)newDocument:(id)sender
 {
     
     
@@ -165,8 +167,12 @@
                              forKey:conversationID];
         
         // set model object
+        
         conversationWC.conversation = conversation;
+        
     }
+    
+    // update GUI
     
     [conversationWC.window makeKeyAndOrderFront:self];
 }

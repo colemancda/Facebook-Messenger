@@ -61,10 +61,6 @@
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdTime" ascending:YES]];
     
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
-    
-    [self.arrayController fetch:self];
-    
-    [self.tableView reloadData];
 }
 
 #pragma mark - Actions
@@ -106,10 +102,13 @@
 
 -(void)scrollToBottomOfTableView
 {
-    [self.tableView scrollRowToVisible:self.tableView.numberOfRows - 1];
+    if (self.tableView.numberOfRows > 2) {
+        
+        [self.tableView scrollRowToVisible:self.tableView.numberOfRows - 1];
+    }
 }
 
-#pragma mark - NSTable Delegate
+#pragma mark - NSTableViewDelegate
 
 -(NSView *)tableView:(NSTableView *)tableView
   viewForTableColumn:(NSTableColumn *)tableColumn
@@ -169,7 +168,12 @@
             return;
         }
         
-        self.textField.stringValue = @"";
+        // clear text
+        
+        if ([self.textField.stringValue isEqualToString:notification.userInfo[FBMAPIMessageKey]]) {
+            
+            self.textField.stringValue = @"";
+        }
         
         [self scrollToBottomOfTableView];
         
