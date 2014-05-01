@@ -21,6 +21,7 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="401" height="347"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <value key="minSize" type="size" width="350" height="340"/>
             <view key="contentView" id="2">
                 <rect key="frame" x="0.0" y="0.0" width="401" height="347"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -57,8 +58,8 @@
                                                     <rect key="frame" x="1" y="1" width="398" height="81"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dv5-z8-Sgt">
-                                                            <rect key="frame" x="13" y="61" width="202" height="17"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Dv5-z8-Sgt">
+                                                            <rect key="frame" x="13" y="61" width="197" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Name" usesSingleLineMode="YES" id="WB0-Q7-hn0">
                                                                 <font key="font" metaFont="system"/>
@@ -75,9 +76,12 @@
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kB-rm-LHg">
-                                                            <rect key="frame" x="207" y="61" width="171" height="17"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8kB-rm-LHg">
+                                                            <rect key="frame" x="214" y="61" width="164" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="160" id="zLQ-Yd-LCL"/>
+                                                            </constraints>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Date" usesSingleLineMode="YES" id="CD3-uh-W88">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -85,6 +89,13 @@
                                                             </textFieldCell>
                                                         </textField>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="8kB-rm-LHg" secondAttribute="trailing" constant="22" id="4RQ-7o-4hM"/>
+                                                        <constraint firstItem="Dv5-z8-Sgt" firstAttribute="leading" secondItem="uBd-wG-u0W" secondAttribute="leading" constant="15" id="6Mm-EJ-SUF"/>
+                                                        <constraint firstItem="Dv5-z8-Sgt" firstAttribute="top" secondItem="uBd-wG-u0W" secondAttribute="top" constant="3" id="Qub-9g-kT5"/>
+                                                        <constraint firstItem="8kB-rm-LHg" firstAttribute="top" secondItem="uBd-wG-u0W" secondAttribute="top" constant="3" id="Udh-SP-LeU"/>
+                                                        <constraint firstItem="8kB-rm-LHg" firstAttribute="leading" secondItem="Dv5-z8-Sgt" secondAttribute="trailing" constant="8" id="xwY-4s-UFX"/>
+                                                    </constraints>
                                                     <connections>
                                                         <outlet property="dateField" destination="8kB-rm-LHg" id="Aj1-8d-ZhI"/>
                                                         <outlet property="nameField" destination="Dv5-z8-Sgt" id="ByU-dt-gXo"/>
