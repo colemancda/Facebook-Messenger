@@ -20,29 +20,29 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="401" height="347"/>
+            <rect key="contentRect" x="196" y="240" width="400" height="350"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <value key="minSize" type="size" width="350" height="340"/>
             <view key="contentView" id="2">
-                <rect key="frame" x="0.0" y="0.0" width="401" height="347"/>
+                <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="vwE-gc-IqF">
-                        <rect key="frame" x="-1" y="50" width="403" height="298"/>
+                        <rect key="frame" x="0.0" y="50" width="402" height="301"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="M5u-FQ-WYD">
-                            <rect key="frame" x="1" y="1" width="401" height="296"/>
+                            <rect key="frame" x="1" y="1" width="400" height="299"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" viewBased="YES" id="vuo-mb-fIG">
-                                    <rect key="frame" x="0.0" y="0.0" width="401" height="296"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="299"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="FBMessageCellView" width="398" minWidth="40" maxWidth="1000" id="e0f-za-Y02">
+                                        <tableColumn identifier="FBMessageCellView" width="397" minWidth="40" maxWidth="1000" id="e0f-za-Y02">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -56,11 +56,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="FBMessageCellView" id="uBd-wG-u0W" customClass="FBMessageCellView">
-                                                    <rect key="frame" x="1" y="1" width="398" height="81"/>
+                                                    <rect key="frame" x="1" y="1" width="397" height="51"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Dv5-z8-Sgt">
-                                                            <rect key="frame" x="13" y="61" width="197" height="17"/>
+                                                            <rect key="frame" x="13" y="31" width="197" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Name" usesSingleLineMode="YES" id="WB0-Q7-hn0">
                                                                 <font key="font" metaFont="system"/>
@@ -69,7 +69,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-H6-93H">
-                                                            <rect key="frame" x="13" y="3" width="365" height="50"/>
+                                                            <rect key="frame" x="13" y="6" width="371" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Message text" id="72u-6s-rPN">
                                                                 <font key="font" metaFont="system"/>
@@ -78,10 +78,10 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8kB-rm-LHg">
-                                                            <rect key="frame" x="214" y="61" width="164" height="17"/>
+                                                            <rect key="frame" x="214" y="31" width="163" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="160" id="zLQ-Yd-LCL"/>
+                                                                <constraint firstAttribute="width" constant="159" id="zLQ-Yd-LCL"/>
                                                             </constraints>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Date" usesSingleLineMode="YES" id="CD3-uh-W88">
                                                                 <font key="font" metaFont="system"/>
@@ -101,6 +101,24 @@
                                                         <outlet property="dateField" destination="8kB-rm-LHg" id="Aj1-8d-ZhI"/>
                                                         <outlet property="nameField" destination="Dv5-z8-Sgt" id="ByU-dt-gXo"/>
                                                         <outlet property="textField" destination="yu9-H6-93H" id="i7N-HI-noF"/>
+                                                    </connections>
+                                                </tableCellView>
+                                                <tableCellView identifier="FBMessageCellView" id="pEx-tV-HSb" customClass="FBMessageCellView">
+                                                    <rect key="frame" x="1" y="54" width="397" height="26"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <subviews>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Re-fe-Ibb">
+                                                            <rect key="frame" x="13" y="6" width="371" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Message text" id="KK3-fB-wPb">
+                                                                <font key="font" metaFont="system"/>
+                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <connections>
+                                                        <outlet property="textField" destination="2Re-fe-Ibb" id="o04-KX-ghu"/>
                                                     </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
@@ -124,7 +142,7 @@
                         </scroller>
                     </scrollView>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Z98-Nx-KVP">
-                        <rect key="frame" x="20" y="20" width="361" height="22"/>
+                        <rect key="frame" x="20" y="20" width="360" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="Type message here" drawsBackground="YES" id="NfN-fs-wR0">
                             <font key="font" metaFont="system"/>
@@ -137,13 +155,13 @@
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="vwE-gc-IqF" secondAttribute="trailing" constant="-1" id="1Qu-H3-hhH"/>
+                    <constraint firstAttribute="trailing" secondItem="vwE-gc-IqF" secondAttribute="trailing" constant="-2" id="1Qu-H3-hhH"/>
                     <constraint firstAttribute="bottom" secondItem="vwE-gc-IqF" secondAttribute="bottom" constant="50" id="J7D-j6-C0h"/>
                     <constraint firstItem="Z98-Nx-KVP" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="20" symbolic="YES" id="OTg-7G-wkU"/>
                     <constraint firstItem="vwE-gc-IqF" firstAttribute="top" secondItem="2" secondAttribute="top" constant="-1" id="TZb-qL-mcF"/>
-                    <constraint firstItem="vwE-gc-IqF" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="-1" id="diB-59-Iib"/>
+                    <constraint firstItem="vwE-gc-IqF" firstAttribute="leading" secondItem="2" secondAttribute="leading" id="diB-59-Iib"/>
                     <constraint firstItem="Z98-Nx-KVP" firstAttribute="top" secondItem="vwE-gc-IqF" secondAttribute="bottom" constant="8" symbolic="YES" id="qNA-bh-Izp"/>
-                    <constraint firstItem="vwE-gc-IqF" firstAttribute="centerX" secondItem="Z98-Nx-KVP" secondAttribute="centerX" id="uzQ-w2-L6D"/>
+                    <constraint firstItem="vwE-gc-IqF" firstAttribute="centerX" secondItem="Z98-Nx-KVP" secondAttribute="centerX" constant="1" id="uzQ-w2-L6D"/>
                 </constraints>
             </view>
             <connections>

@@ -195,6 +195,23 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
 -(CGFloat)tableView:(NSTableView *)tableView
         heightOfRow:(NSInteger)row
 {
+    // get model object
+    FBConversationComment *comment = self.arrayController.arrangedObjects[row];
+    
+    FBConversationComment *previousComment;
+    
+    if (row != 0) {
+        
+       previousComment = self.arrayController.arrangedObjects[row - 1];
+        
+    }
+    
+    // determine whether the previous comment belongs to the same user as the current comment
+    
+    if (previousComment) {
+        
+        
+    }
     
     return 80;
 }

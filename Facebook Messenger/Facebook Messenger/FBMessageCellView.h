@@ -10,6 +10,8 @@
 
 @interface FBMessageCellView : NSTableCellView
 
+#pragma mark - IB Outlets
+
 @property IBOutlet NSTextField *nameField;
 
 @property IBOutlet NSTextField *dateField;
