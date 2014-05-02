@@ -56,11 +56,11 @@
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
                                                 <tableCellView identifier="FBMessageCellView" id="uBd-wG-u0W" customClass="FBMessageCellView">
-                                                    <rect key="frame" x="1" y="1" width="397" height="45"/>
+                                                    <rect key="frame" x="1" y="1" width="397" height="56"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Dv5-z8-Sgt">
-                                                            <rect key="frame" x="13" y="23" width="199" height="19"/>
+                                                            <rect key="frame" x="13" y="29" width="204" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Name" usesSingleLineMode="YES" id="WB0-Q7-hn0">
                                                                 <font key="font" metaFont="system" size="16"/>
@@ -78,7 +78,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8kB-rm-LHg">
-                                                            <rect key="frame" x="216" y="18" width="163" height="19"/>
+                                                            <rect key="frame" x="221" y="29" width="163" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="159" id="zLQ-Yd-LCL"/>
@@ -91,12 +91,11 @@
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="8kB-rm-LHg" secondAttribute="trailing" constant="20" id="4RQ-7o-4hM"/>
+                                                        <constraint firstAttribute="trailing" secondItem="8kB-rm-LHg" secondAttribute="trailing" constant="15" id="4RQ-7o-4hM"/>
                                                         <constraint firstItem="Dv5-z8-Sgt" firstAttribute="leading" secondItem="uBd-wG-u0W" secondAttribute="leading" constant="15" id="6Mm-EJ-SUF"/>
-                                                        <constraint firstAttribute="bottom" secondItem="yu9-H6-93H" secondAttribute="bottom" constant="3" id="KiE-Qc-B93"/>
-                                                        <constraint firstItem="Dv5-z8-Sgt" firstAttribute="top" secondItem="uBd-wG-u0W" secondAttribute="top" constant="3" id="Qub-9g-kT5"/>
+                                                        <constraint firstAttribute="bottom" secondItem="yu9-H6-93H" secondAttribute="bottom" constant="3" id="MyH-Qp-S3N"/>
+                                                        <constraint firstItem="Dv5-z8-Sgt" firstAttribute="top" secondItem="uBd-wG-u0W" secondAttribute="top" constant="8" id="Qub-9g-kT5"/>
                                                         <constraint firstItem="8kB-rm-LHg" firstAttribute="top" secondItem="uBd-wG-u0W" secondAttribute="top" constant="8" id="Udh-SP-LeU"/>
-                                                        <constraint firstItem="yu9-H6-93H" firstAttribute="top" secondItem="8kB-rm-LHg" secondAttribute="bottom" constant="-2" id="X3a-Wc-rBS"/>
                                                         <constraint firstAttribute="trailing" secondItem="yu9-H6-93H" secondAttribute="trailing" constant="20" id="ejh-PH-pzB"/>
                                                         <constraint firstItem="yu9-H6-93H" firstAttribute="leading" secondItem="uBd-wG-u0W" secondAttribute="leading" constant="20" id="kcu-bn-1r7"/>
                                                         <constraint firstItem="8kB-rm-LHg" firstAttribute="leading" secondItem="Dv5-z8-Sgt" secondAttribute="trailing" constant="8" id="xwY-4s-UFX"/>
@@ -108,7 +107,7 @@
                                                     </connections>
                                                 </tableCellView>
                                                 <tableCellView identifier="NSTableCellView" id="pEx-tV-HSb">
-                                                    <rect key="frame" x="1" y="48" width="397" height="23"/>
+                                                    <rect key="frame" x="1" y="59" width="397" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2Re-fe-Ibb">

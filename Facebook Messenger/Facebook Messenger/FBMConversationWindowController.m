@@ -215,7 +215,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
         return 26;
     }
     
-    return 48;
+    return 56;
 }
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
