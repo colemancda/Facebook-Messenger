@@ -16,6 +16,8 @@
 
 static void *KVOContext = &KVOContext;
 
+NSString *const ConversationNameKeyPath = @"conversation.to";
+
 @interface FBMConversationWindowController ()
 
 @end
@@ -26,7 +28,7 @@ static void *KVOContext = &KVOContext;
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [self removeObserver:self forKeyPath:@"conversation.name"];
+    [self removeObserver:self forKeyPath:ConversationNameKeyPath];
 }
 
 -(id)init
@@ -63,7 +65,7 @@ static void *KVOContext = &KVOContext;
     // KVO
     
     [self addObserver:self
-           forKeyPath:@"conversation.name"
+           forKeyPath:ConversationNameKeyPath
               options:NSKeyValueObservingOptionNew
               context:KVOContext];
     
@@ -78,7 +80,7 @@ static void *KVOContext = &KVOContext;
 {
     if (context == KVOContext) {
         
-        if ([keyPath isEqualToString:@"conversation.name"]) {
+        if ([keyPath isEqualToString:ConversationNameKeyPath]) {
             
             if (self.conversation) {
                 
