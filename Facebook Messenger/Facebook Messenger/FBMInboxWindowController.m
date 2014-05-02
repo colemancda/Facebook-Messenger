@@ -21,6 +21,11 @@
 
 @implementation FBMInboxWindowController
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(id)init
 {
     self = [self initWithWindowNibName:NSStringFromClass(self.class)
@@ -43,18 +48,27 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
+    // add observer
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recievedMessage:)
+                                                 name:FBMAPIRecievedMessageNotification
+                                               object:appDelegate.store];
+    
     // set tableview action
+    
     [self.tableView setDoubleAction:@selector(clickedRow:)];
     
     self.tableView.target = self;
     
     // sort descriptor
+    
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"updatedTime"
                                                                            ascending:NO]];
     
     // fetch from server
-    
-    FBMAppDelegate *appDelegate = [NSApp delegate];
     
     [appDelegate.store fetchInboxWithCompletionBlock:^(NSError *error, NSArray *inbox) {
        
@@ -224,6 +238,36 @@
     
     [conversationWC.window makeKeyAndOrderFront:self];
     
+}
+
+#pragma mark - Notifications
+
+-(void)recievedMessage:(NSNotification *)notification
+{
+    NSString *jid = notification.userInfo[FBMAPIJIDKey];
+    
+    // get user ID
+    
+    NSString *userID = [jid stringByReplacingOccurrencesOfString:@"@chat.facebook.com"
+                                              withString:@""];
+    
+    userID = [userID stringByReplacingOccurrencesOfString:@"-"
+                                                   withString:@""];
+    
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+       
+        FBUser *user = [appDelegate.store userWithID:userID];
+        
+        if (!user.name) {
+            
+            // fetch from server
+        }
+        
+        [self newConversationWithUser:user];
+        
+    }];
 }
 
 

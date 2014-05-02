@@ -36,4 +36,8 @@
 
 -(void)newConversationWithUser:(FBUser *)user;
 
+#pragma mark - Notifications
+
+-(void)recievedMessage:(NSNotification *)notification;
+
 @end

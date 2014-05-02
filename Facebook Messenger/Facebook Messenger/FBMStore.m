@@ -557,6 +557,12 @@
     return (FBConversation *)[self.context objectWithID:conversation.objectID];
 }
 
+-(FBUser *)userWithID:(NSString *)userID
+{
+    
+    
+}
+
 @end
 
 #pragma mark - Categories

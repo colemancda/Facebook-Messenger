@@ -23,4 +23,8 @@
 
 -(FBConversation *)newConversationWithUser:(FBUser *)user;
 
+/** Finds or creates a user with the specified ID. */
+
+-(FBUser *)userWithID:(NSString *)userID;
+
 @end
