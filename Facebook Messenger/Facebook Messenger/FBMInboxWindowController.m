@@ -75,38 +75,6 @@
     
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"updatedTime"
                                                                            ascending:NO]];
-    
-    // fetch from server
-    
-    [appDelegate.store fetchInboxWithCompletionBlock:^(NSError *error, NSArray *inbox) {
-       
-        if (error) {
-            
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-               
-                [NSApp presentError:error];
-                
-            }];
-            
-            return;
-        }
-        
-    }];
-    
-    [appDelegate.store fetchFriendList:^(NSError *error, NSArray *friends) {
-        
-        if (error) {
-            
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                
-                [NSApp presentError:error];
-                
-            }];
-            
-            return;
-        }
-        
-    }];
 }
 
 #pragma mark - NSTableView Delegate

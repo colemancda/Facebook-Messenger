@@ -389,6 +389,56 @@ NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
     return task;
 }
 
+-(NSURLSessionDataTask *)fetchUserWithCompletionBlock:(void (^)(NSError *, NSDictionary *))completionBlock
+{
+    NSURL *url = [NSURL URLWithString:@"https://graph.facebook.com/me"];
+    
+    NSDictionary *parameters = @{@"access_token": self.facebookAccount.credential.oauthToken};
+    
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                            requestMethod:SLRequestMethodGET
+                                                      URL:url
+                                               parameters:parameters];
+    
+    NSURLSessionDataTask *task = [self.urlSession dataTaskWithRequest:request.preparedURLRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (error) {
+            
+            completionBlock(error, nil);
+            
+            return;
+        }
+        
+        // get json response
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:nil];
+        
+        // json error response
+        if (!responseDictionary[@"id"]) {
+            
+            NSDictionary *errorDictionary = responseDictionary[@"error"];
+            
+            NSNumber *errorCode = errorDictionary[@"code"];
+            
+            NSError *error = [self errorForErrorCode:errorCode.integerValue];
+            
+            completionBlock(error, nil);
+            
+            return;
+        }
+        
+        // success
+        
+        completionBlock(nil, responseDictionary);
+        
+    }];
+    
+    [task resume];
+    
+    return task;
+}
+
 -(void)sendMessage:(NSString *)messageString
      toUserWithJID:(NSString *)jid
 {

@@ -100,40 +100,80 @@
 {
     NSError *error = notification.userInfo[FBMAPIErrorKey];
     
+    NSBlockOperation *errorBlock = [NSBlockOperation blockOperationWithBlock:^{
+        
+        [_failureBox setHidden:NO];
+        
+        [_progressIndicator setHidden:YES];
+        
+        [_progressIndicator stopAnimation:self];
+        
+        [NSApp presentError:error];
+        
+    }];
+    
     if (error) {
         
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            
-            [_failureBox setHidden:NO];
-            
-            [_progressIndicator setHidden:YES];
-            
-            [_progressIndicator stopAnimation:self];
-           
-            [NSApp presentError:error];
-            
-        }];
+        [[NSOperationQueue mainQueue] addOperation:errorBlock];
         
         return;
     }
     
-    NSLog(@"Successfully connected to server");
+    NSLog(@"Successfully connected to XMPP server");
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+    // fetch inbox from server
+    
+    [self.store fetchInboxWithCompletionBlock:^(NSError *error, NSArray *inbox) {
         
-        // close this window and show InboxWC
-        
-        if (!_inboxWC) {
+        if (error) {
             
-            _inboxWC = [[FBMInboxWindowController alloc] init];
+            [[NSOperationQueue mainQueue] addOperation:errorBlock];
+            
+            return;
         }
         
-        [_inboxWC.window makeKeyAndOrderFront:self];
+        // fetch friends list
         
-        [self.window close];
+        [self.store fetchFriendList:^(NSError *error, NSArray *friends) {
+            
+            if (error) {
+                
+                [[NSOperationQueue mainQueue] addOperation:errorBlock];
+                
+                return;
+            }
+            
+            // fetch user profile
+            
+            [self.store fetchUserWithCompletionBlock:^(NSError *error, NSDictionary *userProfile) {
+                
+                if (error) {
+                    
+                    [[NSOperationQueue mainQueue] addOperation:errorBlock];
+                    
+                    return;
+                }
+               
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    // close this window and show InboxWC
+                    
+                    if (!_inboxWC) {
+                        
+                        _inboxWC = [[FBMInboxWindowController alloc] init];
+                    }
+                    
+                    [_inboxWC.window makeKeyAndOrderFront:self];
+                    
+                    [self.window close];
+                    
+                }];
+                
+            }];
+            
+        }];
         
     }];
-    
 }
 
 @end

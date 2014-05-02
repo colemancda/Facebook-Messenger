@@ -25,6 +25,8 @@
 
 @property (nonatomic) NSManagedObjectContext *context;
 
+@property (nonatomic) FBUser *user;
+
 @end
 
 @implementation FBMStore
@@ -119,7 +121,7 @@
                 
                 NSArray *toArray = toDictionary[@"data"];
                 
-                if (toArray.count < 2) {
+                if (toArray.count != 2) {
                     
                     // skip this conversation
                     
@@ -160,13 +162,6 @@
                     user.name = userDictionary[@"name"];
                     
                     [conversationUsers addObject:user];
-                    
-                    // set _user if first
-                    
-                    if (!_user && userDictionary == toArray.firstObject) {
-                        
-                        _user = user;
-                    }
                 }
                 
                 // replace 'to' relationship
@@ -293,6 +288,44 @@
     }];
 }
 
+-(NSURLSessionDataTask *)fetchUserWithCompletionBlock:(void (^)(NSError *, NSDictionary *))completionBlock
+{
+    return [super fetchUserWithCompletionBlock:^(NSError *error, NSDictionary *userProfileDictionary) {
+       
+        [_privateContext performBlockAndWait:^{
+            
+            NSString *identifier = userProfileDictionary[@"id"];
+           
+            FBUser *user = (FBUser *)[self findOrCreateEntity:@"FBUser"
+                                                       withID:[NSNumber numberWithInteger:identifier.integerValue]];
+            
+            user.name = userProfileDictionary[@"name"];
+            
+            // save
+            
+            NSError *error;
+            
+            if (![_privateContext save:&error]) {
+                
+                [NSException raise:NSInternalInconsistencyException
+                            format:@"%@", error];
+            }
+            
+            _privateContextUser = user;
+            
+        }];
+        
+        [_context performBlockAndWait:^{
+            
+            self.user = (FBUser *)[_context objectWithID:_privateContextUser.objectID];
+            
+        }];
+        
+        completionBlock(nil, userProfileDictionary);
+        
+    }];
+}
+
 #pragma mark - Internal
 
 -(void)didSendMessage:(NSString *)message
@@ -310,7 +343,7 @@
         
         // set self as sender
         
-        conversationComment.from = _user;
+        conversationComment.from = _privateContextUser;
         
         // take apart JID
         
