@@ -117,6 +117,12 @@
 		6EC4F8411911982200B87BDF /* build-libidn.sh in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4F83C1911982200B87BDF /* build-libidn.sh */; };
 		6EC4F8421911982200B87BDF /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC4F83E1911982200B87BDF /* libidn.a */; };
 		6EC4F8431911982200B87BDF /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC4F83E1911982200B87BDF /* libidn.a */; };
+		6ECA431419131B5E00921652 /* FBMDirectoryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA431219131B5E00921652 /* FBMDirectoryWindowController.m */; };
+		6ECA431519131B5E00921652 /* FBMDirectoryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA431219131B5E00921652 /* FBMDirectoryWindowController.m */; };
+		6ECA431619131B5E00921652 /* FBMDirectoryWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECA431319131B5E00921652 /* FBMDirectoryWindowController.xib */; };
+		6ECA431719131B5E00921652 /* FBMDirectoryWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECA431319131B5E00921652 /* FBMDirectoryWindowController.xib */; };
+		6ECA431A19131D8900921652 /* FBUserCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA431919131D8900921652 /* FBUserCellView.m */; };
+		6ECA431B19131D8900921652 /* FBUserCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA431919131D8900921652 /* FBUserCellView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -260,6 +266,11 @@
 		6EC4F83D1911982200B87BDF /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
 		6EC4F83E1911982200B87BDF /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		6EC4F83F1911982200B87BDF /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
+		6ECA431119131B5E00921652 /* FBMDirectoryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMDirectoryWindowController.h; sourceTree = "<group>"; };
+		6ECA431219131B5E00921652 /* FBMDirectoryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMDirectoryWindowController.m; sourceTree = "<group>"; };
+		6ECA431319131B5E00921652 /* FBMDirectoryWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMDirectoryWindowController.xib; sourceTree = "<group>"; };
+		6ECA431819131D8900921652 /* FBUserCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUserCellView.h; sourceTree = "<group>"; };
+		6ECA431919131D8900921652 /* FBUserCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUserCellView.m; sourceTree = "<group>"; };
 		6ECF9D4B1912ED9900BEA52C /* Facebook Messenger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Facebook Messenger.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -600,6 +611,7 @@
 		6E9FA3B41813B25A00785A09 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6ECA431019131B4400921652 /* Directory */,
 				6E9FA3DD1814668400785A09 /* Conversation */,
 				6E9FA3DC1814667800785A09 /* Inbox */,
 			);
@@ -645,6 +657,8 @@
 			children = (
 				6E9FA3E418146FAB00785A09 /* FBMessageCellView.h */,
 				6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */,
+				6ECA431819131D8900921652 /* FBUserCellView.h */,
+				6ECA431919131D8900921652 /* FBUserCellView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -714,6 +728,16 @@
 			);
 			name = libidn;
 			path = Dependencies/XMPPFramework/Vendor/libidn;
+			sourceTree = "<group>";
+		};
+		6ECA431019131B4400921652 /* Directory */ = {
+			isa = PBXGroup;
+			children = (
+				6ECA431119131B5E00921652 /* FBMDirectoryWindowController.h */,
+				6ECA431219131B5E00921652 /* FBMDirectoryWindowController.m */,
+				6ECA431319131B5E00921652 /* FBMDirectoryWindowController.xib */,
+			);
+			name = Directory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -803,6 +827,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6ECA431619131B5E00921652 /* FBMDirectoryWindowController.xib in Resources */,
 				6E9FA3E2181466A900785A09 /* FBMConversationWindowController.xib in Resources */,
 				6E9FA37E18138ECE00785A09 /* InfoPlist.strings in Resources */,
 				6E9FA3B9181439E500785A09 /* FBMInboxWindowController.xib in Resources */,
@@ -820,6 +845,7 @@
 			files = (
 				6EC4F83A1911961C00B87BDF /* README.txt in Resources */,
 				6EC4F8411911982200B87BDF /* build-libidn.sh in Resources */,
+				6ECA431719131B5E00921652 /* FBMDirectoryWindowController.xib in Resources */,
 				6E9FA39C18138ECE00785A09 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,6 +861,7 @@
 				6E5841FC1910A0AD00DDDCBE /* NSNumber+XMPP.m in Sources */,
 				6E653C1F1912C2D6004F288F /* FBUser+Jabber.m in Sources */,
 				6E9FA3DB18144DDC00785A09 /* FBConversationComment.m in Sources */,
+				6ECA431A19131D8900921652 /* FBUserCellView.m in Sources */,
 				6E5842021910A0AD00DDDCBE /* XMPPIQ.m in Sources */,
 				6E5841EC1910A0AD00DDDCBE /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				6E5841FE1910A0AD00DDDCBE /* NSXMLElement+XMPP.m in Sources */,
@@ -850,6 +877,7 @@
 				6EC4F8271911961C00B87BDF /* DDAbstractDatabaseLogger.m in Sources */,
 				6E5842121910A0AD00DDDCBE /* GCDMulticastDelegate.m in Sources */,
 				6EC4F82F1911961C00B87BDF /* DDLog.m in Sources */,
+				6ECA431419131B5E00921652 /* FBMDirectoryWindowController.m in Sources */,
 				6E5841F81910A0AD00DDDCBE /* XMPPXOAuth2Google.m in Sources */,
 				6E5841EE1910A0AD00DDDCBE /* XMPPDeprecatedPlainAuthentication.m in Sources */,
 				6E5841F21910A0AD00DDDCBE /* XMPPPlainAuthentication.m in Sources */,
@@ -909,12 +937,14 @@
 				6E5842051910A0AD00DDDCBE /* XMPPJID.m in Sources */,
 				6EC4F82E1911961C00B87BDF /* DDFileLogger.m in Sources */,
 				6E58420B1910A0AD00DDDCBE /* XMPPParser.m in Sources */,
+				6ECA431519131B5E00921652 /* FBMDirectoryWindowController.m in Sources */,
 				6E5842091910A0AD00DDDCBE /* XMPPModule.m in Sources */,
 				6E5841F91910A0AD00DDDCBE /* XMPPXOAuth2Google.m in Sources */,
 				6EC4F8321911961C00B87BDF /* DDTTYLogger.m in Sources */,
 				6E5842011910A0AD00DDDCBE /* XMPPElement.m in Sources */,
 				6E5841F71910A0AD00DDDCBE /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				6E5842171910A0AD00DDDCBE /* XMPPIDTracker.m in Sources */,
+				6ECA431B19131D8900921652 /* FBUserCellView.m in Sources */,
 				6E58420D1910A0AD00DDDCBE /* XMPPPresence.m in Sources */,
 				6E5841F11910A0AD00DDDCBE /* XMPPDigestMD5Authentication.m in Sources */,
 				6EC4F82A1911961C00B87BDF /* DDASLLogCapture.m in Sources */,
