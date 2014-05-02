@@ -531,8 +531,8 @@
 
 #pragma mark - Core Data
 
--(void)newConversationWithUser:(FBUser *)user
-               completionBlock:(void (^)(FBConversation *))completionBlock
+-(void)findOrCreateConversationWithUser:(FBUser *)user
+                        completionBlock:(void (^)(FBConversation *))completionBlock
 {
     [_privateContext performBlock:^{
         

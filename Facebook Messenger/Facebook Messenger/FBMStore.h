@@ -27,8 +27,8 @@
 
 /** Creates a new cached conversation with the specified user. */
 
--(void)newConversationWithUser:(FBUser *)user
-               completionBlock:(void (^)(FBConversation *conversation))completionBlock;
+-(void)findOrCreateConversationWithUser:(FBUser *)user
+                        completionBlock:(void (^)(FBConversation *conversation))completionBlock;
 
 /** Finds a user with the specified ID.
  

@@ -9,11 +9,13 @@
 #import <Cocoa/Cocoa.h>
 @class FBUser, FBConversation, FBMDirectoryWindowController;
 
-@interface FBMInboxWindowController : NSWindowController <NSTableViewDelegate>
+@interface FBMInboxWindowController : NSWindowController <NSTableViewDelegate, NSUserNotificationCenterDelegate>
 {
     NSDateFormatter *_dateFormatter;
     
     NSMutableDictionary *_conversationWCs;
+    
+    NSMutableArray *_deliveredUserNotifications;
 }
 
 #pragma mark - IB Outlets
@@ -38,8 +40,8 @@
 
 #pragma mark - GUI
 
--(void)presentNotificationForNewMessage:(NSString *)newMessage
-                         inConversation:(FBConversation *)conversation;
+-(void)presentNotificationForMessage:(NSString *)newMessage
+                      inConversation:(FBConversation *)conversation;
 
 #pragma mark - Notifications
 

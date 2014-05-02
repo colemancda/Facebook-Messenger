@@ -15,6 +15,8 @@
 #import "FBMConversationWindowController.h"
 #import "FBMDirectoryWindowController.h"
 
+NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificationConversationIdentifier";
+
 @interface FBMInboxWindowController ()
 
 @end
@@ -41,6 +43,8 @@
         
         _conversationWCs = [[NSMutableDictionary alloc] init];
         
+        _deliveredUserNotifications = [[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -64,6 +68,10 @@
                                              selector:@selector(sentMessage:)
                                                  name:FBMAPISentMessageNotification
                                                object:appDelegate.store];
+    
+    // user notifications
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
     
     // set tableview action
     
@@ -166,7 +174,7 @@
     
     FBUser *user = conversation.to.allObjects.firstObject;
     
-    NSString *wcKey = user.name;
+    NSString *wcKey = [NSString stringWithFormat:@"%@", user.id];
     
     FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
     
@@ -194,7 +202,7 @@
     
     // search for existing WC for this conversation
     
-    NSString *wcKey = user.name;
+    NSString *wcKey = [NSString stringWithFormat:@"%@", user.id];;
     
     FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
     
@@ -207,19 +215,15 @@
         
         // create new conversation
         
-        [appDelegate.store newConversationWithUser:user completionBlock:^(FBConversation *conversation) {
+        [appDelegate.store findOrCreateConversationWithUser:user completionBlock:^(FBConversation *conversation) {
             
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                
-                // set model object
-                
-                conversationWC.conversation = conversation;
-                
-                // update GUI
-                
-                [conversationWC.window makeKeyAndOrderFront:self];
-                
-            }];
+            // set model object
+            
+            conversationWC.conversation = conversation;
+            
+            // update GUI
+            
+            [conversationWC.window makeKeyAndOrderFront:self];
             
         }];
         
@@ -230,15 +234,6 @@
     // update GUI
     
     [conversationWC.window makeKeyAndOrderFront:self];
-    
-}
-
-#pragma mark - GUI
-
--(void)presentNotificationForNewMessage:(NSString *)newMessage
-                         inConversation:(FBConversation *)conversation
-{
-    
     
 }
 
@@ -285,8 +280,8 @@
                     
                     // show notification
                     
-                    [self presentNotificationForNewMessage:messageBody
-                                            inConversation:conversation];
+                    [self presentNotificationForMessage:messageBody
+                                         inConversation:conversation];
                     
                 }];
                 
@@ -301,7 +296,7 @@
         
         FBUser *user = conversation.to.allObjects.firstObject;
         
-        NSString *wcKey = user.name;
+        NSString *wcKey = [NSString stringWithFormat:@"%@", user.id];;
         
         FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
         
@@ -314,8 +309,8 @@
          
          // show notification
          
-         [self presentNotificationForNewMessage:messageBody
-                                 inConversation:conversation];
+         [self presentNotificationForMessage:messageBody
+                              inConversation:conversation];
         
     }];
 }
@@ -331,5 +326,71 @@
     }];
     
 }
+
+#pragma mark - GUI
+
+-(void)presentNotificationForMessage:(NSString *)newMessage
+                      inConversation:(FBConversation *)conversation
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        NSUserNotification *userNotification = [[NSUserNotification alloc] init];
+        
+        userNotification.title = conversation.toString;
+        
+        userNotification.informativeText = newMessage;
+        
+        FBUser *user = conversation.to.allObjects.firstObject;
+        
+        userNotification.userInfo = @{FBMUserNotificationConversationIdentifier: [NSString stringWithFormat:@"%@", user.id]};
+        
+        [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:userNotification];
+        
+        [_deliveredUserNotifications addObject:userNotification];
+    }];
+}
+
+#pragma mark - NSUserNotificationCenterDelegate
+
+-(void)userNotificationCenter:(NSUserNotificationCenter *)center
+      didActivateNotification:(NSUserNotification *)notification
+{
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
+    NSString *wcKey = notification.userInfo[FBMUserNotificationConversationIdentifier];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        // remove all notifications related to user...
+        
+        for (NSUserNotification *userNotification in _deliveredUserNotifications) {
+            
+            NSString *userID = userNotification.userInfo[FBMUserNotificationConversationIdentifier];
+            
+            if ([userID isEqualToString:wcKey]) {
+                
+                [[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:userNotification];
+            }
+            
+        }
+       
+        // find WC
+        
+        FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
+        
+        if (conversationWC) {
+            
+            // update GUI
+            
+            [conversationWC.window makeKeyAndOrderFront:self];
+            
+            return;
+        }
+        
+        // find user
+        
+    }];
+}
+
 
 @end
