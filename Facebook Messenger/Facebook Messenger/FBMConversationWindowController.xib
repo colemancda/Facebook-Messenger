@@ -103,7 +103,7 @@
                                                         <outlet property="textField" destination="yu9-H6-93H" id="i7N-HI-noF"/>
                                                     </connections>
                                                 </tableCellView>
-                                                <tableCellView identifier="FBMessageCellView" id="pEx-tV-HSb" customClass="FBMessageCellView">
+                                                <tableCellView identifier="NSTableCellView" id="pEx-tV-HSb">
                                                     <rect key="frame" x="1" y="54" width="397" height="26"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>

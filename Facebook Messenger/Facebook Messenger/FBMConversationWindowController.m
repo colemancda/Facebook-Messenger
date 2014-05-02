@@ -43,6 +43,14 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
+        
+        _dateFormatter = [[NSDateFormatter alloc] init];
+        
+        _dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        
+        _dateFormatter.timeStyle = NSDateFormatterMediumStyle;
+        
+        
     }
     return self;
 }
@@ -91,27 +99,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
             
             if (self.conversation) {
                 
-                // build string
-                
-                NSArray *toArray = self.conversation.to.allObjects;
-                
-                NSString *toString = @"";
-                
-                for (FBUser *user in toArray) {
-                    
-                    if (user.name) {
-                        
-                        toString = [toString stringByAppendingString:user.name];
-                    }
-                    else {
-                        toString = [toString stringByAppendingFormat:@"%@", user.id];
-                    }
-                    
-                    if (user != toArray.lastObject) {
-                        
-                        toString = [toString stringByAppendingString:@", "];
-                    }
-                }
+                NSString *toString = self.conversation.toString;
                 
                 if (![self.window.title isEqualToString:toString]) {
                     
@@ -158,27 +146,37 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
   viewForTableColumn:(NSTableColumn *)tableColumn
                  row:(NSInteger)row
 {
-    FBMessageCellView *messageCellView = [tableView makeViewWithIdentifier:tableColumn.identifier
-                                                                     owner:self];
+    
     
     // get model object
     FBConversationComment *comment = self.arrayController.arrangedObjects[row];
+    
+    FBConversationComment *previousComment;
+    
+    if (row != 0) {
+        
+        previousComment = self.arrayController.arrangedObjects[row - 1];
+        
+    }
+    
+    // determine whether the previous comment belongs to the same user as the current comment
+    
+    if (comment.from == previousComment.from) {
+        
+        NSTableCellView *messageCellView = [tableView makeViewWithIdentifier:@"NSTableCellView"
+                                                                       owner:self];
+        
+    }
+    
+    FBMessageCellView *messageCellView = [tableView makeViewWithIdentifier:tableColumn.identifier
+                                                                     owner:self];
+    
+    
     
     // set text fields
     messageCellView.textField.stringValue = comment.message;
     
     messageCellView.nameField.stringValue = comment.from.name;
-    
-    // set date...
-    if (!_dateFormatter) {
-        
-        _dateFormatter = [[NSDateFormatter alloc] init];
-        
-        _dateFormatter.dateStyle = NSDateFormatterShortStyle;
-        
-        _dateFormatter.timeStyle = NSDateFormatterMediumStyle;
-        
-    }
     
     messageCellView.dateField.stringValue = [_dateFormatter stringFromDate:comment.createdTime];
     
@@ -208,12 +206,12 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     // determine whether the previous comment belongs to the same user as the current comment
     
-    if (previousComment) {
+    if (comment.from == previousComment.from) {
         
-        
+        return 51;
     }
     
-    return 80;
+    return 26;
 }
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
