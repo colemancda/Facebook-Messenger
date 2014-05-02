@@ -135,14 +135,6 @@
     return cellView;
 }
 
-#pragma mark - NSTableViewDataSource
-
--(void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
-{
-    
-    
-}
-
 #pragma mark - First Responder
 
 -(void)newDocument:(id)sender
