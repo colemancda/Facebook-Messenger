@@ -86,7 +86,8 @@ NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
                                @"friends_online_presence",
                                @"user_about_me",
                                @"user_online_presence",
-                               @"xmpp_login"];
+                               @"xmpp_login",
+                               @"user_friends"];
     
     NSDictionary *accessOptions = @{ACFacebookAppIdKey: self.appID,
                                     ACFacebookPermissionsKey : fbPermissions};
@@ -327,6 +328,59 @@ NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
         // success
         
         completionBlock(nil, inbox);
+        
+    }];
+    
+    [task resume];
+    
+    return task;
+}
+
+-(NSURLSessionDataTask *)fetchFriendList:(void (^)(NSError *, NSArray *))completionBlock
+{
+    NSURL *url = [NSURL URLWithString:@"https://graph.facebook.com/me/friends"];
+    
+    NSDictionary *parameters = @{@"access_token": self.facebookAccount.credential.oauthToken};
+    
+    SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
+                                            requestMethod:SLRequestMethodGET
+                                                      URL:url
+                                               parameters:parameters];
+    
+    NSURLSessionDataTask *task = [self.urlSession dataTaskWithRequest:request.preparedURLRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        if (error) {
+            
+            completionBlock(error, nil);
+            
+            return;
+        }
+        
+        // get json response
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data
+                                                                           options:NSJSONReadingAllowFragments
+                                                                             error:nil];
+        
+        // parse response...
+        NSArray *friends = responseDictionary[@"data"];
+        
+        // json error response
+        if (!friends) {
+            
+            NSDictionary *errorDictionary = responseDictionary[@"error"];
+            
+            NSNumber *errorCode = errorDictionary[@"code"];
+            
+            NSError *error = [self errorForErrorCode:errorCode.integerValue];
+            
+            completionBlock(error, nil);
+            
+            return;
+        }
+        
+        // success
+        
+        completionBlock(nil, friends);
         
     }];
     

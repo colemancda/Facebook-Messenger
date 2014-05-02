@@ -246,6 +246,53 @@
     }];
 }
 
+-(NSURLSessionDataTask *)fetchFriendList:(void (^)(NSError *, NSArray *))completionBlock
+{
+    return [super fetchFriendList:^(NSError *error, NSArray *friends) {
+        
+        // error
+        if (error) {
+            
+            completionBlock(error, nil);
+            
+            return;
+        }
+        
+        NSMutableArray *cachedFriends = [[NSMutableArray alloc] init];
+        
+        [_privateContext performBlockAndWait:^{
+            
+            for (NSDictionary *userDictionary in friends) {
+                
+                NSString *identifier = userDictionary[@"id"];
+                
+                FBUser *user = (FBUser *)[self findOrCreateEntity:@"FBUser"
+                                                           withID:[NSNumber numberWithInteger:identifier.integerValue]];
+                
+                user.name = userDictionary[@"name"];
+                
+                // add to completion block array
+                
+                [cachedFriends addObject:user];
+            }
+            
+            // save
+            
+            NSError *error;
+            
+            if (![_privateContext save:&error]) {
+                
+                [NSException raise:NSInternalInconsistencyException
+                            format:@"%@", error];
+            }
+            
+        }];
+        
+        completionBlock(nil, cachedFriends);
+        
+    }];
+}
+
 #pragma mark - Internal
 
 -(void)didSendMessage:(NSString *)message

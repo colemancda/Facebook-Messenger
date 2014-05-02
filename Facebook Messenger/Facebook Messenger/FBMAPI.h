@@ -62,9 +62,13 @@ extern NSString *const FBMAPIJIDKey;
 
 -(void)logout;
 
-#pragma mark - Requests
+#pragma mark - REST Requests
 
 -(NSURLSessionDataTask *)fetchInboxWithCompletionBlock:(void (^)(NSError *error, NSArray *inbox))completionBlock;
+
+-(NSURLSessionDataTask *)fetchFriendList:(void (^)(NSError *error, NSArray *friends))completionBlock;
+
+#pragma mark - XMPP Requests
 
 -(void)sendMessage:(NSString *)message
      toUserWithJID:(NSString *)jid;
