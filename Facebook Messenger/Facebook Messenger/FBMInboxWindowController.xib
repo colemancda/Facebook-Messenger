@@ -71,7 +71,7 @@
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
-                                        <tableColumn identifier="to" width="219" minWidth="40" maxWidth="1000" id="PxV-r6-VNj">
+                                        <tableColumn identifier="toString" width="219" minWidth="40" maxWidth="1000" id="PxV-r6-VNj">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="To">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -107,6 +107,7 @@
                                     </tableColumns>
                                     <connections>
                                         <binding destination="4vb-9p-z42" name="content" keyPath="arrangedObjects" id="oUf-yJ-Xvv"/>
+                                        <binding destination="4vb-9p-z42" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="oUf-yJ-Xvv" id="AI1-h6-lKD"/>
                                         <outlet property="delegate" destination="-2" id="okU-qK-8ev"/>
                                     </connections>
                                 </tableView>

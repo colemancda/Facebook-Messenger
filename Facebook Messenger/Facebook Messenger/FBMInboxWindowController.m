@@ -71,6 +71,15 @@
     
     self.tableView.target = self;
     
+    // setup tableview sort descriptor
+    
+    for (NSTableColumn *tableColumn in self.tableView.tableColumns) {
+        
+        NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:tableColumn.identifier
+                                                                         ascending:YES];
+        [tableColumn setSortDescriptorPrototype:sortDescriptor];
+    }
+    
     // sort descriptor
     
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"updatedTime"
@@ -104,32 +113,10 @@
         
     }
     
-    if ([identifier isEqualToString:@"to"]) {
-        
-        // build string
-        
-        NSArray *toArray = conversation.to.allObjects;
-        
-        NSString *toString = @"";
-        
-        for (FBUser *user in toArray) {
-            
-            if (user.name) {
-                
-                toString = [toString stringByAppendingString:user.name];
-            }
-            else {
-                toString = [toString stringByAppendingFormat:@"%@", user.id];
-            }
-            
-            if (user != toArray.lastObject) {
-                
-                toString = [toString stringByAppendingString:@", "];
-            }
-        }
+    if ([identifier isEqualToString:@"toString"]) {
         
         // set text
-        cellView.textField.stringValue = toString;
+        cellView.textField.stringValue = conversation.toString;
     }
     
     // check whether the conversation has unread messages
@@ -146,6 +133,14 @@
     
     
     return cellView;
+}
+
+#pragma mark - NSTableViewDataSource
+
+-(void)tableView:(NSTableView *)tableView sortDescriptorsDidChange:(NSArray *)oldDescriptors
+{
+    
+    
 }
 
 #pragma mark - First Responder
