@@ -74,6 +74,13 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
 }
 
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    [self scrollToBottomOfTableView];
+}
+
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
