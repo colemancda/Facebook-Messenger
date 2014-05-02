@@ -176,17 +176,6 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
         
         messageCellView.textField.stringValue = comment.message;
         
-        // change color for outgoing messages
-        
-        if (comment.from == appDelegate.store.user) {
-            
-            messageCellView.textField.textColor = [NSColor grayColor];
-        }
-        else {
-            
-            messageCellView.textField.textColor = [NSColor blackColor];
-        }
-        
         return messageCellView;
     }
     
@@ -201,25 +190,6 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     messageCellView.nameField.stringValue = comment.from.name;
     
     messageCellView.dateField.stringValue = [_dateFormatter stringFromDate:comment.createdTime];
-    
-    // change color for outgoing messages
-    
-    if (comment.from == appDelegate.store.user) {
-        
-        messageCellView.textField.textColor = [NSColor grayColor];
-        
-        messageCellView.nameField.textColor = [NSColor grayColor];
-        
-        messageCellView.dateField.textColor = [NSColor grayColor];
-    }
-    else {
-        
-        messageCellView.textField.textColor = [NSColor blackColor];
-        
-        messageCellView.nameField.textColor = [NSColor blackColor];
-        
-        messageCellView.dateField.textColor = [NSColor blackColor];
-    }
     
     return messageCellView;
 }
