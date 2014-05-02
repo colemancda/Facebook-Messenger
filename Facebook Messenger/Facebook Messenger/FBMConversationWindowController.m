@@ -212,8 +212,14 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     if (comment.from == previousComment.from) {
         
+        // NSTableCellView
+        
+        
+        
         return 26;
     }
+    
+    // FBMessageCellView
     
     return 56;
 }
@@ -233,7 +239,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     column.maxWidth = self.window.frame.size.width;
     
-    column.width = self.window.frame.size.width;
+    column.width = self.tableView.frame.size.width - 3;
 }
 
 -(void)windowDidBecomeKey:(NSNotification *)notification

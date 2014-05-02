@@ -27,7 +27,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="400" height="350"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="vwE-gc-IqF">
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" maxMagnification="2" minMagnification="1" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="vwE-gc-IqF">
                         <rect key="frame" x="0.0" y="50" width="402" height="301"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="M5u-FQ-WYD">
@@ -78,10 +78,10 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8kB-rm-LHg">
-                                                            <rect key="frame" x="221" y="29" width="163" height="19"/>
+                                                            <rect key="frame" x="209" y="29" width="175" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="159" id="zLQ-Yd-LCL"/>
+                                                                <constraint firstAttribute="width" constant="171" id="zLQ-Yd-LCL"/>
                                                             </constraints>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Date" usesSingleLineMode="YES" id="CD3-uh-W88">
                                                                 <font key="font" metaFont="system" size="16"/>
@@ -98,7 +98,7 @@
                                                         <constraint firstItem="8kB-rm-LHg" firstAttribute="top" secondItem="uBd-wG-u0W" secondAttribute="top" constant="8" id="Udh-SP-LeU"/>
                                                         <constraint firstAttribute="trailing" secondItem="yu9-H6-93H" secondAttribute="trailing" constant="20" id="ejh-PH-pzB"/>
                                                         <constraint firstItem="yu9-H6-93H" firstAttribute="leading" secondItem="uBd-wG-u0W" secondAttribute="leading" constant="20" id="kcu-bn-1r7"/>
-                                                        <constraint firstItem="8kB-rm-LHg" firstAttribute="leading" secondItem="Dv5-z8-Sgt" secondAttribute="trailing" constant="8" id="xwY-4s-UFX"/>
+                                                        <constraint firstItem="8kB-rm-LHg" firstAttribute="leading" secondItem="Dv5-z8-Sgt" secondAttribute="trailing" constant="-4" id="xwY-4s-UFX"/>
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="dateField" destination="8kB-rm-LHg" id="Aj1-8d-ZhI"/>
@@ -142,7 +142,7 @@
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="OFO-qi-Ah5">
-                            <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                            <rect key="frame" x="-100" y="-100" width="0.0" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="I9J-qo-jXU">
