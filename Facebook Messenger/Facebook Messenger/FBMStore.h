@@ -14,10 +14,12 @@
 {
     NSManagedObjectContext *_privateContext;
     
-    FBUser *_user; // belongs to private context
+    FBUser *_privateContextUser; // belongs to private context
 }
 
 @property (readonly, nonatomic) NSManagedObjectContext *context;
+
+@property (readonly, nonatomic) FBUser *user;
 
 #pragma mark - Core Data
 

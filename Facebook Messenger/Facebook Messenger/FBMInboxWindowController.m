@@ -60,6 +60,11 @@
                                                  name:FBMAPIRecievedMessageNotification
                                                object:appDelegate.store];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(sentMessage:)
+                                                 name:FBMAPISentMessageNotification
+                                               object:appDelegate.store];
+    
     // set tableview action
     
     [self.tableView setDoubleAction:@selector(clickedRow:)];
@@ -360,5 +365,16 @@
     }];
 }
 
+-(void)sentMessage:(NSNotification *)notification
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        [self.arrayController fetch:self];
+       
+        [self.tableView reloadData];
+        
+    }];
+    
+}
 
 @end

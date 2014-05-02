@@ -64,6 +64,8 @@ extern NSString *const FBMAPIJIDKey;
 
 #pragma mark - REST Requests
 
+-(NSURLSessionDataTask *)fetchUserWithCompletionBlock:(void (^)(NSError *error, NSDictionary *userProfile))completionBlock;
+
 -(NSURLSessionDataTask *)fetchInboxWithCompletionBlock:(void (^)(NSError *error, NSArray *inbox))completionBlock;
 
 -(NSURLSessionDataTask *)fetchFriendList:(void (^)(NSError *error, NSArray *friends))completionBlock;
