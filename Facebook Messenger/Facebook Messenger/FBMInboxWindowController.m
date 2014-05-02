@@ -276,7 +276,7 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
                         return;
                     }
                     
-                    [self.tableView reloadData];
+                    [self.arrayController fetch:self];
                     
                     // show notification
                     
@@ -290,7 +290,7 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
             return;
         }
         
-        [self.tableView reloadData];
+        [self.arrayController fetch:self];
         
         // search for existing WC for this conversation
         
@@ -320,8 +320,6 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         
         [self.arrayController fetch:self];
-       
-        [self.tableView reloadData];
         
     }];
     
@@ -373,6 +371,10 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
             }
             
         }
+        
+        // reload tableView
+        
+        [self.arrayController fetch:self];
        
         // find WC
         
@@ -387,7 +389,9 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
             return;
         }
         
-        // find user
+        // find user with ID
+        
+        // TODO
         
     }];
 }
