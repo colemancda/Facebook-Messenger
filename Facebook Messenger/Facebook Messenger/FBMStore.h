@@ -25,19 +25,13 @@
 
 // Returns managed objects from main queue context, completion block are called on main thread
 
-/** Creates a new cached conversation with the specified user. */
-
 -(void)findOrCreateConversationWithUser:(FBUser *)user
                         completionBlock:(void (^)(FBConversation *conversation))completionBlock;
 
-/** Finds a user with the specified ID.
- 
- @param completionBlock Returns the conversation with the user specified by the @c userID or @c nil if non was found.
- 
- */
-
 -(void)findConversationWithUserWithID:(NSNumber *)userID
                       completionBlock:(void (^)(FBConversation *conversation))completionBlock;
+
+-(void)findUserWithID:(NSNumber *)userID completionBlock:(void (^)(FBUser *user))completionBlock;
 
 -(void)markConversationAsRead:(FBConversation *)conversation;
 

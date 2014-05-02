@@ -649,6 +649,49 @@
     }];
 }
 
+-(void)findUserWithID:(NSNumber *)userID completionBlock:(void (^)(FBUser *))completionBlock
+{
+    [_privateContext performBlock:^{
+        
+        // find conversation with user
+        
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"FBUser"];
+        
+        fetchRequest.fetchLimit = 1;
+        
+        // create predicate
+        
+        fetchRequest.predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"id"] rightExpression:[NSExpression expressionForConstantValue:userID] modifier:NSDirectPredicateModifier type:NSEqualToPredicateOperatorType options:NSNormalizedPredicateOption];
+        
+        NSError *error;
+        
+        NSArray *results = [_privateContext executeFetchRequest:fetchRequest
+                                                          error:&error];
+        
+        if (error) {
+            
+            [NSException raise:@"Error executing NSFetchRequest"
+                        format:@"%@", error.localizedDescription];
+            
+            return;
+        }
+        
+        FBUser *user = results.firstObject;
+        
+        [_context performBlock:^{
+            
+            if (!user) {
+                
+                completionBlock(nil);
+            }
+            
+            completionBlock((FBUser *)[_context objectWithID:user.objectID]);
+            
+        }];
+        
+    }];
+}
+
 -(void)markConversationAsRead:(FBConversation *)mainContextConversation
 {
     [_privateContext performBlock:^{
