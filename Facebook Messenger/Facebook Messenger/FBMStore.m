@@ -475,6 +475,10 @@
         
         conversation.updatedTime = [NSDate date];
         
+        conversation.unread = @YES;
+        
+        conversation.unseen = @YES;
+        
         // save
         
         if (![_privateContext save:&error]) {
@@ -490,11 +494,10 @@
 
 #pragma mark - Core Data
 
--(FBConversation *)newConversationWithUser:(FBUser *)user
+-(void)newConversationWithUser:(FBUser *)user
+               completionBlock:(void (^)(FBConversation *))completionBlock
 {
-    __block FBConversation *conversation;
-    
-    [_privateContext performBlockAndWait:^{
+    [_privateContext performBlock:^{
         
         FBUser *contextUser = (FBUser *)[_privateContext objectWithID:user.objectID];
         
@@ -525,7 +528,7 @@
             return;
         }
         
-        conversation = results.firstObject;
+        FBConversation *conversation = results.firstObject;
         
         // create cached resource if not found
         
@@ -552,15 +555,86 @@
             return;
         }
         
+        [_context performBlock:^{
+            
+            completionBlock((FBConversation *)[_context objectWithID:conversation.objectID]);
+            
+        }];
+        
     }];
-    
-    return (FBConversation *)[self.context objectWithID:conversation.objectID];
 }
 
--(FBUser *)userWithID:(NSString *)userID
+-(void)findConversationWithUserWithID:(NSNumber *)userID
+                      completionBlock:(void (^)(FBConversation *))completionBlock
 {
-    
-    
+    [_privateContext performBlock:^{
+       
+        // find conversation with user
+        
+        NSFetchRequest *conversationFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"FBConversation"];
+        
+        conversationFetchRequest.fetchLimit = 1;
+        
+        // create predicate
+        
+        conversationFetchRequest.predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"to.id"]
+                                                                                rightExpression:[NSExpression expressionForConstantValue:userID]
+                                                                                       modifier:NSAnyPredicateModifier
+                                                                                           type:NSEqualToPredicateOperatorType
+                                                                                        options:NSNormalizedPredicateOption];
+        
+        NSError *error;
+        
+        NSArray *results = [_privateContext executeFetchRequest:conversationFetchRequest
+                                                          error:&error];
+        
+        if (error) {
+            
+            [NSException raise:@"Error executing NSFetchRequest"
+                        format:@"%@", error.localizedDescription];
+            
+            return;
+        }
+        
+        FBConversation *conversation = results.firstObject;
+        
+        [_context performBlock:^{
+            
+            if (!conversation) {
+                
+                completionBlock(nil);
+            }
+           
+            completionBlock((FBConversation *)[_context objectWithID:conversation.objectID]);
+            
+        }];
+        
+    }];
+}
+
+-(void)markConversationAsRead:(FBConversation *)mainContextConversation
+{
+    [_privateContext performBlock:^{
+       
+        FBConversation *conversation = (FBConversation *)[_privateContext objectWithID:mainContextConversation.objectID];
+        
+        conversation.unseen = @0;
+        
+        conversation.unread = @NO;
+        
+        // save
+        
+        NSError *error;
+        
+        if (![_privateContext save:&error]) {
+            
+            [NSException raise:NSInternalInconsistencyException
+                        format:@"%@", error];
+            
+            return;
+        }
+        
+    }];
 }
 
 @end

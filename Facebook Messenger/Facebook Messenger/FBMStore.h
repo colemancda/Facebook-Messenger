@@ -21,10 +21,22 @@
 
 #pragma mark - Core Data
 
--(FBConversation *)newConversationWithUser:(FBUser *)user;
+// Returns managed objects from main queue context, completion block are called on main thread
 
-/** Finds or creates a user with the specified ID. */
+/** Creates a new cached conversation with the specified user. */
 
--(FBUser *)userWithID:(NSString *)userID;
+-(void)newConversationWithUser:(FBUser *)user
+               completionBlock:(void (^)(FBConversation *conversation))completionBlock;
+
+/** Finds a user with the specified ID.
+ 
+ @param completionBlock Returns the conversation with the user specified by the @c userID or @c nil if non was found.
+ 
+ */
+
+-(void)findConversationWithUserWithID:(NSNumber *)userID
+                      completionBlock:(void (^)(FBConversation *conversation))completionBlock;
+
+-(void)markConversationAsRead:(FBConversation *)conversation;
 
 @end

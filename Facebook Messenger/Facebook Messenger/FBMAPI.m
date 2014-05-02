@@ -268,13 +268,13 @@ NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
     
     NSString *jid = [message attributeStringValueForName:@"from"];
     
-    if (message.body && [message attributeStringValueForName:@"from"]) {
+    if (message.body && jid) {
         
         // notify self
         [self didRecieveMessage:messageBody fromUserWithJID:jid];
         
         // post notification
-        [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPISentMessageNotification
+        [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIRecievedMessageNotification
                                                             object:self
                                                           userInfo:@{FBMAPIMessageKey: messageBody,
                                                                      FBMAPIJIDKey: jid}];

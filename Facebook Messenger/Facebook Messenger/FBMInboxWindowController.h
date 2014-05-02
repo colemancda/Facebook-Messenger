@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class FBUser, FBMDirectoryWindowController;
+@class FBUser, FBConversation, FBMDirectoryWindowController;
 
 @interface FBMInboxWindowController : NSWindowController <NSTableViewDelegate>
 {
@@ -35,6 +35,11 @@
 -(IBAction)clickedRow:(id)sender;
 
 -(void)newConversationWithUser:(FBUser *)user;
+
+#pragma mark - GUI
+
+-(void)presentNotificationForNewMessage:(NSString *)newMessage
+                         inConversation:(FBConversation *)conversation;
 
 #pragma mark - Notifications
 

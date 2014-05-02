@@ -38,6 +38,9 @@
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
+        
+        _conversationWCs = [[NSMutableDictionary alloc] init];
+        
     }
     return self;
 }
@@ -84,6 +87,21 @@
         }
         
     }];
+    
+    [appDelegate.store fetchFriendList:^(NSError *error, NSArray *friends) {
+        
+        if (error) {
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+                [NSApp presentError:error];
+                
+            }];
+            
+            return;
+        }
+        
+    }];
 }
 
 #pragma mark - NSTableView Delegate
@@ -120,9 +138,16 @@
         NSArray *toArray = conversation.to.allObjects;
         
         NSString *toString = @"";
+        
         for (FBUser *user in toArray) {
             
-            toString = [toString stringByAppendingString:user.name];
+            if (user.name) {
+                
+                toString = [toString stringByAppendingString:user.name];
+            }
+            else {
+                toString = [toString stringByAppendingFormat:@"%@", user.id];
+            }
             
             if (user != toArray.lastObject) {
                 
@@ -138,8 +163,12 @@
     if (conversation.unread.boolValue ||
         conversation.unseen.boolValue) {
         
-        [cellView setBackgroundStyle:NSBackgroundStyleDark];
+        cellView.textField.textColor = [NSColor blueColor];
         
+    }
+    else {
+        
+        cellView.textField.textColor = [NSColor blackColor];
     }
     
     
@@ -173,10 +202,6 @@
     // get model object
     FBConversation *conversation = self.arrayController.arrangedObjects[self.tableView.clickedRow];
     
-    if (!_conversationWCs) {
-        _conversationWCs = [[NSMutableDictionary alloc] init];
-    }
-    
     // search for existing WC for this conversation
     
     FBUser *user = conversation.to.allObjects.firstObject;
@@ -205,10 +230,6 @@
 
 -(void)newConversationWithUser:(FBUser *)user
 {
-    if (!_conversationWCs) {
-        _conversationWCs = [[NSMutableDictionary alloc] init];
-    }
-    
     FBMAppDelegate *appDelegate = [NSApp delegate];
     
     // search for existing WC for this conversation
@@ -226,11 +247,23 @@
         
         // create new conversation
         
-        FBConversation *conversation = [appDelegate.store newConversationWithUser:user];
+        [appDelegate.store newConversationWithUser:user completionBlock:^(FBConversation *conversation) {
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                
+                // set model object
+                
+                conversationWC.conversation = conversation;
+                
+                // update GUI
+                
+                [conversationWC.window makeKeyAndOrderFront:self];
+                
+            }];
+            
+        }];
         
-        // set model object
-        
-        conversationWC.conversation = conversation;
+        return;
         
     }
     
@@ -240,11 +273,24 @@
     
 }
 
+#pragma mark - GUI
+
+-(void)presentNotificationForNewMessage:(NSString *)newMessage
+                         inConversation:(FBConversation *)conversation
+{
+    
+    
+}
+
 #pragma mark - Notifications
 
 -(void)recievedMessage:(NSNotification *)notification
 {
+    // get notification info
+    
     NSString *jid = notification.userInfo[FBMAPIJIDKey];
+    
+    NSString *messageBody = notification.userInfo[FBMAPIMessageKey];
     
     // get user ID
     
@@ -254,18 +300,62 @@
     userID = [userID stringByReplacingOccurrencesOfString:@"-"
                                                    withString:@""];
     
+    // look for WC with userID
+    
     FBMAppDelegate *appDelegate = [NSApp delegate];
     
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-       
-        FBUser *user = [appDelegate.store userWithID:userID];
+    [appDelegate.store findConversationWithUserWithID:[NSNumber numberWithInteger:userID.integerValue] completionBlock:^(FBConversation *conversation) {
         
-        if (!user.name) {
+        // recieved message was not part of downloaded inbox
+        
+        if (!conversation) {
             
-            // fetch from server
+            // download inbox
+            
+            [appDelegate.store fetchInboxWithCompletionBlock:^(NSError *error, NSArray *inbox) {
+                
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                    
+                    if (error) {
+                        
+                        return;
+                    }
+                    
+                    [self.tableView reloadData];
+                    
+                    // show notification
+                    
+                    [self presentNotificationForNewMessage:messageBody
+                                            inConversation:conversation];
+                    
+                }];
+                
+            }];
+            
+            return;
         }
         
-        [self newConversationWithUser:user];
+        [self.tableView reloadData];
+        
+        // search for existing WC for this conversation
+        
+        FBUser *user = conversation.to.allObjects.firstObject;
+        
+        NSString *wcKey = user.name;
+        
+        FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
+        
+        // user is viewing conversation
+        
+        if (conversationWC.window.isKeyWindow && [NSApp isActive]) {
+             
+             return;
+         }
+         
+         // show notification
+         
+         [self presentNotificationForNewMessage:messageBody
+                                 inConversation:conversation];
         
     }];
 }

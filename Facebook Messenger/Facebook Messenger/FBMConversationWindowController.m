@@ -14,6 +14,8 @@
 #import "FBMAppDelegate.h"
 #import "FBUser+Jabber.h"
 
+static void *KVOContext = &KVOContext;
+
 @interface FBMConversationWindowController ()
 
 @end
@@ -23,6 +25,8 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    [self removeObserver:self forKeyPath:@"conversation.name"];
 }
 
 -(id)init
@@ -56,11 +60,62 @@
                                                  name:FBMAPISentMessageNotification
                                                object:appDelegate.store];
     
-    [self updateWindowTitle];
+    // KVO
+    
+    [self addObserver:self
+           forKeyPath:@"conversation.name"
+              options:NSKeyValueObservingOptionNew
+              context:KVOContext];
     
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdTime" ascending:YES]];
     
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == KVOContext) {
+        
+        if ([keyPath isEqualToString:@"conversation.name"]) {
+            
+            if (self.conversation) {
+                
+                // build string
+                
+                NSArray *toArray = self.conversation.to.allObjects;
+                
+                NSString *toString = @"";
+                
+                for (FBUser *user in toArray) {
+                    
+                    if (user.name) {
+                        
+                        toString = [toString stringByAppendingString:user.name];
+                    }
+                    else {
+                        toString = [toString stringByAppendingFormat:@"%@", user.id];
+                    }
+                    
+                    if (user != toArray.lastObject) {
+                        
+                        toString = [toString stringByAppendingString:@", "];
+                    }
+                }
+                
+                if (![self.window.title isEqualToString:toString]) {
+                    
+                    self.window.title = toString;
+                }
+                
+            }
+            
+        }
+        
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
 }
 
 #pragma mark - Actions
@@ -79,26 +134,6 @@
 }
 
 #pragma mark - GUI
-
--(void)updateWindowTitle
-{
-    // build string
-    
-    NSArray *toArray = self.conversation.to.allObjects;
-    
-    NSString *toString = @"";
-    for (FBUser *user in toArray) {
-        
-        toString = [toString stringByAppendingString:user.name];
-        
-        if (user != toArray.lastObject) {
-            
-            toString = [toString stringByAppendingString:@", "];
-        }
-    }
-    
-    self.window.title = toString;
-}
 
 -(void)scrollToBottomOfTableView
 {
@@ -171,6 +206,15 @@
     column.maxWidth = self.window.frame.size.width;
     
     column.width = self.window.frame.size.width;
+}
+
+-(void)windowDidBecomeKey:(NSNotification *)notification
+{
+    // mark as read
+    
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
+    [appDelegate.store markConversationAsRead:self.conversation];
 }
 
 #pragma mark - Notifications

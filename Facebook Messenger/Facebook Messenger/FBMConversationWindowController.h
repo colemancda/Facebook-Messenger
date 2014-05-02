@@ -36,8 +36,6 @@
 
 #pragma mark - Change GUI
 
--(void)updateWindowTitle;
-
 -(void)scrollToBottomOfTableView;
 
 #pragma mark - Notifications
