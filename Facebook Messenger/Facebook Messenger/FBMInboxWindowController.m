@@ -10,8 +10,10 @@
 #import "FBMAppDelegate.h"
 #import "FBMStore.h"
 #import "FBConversation.h"
+#import "FBConversationComment.h"
 #import "FBUser.h"
 #import "FBMConversationWindowController.h"
+#import "FBMDirectoryWindowController.h"
 
 @interface FBMInboxWindowController ()
 
@@ -134,7 +136,14 @@
 
 -(void)newDocument:(id)sender
 {
+    if (!_directoryWC) {
+        
+        _directoryWC = [[FBMDirectoryWindowController alloc] init];
+        
+        _directoryWC.inboxWC = self;
+    }
     
+    [_directoryWC.window makeKeyAndOrderFront:self];
     
 }
 
@@ -155,16 +164,19 @@
     }
     
     // search for existing WC for this conversation
-    NSNumber *conversationID = conversation.id;
     
-    FBMConversationWindowController *conversationWC = _conversationWCs[conversationID];
+    FBUser *user = conversation.to.allObjects.firstObject;
+    
+    NSString *wcKey = user.name;
+    
+    FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
     
     if (!conversationWC) {
         
         conversationWC = [[FBMConversationWindowController alloc] init];
         
         [_conversationWCs setObject:conversationWC
-                             forKey:conversationID];
+                             forKey:wcKey];
         
         // set model object
         
@@ -175,6 +187,43 @@
     // update GUI
     
     [conversationWC.window makeKeyAndOrderFront:self];
+}
+
+-(void)newConversationWithUser:(FBUser *)user
+{
+    if (!_conversationWCs) {
+        _conversationWCs = [[NSMutableDictionary alloc] init];
+    }
+    
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
+    // search for existing WC for this conversation
+    
+    NSString *wcKey = user.name;
+    
+    FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
+    
+    if (!conversationWC) {
+        
+        conversationWC = [[FBMConversationWindowController alloc] init];
+        
+        [_conversationWCs setObject:conversationWC
+                             forKey:wcKey];
+        
+        // create new conversation
+        
+        FBConversation *conversation = [appDelegate.store newConversationWithUser:user];
+        
+        // set model object
+        
+        conversationWC.conversation = conversation;
+        
+    }
+    
+    // update GUI
+    
+    [conversationWC.window makeKeyAndOrderFront:self];
+    
 }
 
 

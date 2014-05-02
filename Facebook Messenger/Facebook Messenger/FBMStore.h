@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FBMAPI.h"
-@class FBUser;
+@class FBUser, FBConversation;
 
 @interface FBMStore : FBMAPI
 {
@@ -19,7 +19,8 @@
 
 @property (readonly, nonatomic) NSManagedObjectContext *context;
 
-#pragma mark - Requests
+#pragma mark - Core Data
 
+-(FBConversation *)newConversationWithUser:(FBUser *)user;
 
 @end

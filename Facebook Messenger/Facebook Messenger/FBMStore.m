@@ -377,6 +377,8 @@
         
         [conversation addCommentsObject:conversationComment];
         
+        conversation.updatedTime = [NSDate date];
+        
         
         // save
         
@@ -471,6 +473,7 @@
         
         [conversation addCommentsObject:conversationComment];
         
+        conversation.updatedTime = [NSDate date];
         
         // save
         
@@ -483,6 +486,75 @@
         }
         
     }];
+}
+
+#pragma mark - Core Data
+
+-(FBConversation *)newConversationWithUser:(FBUser *)user
+{
+    __block FBConversation *conversation;
+    
+    [_privateContext performBlockAndWait:^{
+        
+        FBUser *contextUser = (FBUser *)[_privateContext objectWithID:user.objectID];
+        
+        // find conversation with user
+        
+        NSFetchRequest *conversationFetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"FBConversation"];
+        
+        conversationFetchRequest.fetchLimit = 1;
+        
+        // create predicate
+        
+        conversationFetchRequest.predicate = [NSComparisonPredicate predicateWithLeftExpression:[NSExpression expressionForKeyPath:@"to"]
+                                                                                rightExpression:[NSExpression expressionForConstantValue:contextUser]
+                                                                                       modifier:NSAnyPredicateModifier
+                                                                                           type:NSEqualToPredicateOperatorType
+                                                                                        options:NSNormalizedPredicateOption];
+        
+        NSError *error;
+        
+        NSArray *results = [_privateContext executeFetchRequest:conversationFetchRequest
+                                                          error:&error];
+        
+        if (error) {
+            
+            [NSException raise:@"Error executing NSFetchRequest"
+                        format:@"%@", error.localizedDescription];
+            
+            return;
+        }
+        
+        conversation = results.firstObject;
+        
+        // create cached resource if not found
+        
+        if (!conversation) {
+            
+            // create new entity
+            
+            conversation = [NSEntityDescription insertNewObjectForEntityForName:@"FBConversation"
+                                                         inManagedObjectContext:_privateContext];
+            
+            [conversation addTo:[NSSet setWithArray:@[contextUser]]];
+            
+        }
+        
+        conversation.updatedTime = [NSDate date];
+        
+        // save
+        
+        if (![_privateContext save:&error]) {
+            
+            [NSException raise:NSInternalInconsistencyException
+                        format:@"%@", error];
+            
+            return;
+        }
+        
+    }];
+    
+    return (FBConversation *)[self.context objectWithID:conversation.objectID];
 }
 
 @end

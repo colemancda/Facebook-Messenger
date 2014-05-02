@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class FBUser, FBMDirectoryWindowController;
 
 @interface FBMInboxWindowController : NSWindowController <NSTableViewDelegate>
 {
@@ -21,6 +22,10 @@
 
 @property (strong) IBOutlet NSArrayController *arrayController;
 
+#pragma mark - Properties
+
+@property (nonatomic, readonly) FBMDirectoryWindowController *directoryWC;
+
 #pragma mark - First Responder
 
 -(IBAction)newDocument:(id)sender;
@@ -28,5 +33,7 @@
 #pragma mark - Actions
 
 -(IBAction)clickedRow:(id)sender;
+
+-(void)newConversationWithUser:(FBUser *)user;
 
 @end

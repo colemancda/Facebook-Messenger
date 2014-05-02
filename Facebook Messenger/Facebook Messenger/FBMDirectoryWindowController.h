@@ -7,13 +7,22 @@
 //
 
 #import <Cocoa/Cocoa.h>
+@class FBMInboxWindowController;
 
 @interface FBMDirectoryWindowController : NSWindowController <NSTableViewDelegate>
 
 #pragma mark - IB Outlets
 
+@property (weak) IBOutlet NSTableView *tableView;
+
 @property (strong) IBOutlet NSArrayController *arrayController;
 
+#pragma mark - Properties
 
+@property (nonatomic) FBMInboxWindowController *inboxWC;
+
+#pragma mark - Actions
+
+-(void)doubleClickedTableView:(id)sender;
 
 @end
