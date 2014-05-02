@@ -202,7 +202,7 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
     
     // search for existing WC for this conversation
     
-    NSString *wcKey = [NSString stringWithFormat:@"%@", user.id];;
+    NSString *wcKey = [NSString stringWithFormat:@"%@", user.id];
     
     FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
     
@@ -296,7 +296,7 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
         
         FBUser *user = conversation.to.allObjects.firstObject;
         
-        NSString *wcKey = [NSString stringWithFormat:@"%@", user.id];;
+        NSString *wcKey = [NSString stringWithFormat:@"%@", user.id];
         
         FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
         
@@ -389,9 +389,27 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
             return;
         }
         
-        // find user with ID
         
-        // TODO
+        // find conversation
+        
+        [appDelegate.store findUserWithID:[NSNumber numberWithInteger:wcKey.integerValue] completionBlock:^(FBUser *user) {
+            
+            [appDelegate.store findOrCreateConversationWithUser:user completionBlock:^(FBConversation *conversation) {
+               
+                FBMConversationWindowController *conversationWC = [[FBMConversationWindowController alloc] init];
+                
+                conversationWC.conversation = conversation;
+                
+                [_conversationWCs setObject:conversationWC
+                                     forKey:wcKey];
+                
+                // update GUI
+                
+                [conversationWC.window makeKeyAndOrderFront:self];
+                
+            }];
+            
+        }];
         
     }];
 }
