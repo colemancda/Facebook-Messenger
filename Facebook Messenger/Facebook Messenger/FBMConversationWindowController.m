@@ -146,7 +146,14 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
   viewForTableColumn:(NSTableColumn *)tableColumn
                  row:(NSInteger)row
 {
+    // scroll to bottom if last row
     
+    if (row == tableView.numberOfRows - 1) {
+        
+        [self scrollToBottomOfTableView];
+    }
+    
+    FBMAppDelegate *appDelegate = [NSApp delegate];
     
     // get model object
     FBConversationComment *comment = self.arrayController.arrangedObjects[row];
@@ -166,6 +173,21 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
         NSTableCellView *messageCellView = [tableView makeViewWithIdentifier:@"NSTableCellView"
                                                                        owner:self];
         
+        
+        messageCellView.textField.stringValue = comment.message;
+        
+        // change color for outgoing messages
+        
+        if (comment.from == appDelegate.store.user) {
+            
+            messageCellView.textField.textColor = [NSColor grayColor];
+        }
+        else {
+            
+            messageCellView.textField.textColor = [NSColor blackColor];
+        }
+        
+        return messageCellView;
     }
     
     FBMessageCellView *messageCellView = [tableView makeViewWithIdentifier:tableColumn.identifier
@@ -180,11 +202,23 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     messageCellView.dateField.stringValue = [_dateFormatter stringFromDate:comment.createdTime];
     
-    // scroll to bottom if last row and is hidden
+    // change color for outgoing messages
     
-    if (row == tableView.numberOfRows - 1) {
+    if (comment.from == appDelegate.store.user) {
         
-        [self scrollToBottomOfTableView];
+        messageCellView.textField.textColor = [NSColor grayColor];
+        
+        messageCellView.nameField.textColor = [NSColor grayColor];
+        
+        messageCellView.dateField.textColor = [NSColor grayColor];
+    }
+    else {
+        
+        messageCellView.textField.textColor = [NSColor blackColor];
+        
+        messageCellView.nameField.textColor = [NSColor blackColor];
+        
+        messageCellView.dateField.textColor = [NSColor blackColor];
     }
     
     return messageCellView;
@@ -208,10 +242,10 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     if (comment.from == previousComment.from) {
         
-        return 51;
+        return 26;
     }
     
-    return 26;
+    return 48;
 }
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
