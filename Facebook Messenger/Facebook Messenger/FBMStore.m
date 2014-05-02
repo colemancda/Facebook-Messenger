@@ -140,11 +140,15 @@
                 
                 conversation.updatedTime = [NSDate dateFromFBDateString:conversationDictionary[@"updated_time"]];
                 
+                /* not implementing due to FB's API not letting us set messages as read on server
+                
                 // get unread and unseen
                 
                 conversation.unread = conversationDictionary[@"unread"];
                 
                 conversation.unseen = conversationDictionary[@"unseen"];
+                 
+                 */
                 
                 // parse 'to' relationship
                 
