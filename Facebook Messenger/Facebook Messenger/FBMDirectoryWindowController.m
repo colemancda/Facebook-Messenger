@@ -12,6 +12,7 @@
 #import "FBUser+Jabber.h"
 #import "FBMAppDelegate.h"
 #import "FBMInboxWindowController.h"
+#import "FBPhoto.h"
 
 @interface FBMDirectoryWindowController ()
 
@@ -120,7 +121,30 @@
     
     if (appDelegate.photosPurchased) {
         
+        if (user.profilePicture.image) {
+            
+            cell.imageView.image = user.profilePicture.image;
+        }
         
+        else {
+            
+            // fetch from server
+            
+            [appDelegate.store fetchPhotoForUserWithUserID:user.id completionBlock:^(NSError *error, NSData *data) {
+               
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                   
+                    if (error) {
+                        
+                        return;
+                    }
+                    
+                    cell.imageView.image = user.profilePicture.image;
+                    
+                }];
+                
+            }];
+        }
     }
     
     return cell;
