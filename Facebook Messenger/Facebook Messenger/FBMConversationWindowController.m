@@ -14,6 +14,7 @@
 #import "FBMAppDelegate.h"
 #import "FBUser+Jabber.h"
 #import "FBConversation+Info.h"
+#import "FBPhoto.h"
 
 static void *KVOContext = &KVOContext;
 
@@ -75,6 +76,11 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
                                              selector:@selector(recievedMessage:)
                                                  name:FBMAPIRecievedMessageNotification
                                                object:appDelegate.store];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(contextObjectsDidChange:)
+                                                 name:NSManagedObjectContextObjectsDidChangeNotification
+                                               object:appDelegate.store.context];
     
     // KVO
     
@@ -322,6 +328,25 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
         
     }];
     
+}
+
+-(void)contextObjectsDidChange:(NSNotification *)notification
+{
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
+    if (appDelegate.photosPurchased) {
+        
+        // get user
+        
+        FBUser *toUser = self.conversation.to.allObjects.firstObject;
+        
+        // update user profile picture
+        
+        if (self.userProfileToolbarItem.image != toUser.profilePicture.image && toUser.profilePicture.image) {
+            
+            self.userProfileToolbarItem.image = toUser.profilePicture.image;
+        }
+    }
 }
 
 @end

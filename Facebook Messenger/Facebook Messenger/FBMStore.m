@@ -12,6 +12,7 @@
 #import "FBConversationComment.h"
 #import "NSDate+FBDate.h"
 #import "FBUser+Jabber.h"
+#import "FBPhoto.h"
 
 @interface FBMStore (Cache)
 
@@ -329,6 +330,51 @@
         completionBlock(nil, userProfileDictionary);
         
     }];
+}
+
+-(NSURLSessionDataTask *)fetchPhotoForUserWithUserID:(NSNumber *)userID
+                                     completionBlock:(void (^)(NSError *, NSData *))completionBlock
+{
+    return [super fetchPhotoForUserWithUserID:userID completionBlock:^(NSError *error, NSData *data) {
+       
+        if (error) {
+            
+            completionBlock(error, nil);
+            
+            return;
+        }
+        
+        [_privateContext performBlockAndWait:^{
+            
+            FBUser *user = (FBUser *)[self findOrCreateEntity:@"FBUser"
+                                                       withID:userID];
+            
+            if (!user.profilePicture) {
+                
+                user.profilePicture = (FBPhoto *)[self findOrCreateEntity:@"FBPhoto"
+                                                                   withID:userID];
+            }
+            
+            // set data
+            
+            user.profilePicture.data = data;
+            
+            // save
+            
+            NSError *error;
+            
+            if (![_privateContext save:&error]) {
+                
+                [NSException raise:NSInternalInconsistencyException
+                            format:@"%@", error];
+            }
+            
+        }];
+        
+        completionBlock(nil, data);
+        
+    }];
+    
 }
 
 #pragma mark - Internal

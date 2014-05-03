@@ -86,6 +86,9 @@ extern NSString *const FBMAPIUserPresenceKey;
 
 -(NSURLSessionDataTask *)fetchFriendList:(void (^)(NSError *error, NSArray *friends))completionBlock;
 
+-(NSURLSessionDataTask *)fetchPhotoForUserWithUserID:(NSNumber *)userID
+                                     completionBlock:(void (^)(NSError *error, NSData *data))completionBlock;
+
 #pragma mark - XMPP Requests
 
 -(void)sendMessage:(NSString *)message

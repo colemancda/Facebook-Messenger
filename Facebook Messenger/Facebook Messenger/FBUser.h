@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class FBConversation, FBConversationComment;
+@class FBConversation, FBConversationComment, FBPhoto;
 
 @interface FBUser : NSManagedObject
 
@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSNumber * userPresence;
 @property (nonatomic, retain) NSSet *conversationComments;
 @property (nonatomic, retain) FBConversation *conversationsTo;
-@property (nonatomic, retain) NSManagedObject *profilePicture;
+@property (nonatomic, retain) FBPhoto *profilePicture;
 @end
 
 @interface FBUser (CoreDataGeneratedAccessors)
