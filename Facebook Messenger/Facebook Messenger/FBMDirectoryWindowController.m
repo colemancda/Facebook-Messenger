@@ -19,6 +19,11 @@
 
 @implementation FBMDirectoryWindowController
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(id)init
 {
     self = [self initWithWindowNibName:NSStringFromClass(self.class)
@@ -41,6 +46,8 @@
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
     // setup tableView double action
     
     [self.tableView setDoubleAction:@selector(doubleClickedTableView:)];
@@ -50,9 +57,14 @@
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                            ascending:YES]];
     
-    // fetch friends
+    // Notifications
     
-    FBMAppDelegate *appDelegate = [NSApp delegate];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userPresenceUpdated:)
+                                                 name:FBMAPIUserPresenceUpdatedNotification
+                                               object:appDelegate.store];
+    
+    // fetch friends
     
     [appDelegate.store fetchFriendList:^(NSError *error, NSArray *friends) {
        
@@ -87,6 +99,30 @@
     
     cell.textField.stringValue = user.name;
     
+    // status image
+    
+    NSImage *image;
+    
+    if (user.userPresence.integerValue == FBUserOnlinePresence) {
+        
+        image = [NSImage imageNamed:@"NSStatusAvailable"];
+    }
+    if (user.userPresence.integerValue == FBUserUnavailiblePresence) {
+        
+        image = [NSImage imageNamed:@"NSStatusUnavailable"];
+    }
+    
+    cell.statusImageView.image = image;
+    
+    // Profile image
+    
+    FBMAppDelegate *appDelegate = [NSApp delegate];
+    
+    if (appDelegate.photosPurchased) {
+        
+        
+    }
+    
     return cell;
 }
 
@@ -117,6 +153,17 @@
     }
     
     [super keyDown:theEvent];
+}
+
+#pragma mark - Notifications
+
+-(void)userPresenceUpdated:(NSNotification *)notification
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        [self.arrayController fetch:self];
+        
+    }];
 }
 
 @end

@@ -90,6 +90,7 @@
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="imageView" destination="mn1-pH-8O0" id="2Yg-Ox-s1J"/>
+                                                        <outlet property="statusImageView" destination="7kN-mb-tRy" id="DKe-Ht-Kic"/>
                                                         <outlet property="textField" destination="2Mk-rc-7UN" id="WaD-k8-GV4"/>
                                                     </connections>
                                                 </tableCellView>

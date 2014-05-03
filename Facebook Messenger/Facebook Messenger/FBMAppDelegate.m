@@ -13,6 +13,12 @@
 #import "FBMInboxWindowController.h"
 #import "FBMAPI.h"
 
+@interface FBMAppDelegate ()
+
+@property (nonatomic) BOOL photosPurchased;
+
+@end
+
 @implementation FBMAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -20,6 +26,10 @@
     // Insert code here to initialize your application
     
     _store = [[FBMStore alloc] initWithAppID:@"221240951333308"];
+    
+    // TEMP
+    
+    self.photosPurchased = YES;
     
     // register for notifications
     

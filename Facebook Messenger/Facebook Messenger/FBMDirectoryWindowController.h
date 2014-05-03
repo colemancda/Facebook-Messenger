@@ -25,4 +25,8 @@
 
 -(void)doubleClickedTableView:(id)sender;
 
+#pragma mark - Notifications
+
+-(void)userPresenceUpdated:(NSNotification *)notification;
+
 @end

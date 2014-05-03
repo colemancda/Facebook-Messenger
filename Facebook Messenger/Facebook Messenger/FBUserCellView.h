@@ -10,5 +10,6 @@
 
 @interface FBUserCellView : NSTableCellView
 
+@property IBOutlet NSImageView *statusImageView;
 
 @end
