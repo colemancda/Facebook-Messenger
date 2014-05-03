@@ -92,6 +92,42 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdTime" ascending:YES]];
     
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
+    
+    if (appDelegate.photosPurchased) {
+        
+        // check for profile pic
+        
+        FBUser *toUser = self.conversation.to.allObjects.firstObject;
+        
+        if (!toUser.profilePicture.image) {
+            
+            [appDelegate.store fetchPhotoForUserWithUserID:toUser.id completionBlock:^(NSError *error, NSData *data) {
+               
+                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                   
+                    if (error) {
+                        
+                        [NSApp presentError:error
+                             modalForWindow:self.window
+                                   delegate:nil
+                         didPresentSelector:nil
+                                contextInfo:nil];
+                        
+                        return;
+                    }
+                    
+                    self.userProfileToolbarItem.image = toUser.profilePicture.image;
+                    
+                }];
+            }];
+            
+        }
+        
+        else {
+            
+            self.userProfileToolbarItem.image = toUser.profilePicture.image;
+        }
+    }
 }
 
 -(void)awakeFromNib

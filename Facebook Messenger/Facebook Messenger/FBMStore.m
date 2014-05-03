@@ -351,8 +351,8 @@
             
             if (!user.profilePicture) {
                 
-                user.profilePicture = (FBPhoto *)[self findOrCreateEntity:@"FBPhoto"
-                                                                   withID:userID];
+                user.profilePicture = (FBPhoto *)[NSEntityDescription insertNewObjectForEntityForName:@"FBPhoto"
+                                                                               inManagedObjectContext:_privateContext];
             }
             
             // set data
