@@ -11,11 +11,9 @@
 #import "FBMAppDelegate.h"
 #import "FBMStore.h"
 #import "FBMInboxWindowController.h"
-#import "FBMAPI.h"
+#import "FBMPurchasesStore.h"
 
 @interface FBMAppDelegate ()
-
-@property (nonatomic) BOOL photosPurchased;
 
 @end
 
@@ -27,9 +25,11 @@
     
     _store = [[FBMStore alloc] initWithAppID:@"221240951333308"];
     
-    // TEMP
+    // purchases
     
-    self.photosPurchased = YES;
+    _purchasesStore = [[FBMPurchasesStore alloc] init];
+    
+    _photosPurchased = YES;
     
     // register for notifications
     

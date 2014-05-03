@@ -63,6 +63,8 @@
 		6E58421B1910A0AD00DDDCBE /* XMPPStringPrep.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5841E91910A0AD00DDDCBE /* XMPPStringPrep.m */; };
 		6E58421F1910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */; };
 		6E5842201910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */; };
+		6E5969701915937A00764BA3 /* FBMPurchasesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E59696F1915937A00764BA3 /* FBMPurchasesStore.m */; };
+		6E5969711915937A00764BA3 /* FBMPurchasesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E59696F1915937A00764BA3 /* FBMPurchasesStore.m */; };
 		6E653C1F1912C2D6004F288F /* FBUser+Jabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */; };
 		6E653C201912C2D6004F288F /* FBUser+Jabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */; };
 		6E764BCE191571F50056C535 /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E764BCD191571F50056C535 /* FBUser.m */; };
@@ -386,6 +388,8 @@
 		6E58421D1910A0D400DDDCBE /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = Dependencies/CocoaAsyncSocket/GCD/GCDAsyncSocket.h; sourceTree = "<group>"; };
 		6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Dependencies/CocoaAsyncSocket/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
 		6E59696D1915885700764BA3 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
+		6E59696E1915937A00764BA3 /* FBMPurchasesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMPurchasesStore.h; sourceTree = "<group>"; };
+		6E59696F1915937A00764BA3 /* FBMPurchasesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMPurchasesStore.m; sourceTree = "<group>"; };
 		6E653C1D1912C2D6004F288F /* FBUser+Jabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBUser+Jabber.h"; sourceTree = "<group>"; };
 		6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBUser+Jabber.m"; sourceTree = "<group>"; };
 		6E764BCC191571F50056C535 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUser.h; sourceTree = "<group>"; };
@@ -1522,6 +1526,8 @@
 				6E0E3888187092A600CED6B6 /* FBMAPI.m */,
 				6E9FA3AC18138F7A00785A09 /* FBMStore.h */,
 				6E9FA3AD18138F7A00785A09 /* FBMStore.m */,
+				6E59696E1915937A00764BA3 /* FBMPurchasesStore.h */,
+				6E59696F1915937A00764BA3 /* FBMPurchasesStore.m */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -1926,6 +1932,7 @@
 				6E764D301915875C0056C535 /* XMPPTransports.m in Sources */,
 				6E764D041915875C0056C535 /* XMPPvCardCoreDataStorage.m in Sources */,
 				6E58420E1910A0AD00DDDCBE /* XMPPStream.m in Sources */,
+				6E5969701915937A00764BA3 /* FBMPurchasesStore.m in Sources */,
 				6E764CF21915875C0056C535 /* XMPPRoomOccupantHybridMemoryStorageObject.m in Sources */,
 				6E764D0A1915875C0056C535 /* XMPPvCardTemp.m in Sources */,
 				6EB90BBB19154AB6003F335A /* FBConversation+Info.m in Sources */,
@@ -2027,6 +2034,7 @@
 				6ECA431519131B5E00921652 /* FBMDirectoryWindowController.m in Sources */,
 				6E764CE71915875C0056C535 /* XMPPRoomCoreDataStorage.m in Sources */,
 				6E764D211915875C0056C535 /* XMPPPubSub.m in Sources */,
+				6E5969711915937A00764BA3 /* FBMPurchasesStore.m in Sources */,
 				6E764D3D1915875C0056C535 /* XMPPCapabilities.m in Sources */,
 				6E764D2D1915875C0056C535 /* XMPPMessage+XEP_0085.m in Sources */,
 				6E5842091910A0AD00DDDCBE /* XMPPModule.m in Sources */,

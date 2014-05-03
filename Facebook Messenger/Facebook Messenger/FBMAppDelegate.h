@@ -8,13 +8,15 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FBMStore.h"
-@class FBMStore, FBMInboxWindowController;
+@class FBMStore, FBMPurchasesStore, FBMInboxWindowController;
 
 @interface FBMAppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 
 @property (nonatomic, readonly) FBMStore *store;
+
+@property (nonatomic, readonly) FBMPurchasesStore *purchasesStore;
 
 #pragma mark - In-App Purchases
 
