@@ -85,7 +85,7 @@
     
     // configure cell
     
-    cell.nameField.stringValue = user.name;
+    cell.textField.stringValue = user.name;
     
     return cell;
 }

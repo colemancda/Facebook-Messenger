@@ -10,6 +10,5 @@
 
 @interface FBUserCellView : NSTableCellView
 
-@property IBOutlet NSTextField *nameField;
 
 @end
