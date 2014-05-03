@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "FBMStore.h"
-@class FBMStore, FBMPurchasesStore, FBMInboxWindowController;
+@class FBMStore, FBMPurchasesStore, FBMInboxWindowController, MASPreferencesWindowController;
 
 @interface FBMAppDelegate : NSObject <NSApplicationDelegate>
 
@@ -22,6 +22,8 @@
 
 @property (nonatomic, readonly) FBMInboxWindowController *inboxWC;
 
+@property (nonatomic, readonly) MASPreferencesWindowController *preferencesWC;
+
 #pragma mark - GUI
 
 @property (weak) IBOutlet NSBox *failureBox;
@@ -31,6 +33,8 @@
 #pragma mark - Actions
 
 - (IBAction)login:(id)sender;
+
+-(IBAction)openPreferences:(id)sender;
 
 
 @end

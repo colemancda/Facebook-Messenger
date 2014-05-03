@@ -12,8 +12,11 @@
 #import "FBMStore.h"
 #import "FBMInboxWindowController.h"
 #import "FBMPurchasesStore.h"
+#import "MASPreferencesWindowController.h"
 
 @interface FBMAppDelegate ()
+
+@property (nonatomic) MASPreferencesWindowController *preferencesWC;
 
 @end
 
@@ -102,6 +105,21 @@
         
     }];
     
+}
+
+-(void)openPreferences:(id)sender
+{
+    if (!self.preferencesWC) {
+        
+        NSString *title = NSLocalizedString(@"Preferences", @"Preferences Pane Title");
+        
+        NSArray *viewControllers = @[];
+        
+        self.preferencesWC = [[MASPreferencesWindowController alloc] initWithViewControllers:viewControllers
+                                                                                       title:title];
+    }
+    
+    [self.preferencesWC.window makeKeyAndOrderFront:self];
 }
 
 #pragma mark - First Responder

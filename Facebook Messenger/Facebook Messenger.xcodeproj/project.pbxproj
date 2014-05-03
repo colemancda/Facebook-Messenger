@@ -391,7 +391,7 @@
 		6E5841E91910A0AD00DDDCBE /* XMPPStringPrep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPStringPrep.m; sourceTree = "<group>"; };
 		6E58421D1910A0D400DDDCBE /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = Dependencies/CocoaAsyncSocket/GCD/GCDAsyncSocket.h; sourceTree = "<group>"; };
 		6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Dependencies/CocoaAsyncSocket/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
-		6E59696D1915885700764BA3 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
+		6E59696D1915885700764BA3 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMPPFramework.h; path = "Facebook Messenger/XMPPFramework.h"; sourceTree = "<group>"; };
 		6E59696E1915937A00764BA3 /* FBMPurchasesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMPurchasesStore.h; sourceTree = "<group>"; };
 		6E59696F1915937A00764BA3 /* FBMPurchasesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMPurchasesStore.m; sourceTree = "<group>"; };
 		6E5969761915A25D00764BA3 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
@@ -712,6 +712,7 @@
 		6E5841A71910A09600DDDCBE /* XMPPFramework */ = {
 			isa = PBXGroup;
 			children = (
+				6E59696D1915885700764BA3 /* XMPPFramework.h */,
 				6E764BD41915875C0056C535 /* Extensions */,
 				6E5841A81910A0AD00DDDCBE /* Authentication */,
 				6E5841C21910A0AD00DDDCBE /* Categories */,
@@ -890,6 +891,13 @@
 			);
 			name = MASPreferences;
 			path = Dependencies/MASPreferences;
+			sourceTree = "<group>";
+		};
+		6E5969871915A40500764BA3 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Preferences;
 			sourceTree = "<group>";
 		};
 		6E653C1C1912C2AC004F288F /* Categories */ = {
@@ -1500,7 +1508,6 @@
 				6E9FA38818138ECE00785A09 /* MainMenu.xib */,
 				6E9FA38B18138ECE00785A09 /* Images.xcassets */,
 				6E9FA3B01813A6BE00785A09 /* FBModel.xcdatamodeld */,
-				6E59696D1915885700764BA3 /* XMPPFramework.h */,
 				6E9FA3E318146F8600785A09 /* Views */,
 				6E9FA3B41813B25A00785A09 /* Controllers */,
 				6E9FA3B31813ADFF00785A09 /* Models */,
@@ -1565,6 +1572,7 @@
 		6E9FA3B41813B25A00785A09 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				6E5969871915A40500764BA3 /* Preferences */,
 				6E9FA3DC1814667800785A09 /* Inbox */,
 				6ECA431019131B4400921652 /* Directory */,
 				6E9FA3DD1814668400785A09 /* Conversation */,
