@@ -256,6 +256,10 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     column.maxWidth = self.window.frame.size.width;
     
     column.width = self.tableView.frame.size.width - 3;
+    
+    // readjust row height
+    
+    [self.tableView reloadData];
 }
 
 -(void)windowDidBecomeKey:(NSNotification *)notification
