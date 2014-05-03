@@ -16,11 +16,15 @@ NSString *const FBMAPISentMessageNotification = @"FBMAPISentMessageNotification"
 
 NSString *const FBMAPIRecievedMessageNotification = @"FBMAPIRecievedMessageNotification";
 
+NSString *const FBMAPIUserPresenceUpdatedNotification = @"FBMAPIUserPresenceUpdatedNotification";
+
 NSString *const FBMAPIErrorKey = @"FBMAPIErrorKey";
 
 NSString *const FBMAPIMessageKey = @"FBMAPIMessageKey";
 
 NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
+
+NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
 
 @implementation FBMAPI (Errors)
 
@@ -281,6 +285,28 @@ NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
     }
 }
 
+-(void)xmppStream:(XMPPStream *)sender didReceivePresence:(XMPPPresence *)presence
+{
+    NSString *jid = [presence attributeStringValueForName:@"from"];
+    
+    FBUserPresence userPresence = FBUserOnlinePresence;
+    
+    if ([[presence attributeStringValueForName:@"type"] isEqualToString:@"unavailable"]) {
+        
+        userPresence = FBUserUnavailiblePresence;
+    }
+    
+    // notify...
+    
+    [self userWithJID:jid updatedPresence:userPresence];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIUserPresenceUpdatedNotification
+                                                        object:self
+                                                      userInfo:@{FBMAPIJIDKey: jid,
+                                                                 FBMAPIUserPresenceKey: [NSNumber numberWithInteger:userPresence]}];
+    
+}
+
 #pragma mark - Requests
 
 -(NSURLSessionDataTask *)fetchInboxWithCompletionBlock:(void (^)(NSError *, NSArray *))completionBlock
@@ -461,13 +487,16 @@ NSString *const FBMAPIJIDKey = @"FBMAPIJIDKey";
         toUserWithJID:(NSString *)jid
 {
     
-    
 }
 
 -(void)didRecieveMessage:(NSString *)message
          fromUserWithJID:(NSString *)jid
 {
     
+}
+
+-(void)userWithJID:(NSString *)jid updatedPresence:(FBUserPresence)userPresence
+{
     
 }
 

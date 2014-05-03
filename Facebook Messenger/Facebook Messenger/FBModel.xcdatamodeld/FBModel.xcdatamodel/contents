@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="13A598" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="FBConversation" representedClassName="FBConversation" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="pagingNext" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,12 +20,13 @@
     <entity name="FBUser" representedClassName="FBUser" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userPresence" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <relationship name="conversationComments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBConversationComment" inverseName="from" inverseEntity="FBConversationComment" syncable="YES"/>
         <relationship name="conversationsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FBConversation" inverseName="to" inverseEntity="FBConversation" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FBConversation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="FBConversationComment" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="FBUser" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="FBConversation" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="FBConversationComment" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="FBUser" positionX="0" positionY="0" width="128" height="120"/>
     </elements>
 </model>

@@ -2,8 +2,8 @@
 //  FBUser.h
 //  Facebook Messenger
 //
-//  Created by Alsey Coleman Miller on 10/20/13.
-//  Copyright (c) 2013 CDA. All rights reserved.
+//  Created by Alsey Coleman Miller on 5/3/14.
+//  Copyright (c) 2014 ColemanCDA. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -15,8 +15,9 @@
 
 @property (nonatomic, retain) NSNumber * id;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) FBConversation *conversationsTo;
+@property (nonatomic, retain) NSNumber * userPresence;
 @property (nonatomic, retain) NSSet *conversationComments;
+@property (nonatomic, retain) FBConversation *conversationsTo;
 @end
 
 @interface FBUser (CoreDataGeneratedAccessors)

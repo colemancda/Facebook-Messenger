@@ -2,8 +2,8 @@
 //  FBUser.m
 //  Facebook Messenger
 //
-//  Created by Alsey Coleman Miller on 10/20/13.
-//  Copyright (c) 2013 CDA. All rights reserved.
+//  Created by Alsey Coleman Miller on 5/3/14.
+//  Copyright (c) 2014 ColemanCDA. All rights reserved.
 //
 
 #import "FBUser.h"
@@ -15,7 +15,8 @@
 
 @dynamic id;
 @dynamic name;
-@dynamic conversationsTo;
+@dynamic userPresence;
 @dynamic conversationComments;
+@dynamic conversationsTo;
 
 @end

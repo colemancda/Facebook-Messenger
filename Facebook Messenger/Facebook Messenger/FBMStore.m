@@ -11,6 +11,7 @@
 #import "FBConversation.h"
 #import "FBConversationComment.h"
 #import "NSDate+FBDate.h"
+#import "FBUser+Jabber.h"
 
 @interface FBMStore (Cache)
 
@@ -349,20 +350,12 @@
         
         conversationComment.from = _privateContextUser;
         
-        // take apart JID
-        
-        NSString *toUserID;
-        
-        toUserID = [jid stringByReplacingOccurrencesOfString:@"@chat.facebook.com"
-                                                    withString:@""];
-        
-        toUserID = [toUserID stringByReplacingOccurrencesOfString:@"-"
-                                                       withString:@""];
+        NSNumber *userID = [FBUser userIDFromJID:jid];
         
         // find cached user
         
         FBUser *userTo = (FBUser *)[self findOrCreateEntity:@"FBUser"
-                                                       withID:[NSNumber numberWithInteger:toUserID.integerValue]];
+                                                       withID:userID];
         
         // find parent conversation
         
@@ -517,6 +510,32 @@
         conversation.unseen = @YES;
         
         // save
+        
+        if (![_privateContext save:&error]) {
+            
+            [NSException raise:NSInternalInconsistencyException
+                        format:@"%@", error];
+            
+            return;
+        }
+        
+    }];
+}
+
+-(void)userWithJID:(NSString *)jid updatedPresence:(FBUserPresence)userPresence
+{
+    NSNumber *userID = [FBUser userIDFromJID:jid];
+
+    [_privateContext performBlockAndWait:^{
+        
+        FBUser *user = (FBUser *)[self findOrCreateEntity:@"FBUser"
+                                                   withID:userID];
+        
+        user.userPresence = [NSNumber numberWithInteger:userPresence];
+       
+        // save
+        
+        NSError *error;
         
         if (![_privateContext save:&error]) {
             

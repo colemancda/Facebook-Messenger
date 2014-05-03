@@ -10,6 +10,8 @@
 
 @interface FBUser (Jabber)
 
++(NSNumber *)userIDFromJID:(NSString *)jid;
+
 @property (readonly) NSString *jid;
 
 @end

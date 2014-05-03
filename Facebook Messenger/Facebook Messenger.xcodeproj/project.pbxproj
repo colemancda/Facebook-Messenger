@@ -83,12 +83,13 @@
 		6E9FA3B21813A6BE00785A09 /* FBModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3B01813A6BE00785A09 /* FBModel.xcdatamodeld */; };
 		6E9FA3B8181439E500785A09 /* FBMInboxWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3B6181439E500785A09 /* FBMInboxWindowController.m */; };
 		6E9FA3B9181439E500785A09 /* FBMInboxWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA3B7181439E500785A09 /* FBMInboxWindowController.xib */; };
-		6E9FA3D518144DDB00785A09 /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3D418144DDB00785A09 /* FBUser.m */; };
 		6E9FA3D818144DDC00785A09 /* FBConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3D718144DDC00785A09 /* FBConversation.m */; };
 		6E9FA3DB18144DDC00785A09 /* FBConversationComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DA18144DDC00785A09 /* FBConversationComment.m */; };
 		6E9FA3E1181466A900785A09 /* FBMConversationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */; };
 		6E9FA3E2181466A900785A09 /* FBMConversationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */; };
 		6E9FA3E618146FAB00785A09 /* FBMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */; };
+		6EB90BB719152439003F335A /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BB619152439003F335A /* FBUser.m */; };
+		6EB90BB819152439003F335A /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BB619152439003F335A /* FBUser.m */; };
 		6EBAE37C1870D3FA004F172A /* NSDate+FBDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */; };
 		6EBAEABB18727536004F172A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBAEABA18727536004F172A /* libxml2.dylib */; };
 		6EC4F8251911961C00B87BDF /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4F80F1911961C00B87BDF /* CLIColor.m */; };
@@ -228,8 +229,6 @@
 		6E9FA3B5181439E500785A09 /* FBMInboxWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMInboxWindowController.h; sourceTree = "<group>"; };
 		6E9FA3B6181439E500785A09 /* FBMInboxWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMInboxWindowController.m; sourceTree = "<group>"; };
 		6E9FA3B7181439E500785A09 /* FBMInboxWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMInboxWindowController.xib; sourceTree = "<group>"; };
-		6E9FA3D318144DDB00785A09 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUser.h; sourceTree = "<group>"; };
-		6E9FA3D418144DDB00785A09 /* FBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUser.m; sourceTree = "<group>"; };
 		6E9FA3D618144DDC00785A09 /* FBConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConversation.h; sourceTree = "<group>"; };
 		6E9FA3D718144DDC00785A09 /* FBConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBConversation.m; sourceTree = "<group>"; };
 		6E9FA3D918144DDC00785A09 /* FBConversationComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConversationComment.h; sourceTree = "<group>"; };
@@ -239,6 +238,8 @@
 		6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMConversationWindowController.xib; sourceTree = "<group>"; };
 		6E9FA3E418146FAB00785A09 /* FBMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMessageCellView.h; sourceTree = "<group>"; };
 		6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMessageCellView.m; sourceTree = "<group>"; };
+		6EB90BB519152439003F335A /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUser.h; sourceTree = "<group>"; };
+		6EB90BB619152439003F335A /* FBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUser.m; sourceTree = "<group>"; };
 		6EBAE37A1870D3FA004F172A /* NSDate+FBDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FBDate.h"; sourceTree = "<group>"; };
 		6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FBDate.m"; sourceTree = "<group>"; };
 		6EBAEABA18727536004F172A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -628,12 +629,12 @@
 			isa = PBXGroup;
 			children = (
 				6E653C1C1912C2AC004F288F /* Categories */,
+				6EB90BB519152439003F335A /* FBUser.h */,
+				6EB90BB619152439003F335A /* FBUser.m */,
 				6E9FA3D918144DDC00785A09 /* FBConversationComment.h */,
 				6E9FA3DA18144DDC00785A09 /* FBConversationComment.m */,
 				6E9FA3D618144DDC00785A09 /* FBConversation.h */,
 				6E9FA3D718144DDC00785A09 /* FBConversation.m */,
-				6E9FA3D318144DDB00785A09 /* FBUser.h */,
-				6E9FA3D418144DDB00785A09 /* FBUser.m */,
 			);
 			name = NSManagedObject;
 			sourceTree = "<group>";
@@ -896,7 +897,6 @@
 				6E5842181910A0AD00DDDCBE /* XMPPSRVResolver.m in Sources */,
 				6E9FA3B8181439E500785A09 /* FBMInboxWindowController.m in Sources */,
 				6EC4F82B1911961C00B87BDF /* DDASLLogger.m in Sources */,
-				6E9FA3D518144DDB00785A09 /* FBUser.m in Sources */,
 				6E0E3889187092A600CED6B6 /* FBMAPI.m in Sources */,
 				6E5841F61910A0AD00DDDCBE /* XMPPXFacebookPlatformAuthentication.m in Sources */,
 				6ED475401913F9640034D719 /* FBConversation+StringRepresentation.m in Sources */,
@@ -906,6 +906,7 @@
 				6EC4F8371911961C00B87BDF /* DDMultiFormatter.m in Sources */,
 				6EC4F82D1911961C00B87BDF /* DDFileLogger.m in Sources */,
 				6E58420A1910A0AD00DDDCBE /* XMPPParser.m in Sources */,
+				6EB90BB719152439003F335A /* FBUser.m in Sources */,
 				6E5841F41910A0AD00DDDCBE /* XMPPSCRAMSHA1Authentication.m in Sources */,
 				6EC4F8251911961C00B87BDF /* CLIColor.m in Sources */,
 				6EC4F8331911961C00B87BDF /* DDContextFilterLogFormatter.m in Sources */,
@@ -962,6 +963,7 @@
 				6E5841FF1910A0AD00DDDCBE /* NSXMLElement+XMPP.m in Sources */,
 				6E5842111910A0AD00DDDCBE /* DDList.m in Sources */,
 				6E5841ED1910A0AD00DDDCBE /* XMPPDeprecatedDigestAuthentication.m in Sources */,
+				6EB90BB819152439003F335A /* FBUser.m in Sources */,
 				6E5842151910A0AD00DDDCBE /* RFImageToDataTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

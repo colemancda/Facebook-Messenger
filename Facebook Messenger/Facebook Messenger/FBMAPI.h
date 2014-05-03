@@ -23,17 +23,33 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
     
 };
 
+typedef NS_ENUM(NSInteger, FBUserPresence) {
+    
+    /** User is Offline */
+    
+    FBUserUnavailiblePresence = 0,
+    
+    /** User is Online */
+    
+    FBUserOnlinePresence
+    
+};
+
 extern NSString *const FBMAPIFinishedAuthenticationNotification;
 
 extern NSString *const FBMAPISentMessageNotification;
 
 extern NSString *const FBMAPIRecievedMessageNotification;
 
+extern NSString *const FBMAPIUserPresenceUpdatedNotification;
+
 extern NSString *const FBMAPIErrorKey;
 
 extern NSString *const FBMAPIMessageKey;
 
 extern NSString *const FBMAPIJIDKey;
+
+extern NSString *const FBMAPIUserPresenceKey;
 
 @interface FBMAPI : NSObject <XMPPStreamDelegate>
 {
@@ -75,7 +91,7 @@ extern NSString *const FBMAPIJIDKey;
 -(void)sendMessage:(NSString *)message
      toUserWithJID:(NSString *)jid;
 
-#pragma mark - Internal
+#pragma mark - Internal methods called before sending notifications
 
 // Used by subclasses
 
@@ -84,5 +100,8 @@ extern NSString *const FBMAPIJIDKey;
 
 -(void)didRecieveMessage:(NSString *)message
          fromUserWithJID:(NSString *)jid;
+
+-(void)userWithJID:(NSString *)jid
+   updatedPresence:(FBUserPresence)userPresence;
 
 @end

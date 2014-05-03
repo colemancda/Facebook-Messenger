@@ -10,6 +10,21 @@
 
 @implementation FBUser (Jabber)
 
++(NSNumber *)userIDFromJID:(NSString *)jid
+{
+    // take apart JID
+    
+    NSString *userID;
+    
+    userID = [jid stringByReplacingOccurrencesOfString:@"@chat.facebook.com"
+                                              withString:@""];
+    
+    userID = [userID stringByReplacingOccurrencesOfString:@"-"
+                                               withString:@""];
+    
+    return [NSNumber numberWithInteger:userID.integerValue];
+}
+
 -(NSString *)jid
 {
     return [NSString stringWithFormat:@"-%@@chat.facebook.com", self.id];
