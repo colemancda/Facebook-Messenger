@@ -18,5 +18,6 @@
 @dynamic userPresence;
 @dynamic conversationComments;
 @dynamic conversationsTo;
+@dynamic profilePicture;
 
 @end

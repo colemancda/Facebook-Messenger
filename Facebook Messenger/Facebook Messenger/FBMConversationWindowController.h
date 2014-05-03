@@ -30,9 +30,13 @@
 
 @property (strong) IBOutlet NSArrayController *arrayController;
 
+@property (weak) IBOutlet NSToolbarItem *userProfileToolbarItem;
+
 #pragma mark - Actions
 
 -(IBAction)enteredText:(NSTextField *)sender;
+
+-(IBAction)showUserProfile:(NSToolbarItem *)sender;
 
 #pragma mark - Change GUI
 

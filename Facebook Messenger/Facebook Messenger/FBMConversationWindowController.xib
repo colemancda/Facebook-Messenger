@@ -11,6 +11,7 @@
                 <outlet property="tableView" destination="vuo-mb-fIG" id="94W-CG-r3X"/>
                 <outlet property="tableViewScrollView" destination="vwE-gc-IqF" id="WW5-e2-AoP"/>
                 <outlet property="textField" destination="Z98-Nx-KVP" id="xdy-bs-TT2"/>
+                <outlet property="userProfileToolbarItem" destination="Jr6-uW-btS" id="IFk-Is-CP3"/>
                 <outlet property="window" destination="1" id="3"/>
             </connections>
         </customObject>
@@ -173,6 +174,21 @@
                     <constraint firstItem="vwE-gc-IqF" firstAttribute="centerX" secondItem="Z98-Nx-KVP" secondAttribute="centerX" constant="1" id="uzQ-w2-L6D"/>
                 </constraints>
             </view>
+            <toolbar key="toolbar" implicitIdentifier="5129D9AA-E6F3-47A9-A97F-01794284AEE8" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="7Ks-Af-l0N">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="004-au-Fkv"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="7AC-2d-Pmo"/>
+                    <toolbarItem implicitItemIdentifier="D0D86386-BC71-47C6-A4CB-47F3D0CE6F9F" label="User Profile" paletteLabel="User Profile" tag="-1" image="NSApplicationIcon" id="Jr6-uW-btS">
+                        <connections>
+                            <action selector="showUserProfile:" target="-2" id="RpF-hR-EJY"/>
+                        </connections>
+                    </toolbarItem>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="Jr6-uW-btS"/>
+                    <toolbarItem reference="7AC-2d-Pmo"/>
+                </defaultToolbarItems>
+            </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
@@ -183,4 +199,7 @@
             </connections>
         </arrayController>
     </objects>
+    <resources>
+        <image name="NSApplicationIcon" width="128" height="128"/>
+    </resources>
 </document>

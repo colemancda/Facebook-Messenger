@@ -17,16 +17,22 @@
         <relationship name="conversation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FBConversation" inverseName="comments" inverseEntity="FBConversation" syncable="YES"/>
         <relationship name="from" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FBUser" inverseName="conversationComments" inverseEntity="FBUser" syncable="YES"/>
     </entity>
+    <entity name="FBPhoto" representedClassName="FBPhoto" syncable="YES">
+        <attribute name="data" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FBUser" inverseName="profilePicture" inverseEntity="FBUser" syncable="YES"/>
+    </entity>
     <entity name="FBUser" representedClassName="FBUser" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userPresence" optional="YES" attributeType="Integer 16" syncable="YES"/>
         <relationship name="conversationComments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FBConversationComment" inverseName="from" inverseEntity="FBConversationComment" syncable="YES"/>
         <relationship name="conversationsTo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FBConversation" inverseName="to" inverseEntity="FBConversation" syncable="YES"/>
+        <relationship name="profilePicture" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FBPhoto" inverseName="user" inverseEntity="FBPhoto" syncable="YES"/>
     </entity>
     <elements>
         <element name="FBConversation" positionX="0" positionY="0" width="128" height="165"/>
         <element name="FBConversationComment" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="FBUser" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="FBUser" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="FBPhoto" positionX="9" positionY="72" width="128" height="73"/>
     </elements>
 </model>

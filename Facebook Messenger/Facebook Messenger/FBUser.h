@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSNumber * userPresence;
 @property (nonatomic, retain) NSSet *conversationComments;
 @property (nonatomic, retain) FBConversation *conversationsTo;
+@property (nonatomic, retain) NSManagedObject *profilePicture;
 @end
 
 @interface FBUser (CoreDataGeneratedAccessors)

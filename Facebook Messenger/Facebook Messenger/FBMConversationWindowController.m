@@ -136,6 +136,18 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
 }
 
+- (IBAction)showUserProfile:(NSToolbarItem *)sender {
+    
+    // get user
+    
+    FBUser *toUser = self.conversation.to.allObjects.firstObject;
+    
+    NSURL *facebookURL = [NSURL URLWithString:@"http://facebook.com"];
+    
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", toUser.id] relativeToURL:facebookURL]];
+    
+}
+
 #pragma mark - GUI
 
 -(void)scrollToBottomOfTableView
