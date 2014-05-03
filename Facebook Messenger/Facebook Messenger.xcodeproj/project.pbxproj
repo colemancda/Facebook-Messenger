@@ -92,6 +92,10 @@
 		6EB90BB819152439003F335A /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BB619152439003F335A /* FBUser.m */; };
 		6EB90BBB19154AB6003F335A /* FBConversation+Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BBA19154AB6003F335A /* FBConversation+Info.m */; };
 		6EB90BBC19154AB6003F335A /* FBConversation+Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BBA19154AB6003F335A /* FBConversation+Info.m */; };
+		6EB90BC219155CE6003F335A /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BBF19155CE6003F335A /* INAppStoreWindow.m */; };
+		6EB90BC319155CE6003F335A /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BBF19155CE6003F335A /* INAppStoreWindow.m */; };
+		6EB90BC419155CE6003F335A /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BC119155CE6003F335A /* INWindowButton.m */; };
+		6EB90BC519155CE6003F335A /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BC119155CE6003F335A /* INWindowButton.m */; };
 		6EBAE37C1870D3FA004F172A /* NSDate+FBDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */; };
 		6EBAEABB18727536004F172A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBAEABA18727536004F172A /* libxml2.dylib */; };
 		6EC4F8251911961C00B87BDF /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4F80F1911961C00B87BDF /* CLIColor.m */; };
@@ -242,6 +246,10 @@
 		6EB90BB619152439003F335A /* FBUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBUser.m; sourceTree = "<group>"; };
 		6EB90BB919154AB6003F335A /* FBConversation+Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBConversation+Info.h"; sourceTree = "<group>"; };
 		6EB90BBA19154AB6003F335A /* FBConversation+Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBConversation+Info.m"; sourceTree = "<group>"; };
+		6EB90BBE19155CE6003F335A /* INAppStoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindow.h; sourceTree = "<group>"; };
+		6EB90BBF19155CE6003F335A /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
+		6EB90BC019155CE6003F335A /* INWindowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INWindowButton.h; sourceTree = "<group>"; };
+		6EB90BC119155CE6003F335A /* INWindowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INWindowButton.m; sourceTree = "<group>"; };
 		6EBAE37A1870D3FA004F172A /* NSDate+FBDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FBDate.h"; sourceTree = "<group>"; };
 		6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FBDate.m"; sourceTree = "<group>"; };
 		6EBAEABA18727536004F172A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -312,6 +320,7 @@
 		6E5833291910A03A00DDDCBE /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				6EB90BBD19155CE6003F335A /* INAppStoreWindow */,
 				6EC4F83B1911982200B87BDF /* libidn */,
 				6EC4F80C1911961C00B87BDF /* Lumberjack */,
 				6E58421C1910A0B400DDDCBE /* GCDAsyncSocket */,
@@ -670,6 +679,18 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		6EB90BBD19155CE6003F335A /* INAppStoreWindow */ = {
+			isa = PBXGroup;
+			children = (
+				6EB90BBE19155CE6003F335A /* INAppStoreWindow.h */,
+				6EB90BBF19155CE6003F335A /* INAppStoreWindow.m */,
+				6EB90BC019155CE6003F335A /* INWindowButton.h */,
+				6EB90BC119155CE6003F335A /* INWindowButton.m */,
+			);
+			name = INAppStoreWindow;
+			path = Dependencies/INAppStoreWindow/INAppStoreWindow;
+			sourceTree = "<group>";
+		};
 		6EBAE3791870D3D9004F172A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -879,6 +900,7 @@
 				6E5842161910A0AD00DDDCBE /* XMPPIDTracker.m in Sources */,
 				6E9FA38718138ECE00785A09 /* FBMAppDelegate.m in Sources */,
 				6E5842001910A0AD00DDDCBE /* XMPPElement.m in Sources */,
+				6EB90BC219155CE6003F335A /* INAppStoreWindow.m in Sources */,
 				6E5841EA1910A0AD00DDDCBE /* XMPPAnonymousAuthentication.m in Sources */,
 				6E9FA3E1181466A900785A09 /* FBMConversationWindowController.m in Sources */,
 				6EC4F8271911961C00B87BDF /* DDAbstractDatabaseLogger.m in Sources */,
@@ -911,6 +933,7 @@
 				6EC4F8331911961C00B87BDF /* DDContextFilterLogFormatter.m in Sources */,
 				6E5842081910A0AD00DDDCBE /* XMPPModule.m in Sources */,
 				6E9FA3B21813A6BE00785A09 /* FBModel.xcdatamodeld in Sources */,
+				6EB90BC419155CE6003F335A /* INWindowButton.m in Sources */,
 				6E58420E1910A0AD00DDDCBE /* XMPPStream.m in Sources */,
 				6EB90BBB19154AB6003F335A /* FBConversation+Info.m in Sources */,
 				6E5842141910A0AD00DDDCBE /* RFImageToDataTransformer.m in Sources */,
@@ -941,6 +964,7 @@
 				6E5841FB1910A0AD00DDDCBE /* NSData+XMPP.m in Sources */,
 				6E5841EB1910A0AD00DDDCBE /* XMPPAnonymousAuthentication.m in Sources */,
 				6E9FA39E18138ECE00785A09 /* Facebook_MessengerTests.m in Sources */,
+				6EB90BC519155CE6003F335A /* INWindowButton.m in Sources */,
 				6E5841F31910A0AD00DDDCBE /* XMPPPlainAuthentication.m in Sources */,
 				6E5842051910A0AD00DDDCBE /* XMPPJID.m in Sources */,
 				6EC4F82E1911961C00B87BDF /* DDFileLogger.m in Sources */,
@@ -957,6 +981,7 @@
 				6E5841F11910A0AD00DDDCBE /* XMPPDigestMD5Authentication.m in Sources */,
 				6EC4F82A1911961C00B87BDF /* DDASLLogCapture.m in Sources */,
 				6EB90BBC19154AB6003F335A /* FBConversation+Info.m in Sources */,
+				6EB90BC319155CE6003F335A /* INAppStoreWindow.m in Sources */,
 				6EC4F8301911961C00B87BDF /* DDLog.m in Sources */,
 				6E5841F51910A0AD00DDDCBE /* XMPPSCRAMSHA1Authentication.m in Sources */,
 				6EC4F8341911961C00B87BDF /* DDContextFilterLogFormatter.m in Sources */,

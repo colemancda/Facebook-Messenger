@@ -12,6 +12,8 @@
 	<dict>
 		<key>8132258C-4CB3-4187-9514-2AE6C7DE2B62</key>
 		<string>https://github.com/colemancda/CocoaAsyncSocket.git</string>
+		<key>91F2C4FD-E577-453C-B784-5FF48961CCE8</key>
+		<string>https://github.com/indragiek/INAppStoreWindow.git</string>
 		<key>986BE262-86B7-4B06-B629-5C4411ED2A31</key>
 		<string>https://github.com/robbiehanson/XMPPFramework.git</string>
 		<key>D953D108-0691-452C-B1AE-DAFCD185E4AF</key>
@@ -25,6 +27,8 @@
 	<dict>
 		<key>8132258C-4CB3-4187-9514-2AE6C7DE2B62</key>
 		<string>../../Dependencies/CocoaAsyncSocket</string>
+		<key>91F2C4FD-E577-453C-B784-5FF48961CCE8</key>
+		<string>../../Dependencies/INAppStoreWindow</string>
 		<key>986BE262-86B7-4B06-B629-5C4411ED2A31</key>
 		<string>../../Dependencies/XMPPFramework</string>
 		<key>D953D108-0691-452C-B1AE-DAFCD185E4AF</key>
@@ -63,6 +67,14 @@
 			<string>D953D108-0691-452C-B1AE-DAFCD185E4AF</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Facebook Messenger</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>91F2C4FD-E577-453C-B784-5FF48961CCE8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>INAppStoreWindow</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

@@ -10,3 +10,6 @@
 [submodule "Facebook Messenger/Dependencies/CocoaLumberjack"]
 	path = Facebook Messenger/Dependencies/CocoaLumberjack
 	url = https://github.com/CocoaLumberjack/CocoaLumberjack.git
+[submodule "Facebook Messenger/Dependencies/INAppStoreWindow"]
+	path = Facebook Messenger/Dependencies/INAppStoreWindow
+	url = https://github.com/indragiek/INAppStoreWindow.git
