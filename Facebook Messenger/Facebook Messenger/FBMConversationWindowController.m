@@ -208,20 +208,38 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
         
     }
     
+    NSTableColumn *column = tableView.tableColumns.firstObject;
+    
+    CGFloat maxWidth = column.width - 40; // 20 on each side
+    
+    NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"Helvetica"
+                                                                      size:13]};
+    
+    NSSize size = [comment.message sizeWithAttributes:attributes];
+    
+    // add extra padding if last row
+    
+    CGFloat lastRowPadding = 0;
+    
+    if (row == tableView.numberOfRows - 1) {
+        
+        lastRowPadding = 3;
+    }
+    
+    CGFloat messageHeight = ceil(size.width / maxWidth) * 18; // number of lines * height of one line
+    
     // determine whether the previous comment belongs to the same user as the current comment
     
     if (comment.from == previousComment.from) {
         
         // NSTableCellView
         
-        
-        
-        return 26;
+        return messageHeight + 6; // padding
     }
     
     // FBMessageCellView
     
-    return 56;
+    return messageHeight + 49; // padding and other UI elements
 }
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
