@@ -96,6 +96,7 @@
 		6EB90BC319155CE6003F335A /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BBF19155CE6003F335A /* INAppStoreWindow.m */; };
 		6EB90BC419155CE6003F335A /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BC119155CE6003F335A /* INWindowButton.m */; };
 		6EB90BC519155CE6003F335A /* INWindowButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BC119155CE6003F335A /* INWindowButton.m */; };
+		6EB90BC919155FFD003F335A /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB90BC819155FFD003F335A /* StoreKit.framework */; };
 		6EBAE37C1870D3FA004F172A /* NSDate+FBDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */; };
 		6EBAEABB18727536004F172A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EBAEABA18727536004F172A /* libxml2.dylib */; };
 		6EC4F8251911961C00B87BDF /* CLIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC4F80F1911961C00B87BDF /* CLIColor.m */; };
@@ -250,6 +251,7 @@
 		6EB90BBF19155CE6003F335A /* INAppStoreWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INAppStoreWindow.m; sourceTree = "<group>"; };
 		6EB90BC019155CE6003F335A /* INWindowButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INWindowButton.h; sourceTree = "<group>"; };
 		6EB90BC119155CE6003F335A /* INWindowButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INWindowButton.m; sourceTree = "<group>"; };
+		6EB90BC819155FFD003F335A /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		6EBAE37A1870D3FA004F172A /* NSDate+FBDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+FBDate.h"; sourceTree = "<group>"; };
 		6EBAE37B1870D3FA004F172A /* NSDate+FBDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+FBDate.m"; sourceTree = "<group>"; };
 		6EBAEABA18727536004F172A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -292,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EB90BC919155FFD003F335A /* StoreKit.framework in Frameworks */,
 				6E4FE2FA1872785D00646455 /* libresolv.dylib in Frameworks */,
 				6E4FE2F81872780900646455 /* SystemConfiguration.framework in Frameworks */,
 				6EBAEABB18727536004F172A /* libxml2.dylib in Frameworks */,
@@ -532,6 +535,7 @@
 		6E9FA37218138ECE00785A09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6EB90BC819155FFD003F335A /* StoreKit.framework */,
 				6E5833291910A03A00DDDCBE /* Dependencies */,
 				6E4FE2F91872785C00646455 /* libresolv.dylib */,
 				6E4FE2F71872780900646455 /* SystemConfiguration.framework */,
