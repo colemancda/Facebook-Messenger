@@ -94,6 +94,23 @@
     
 }
 
+#pragma mark - First Responder
+
+-(BOOL)validateMenuItem:(NSMenuItem *)menuItem
+{
+    if (menuItem.action == @selector(newDocument:)) {
+        
+        return (BOOL)self.store.user;
+    }
+    
+    return YES;
+}
+
+-(void)newDocument:(id)sender
+{
+    [self.inboxWC newDocument:sender];
+}
+
 #pragma mark - Notifications
 
 -(void)didFinishAuthentication:(NSNotification *)notification
