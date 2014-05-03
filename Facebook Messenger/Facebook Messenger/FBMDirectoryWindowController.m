@@ -105,5 +105,18 @@
     [self.inboxWC newConversationWithUser:user];
 }
 
+#pragma mark - First Responder
+
+-(void)keyDown:(NSEvent *)theEvent
+{
+    if (theEvent.keyCode == 36) {
+        
+        [self doubleClickedTableView:self];
+        
+        return;
+    }
+    
+    [super keyDown:theEvent];
+}
 
 @end

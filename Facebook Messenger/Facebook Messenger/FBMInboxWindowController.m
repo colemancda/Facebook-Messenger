@@ -189,53 +189,25 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
 {
     if (theEvent.keyCode == 36) {
         
-        if (self.tableView.selectedRow == -1 ) {
-            
-            return;
-        }
+        [self clickedRow:self];
         
-        // get model object
-        FBConversation *conversation = self.arrayController.arrangedObjects[self.tableView.selectedRow];
-        
-        // search for existing WC for this conversation
-        
-        FBUser *user = conversation.to.allObjects.firstObject;
-        
-        NSString *wcKey = [NSString stringWithFormat:@"%@", user.id];
-        
-        FBMConversationWindowController *conversationWC = _conversationWCs[wcKey];
-        
-        if (!conversationWC) {
-            
-            conversationWC = [[FBMConversationWindowController alloc] init];
-            
-            [_conversationWCs setObject:conversationWC
-                                 forKey:wcKey];
-            
-            // set model object
-            
-            conversationWC.conversation = conversation;
-            
-        }
-        
-        // update GUI
-        
-        [conversationWC.window makeKeyAndOrderFront:self];
+        return;
     }
     
+    [super keyDown:theEvent];
 }
 
 #pragma mark - Actions
 
 -(void)clickedRow:(id)sender
 {
-    if (self.tableView.clickedRow == -1 ) {
+    if (self.tableView.selectedRow == -1 ) {
         
         return;
     }
     
     // get model object
-    FBConversation *conversation = self.arrayController.arrangedObjects[self.tableView.clickedRow];
+    FBConversation *conversation = self.arrayController.arrangedObjects[self.tableView.selectedRow];
     
     // search for existing WC for this conversation
     
