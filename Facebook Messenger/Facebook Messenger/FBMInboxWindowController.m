@@ -14,6 +14,7 @@
 #import "FBUser.h"
 #import "FBMConversationWindowController.h"
 #import "FBMDirectoryWindowController.h"
+#import "FBConversation+Info.h"
 
 NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificationConversationIdentifier";
 
@@ -67,6 +68,11 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(sentMessage:)
                                                  name:FBMAPISentMessageNotification
+                                               object:appDelegate.store];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userPresenceUpdated:)
+                                                 name:FBMAPIUserPresenceUpdatedNotification
                                                object:appDelegate.store];
     
     // user notifications
@@ -125,6 +131,27 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
         
         // set text
         cellView.textField.stringValue = conversation.toString;
+    }
+    
+    if ([identifier isEqualToString:@"userPresence"]) {
+        
+        // get user presence
+        
+        FBUserPresence userPresence = conversation.userPresence;
+        
+        NSImage *image;
+        
+        if (userPresence == FBUserOnlinePresence) {
+            
+            image = [NSImage imageNamed:@"NSStatusAvailable"];
+        }
+        if (userPresence == FBUserUnavailiblePresence) {
+            
+            image = [NSImage imageNamed:@"NSStatusUnavailable"];
+        }
+        
+        // set online status
+        cellView.imageView.image = image;
     }
     
     // check whether the conversation has unread messages
@@ -323,6 +350,15 @@ NSString *const FBMUserNotificationConversationIdentifier = @"FBMUserNotificatio
         
     }];
     
+}
+
+-(void)userPresenceUpdated:(NSNotification *)notification
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        [self.arrayController fetch:self];
+        
+    }];
 }
 
 #pragma mark - GUI

@@ -9,7 +9,6 @@
 #import "FBConversationComment.h"
 #import "FBConversation.h"
 #import "FBUser.h"
-#import "FBConversation+StringRepresentation.h"
 
 @implementation FBConversationComment
 

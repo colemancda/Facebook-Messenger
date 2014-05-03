@@ -49,4 +49,6 @@
 
 -(void)sentMessage:(NSNotification *)notification;
 
+-(void)userPresenceUpdated:(NSNotification *)notification;
+
 @end

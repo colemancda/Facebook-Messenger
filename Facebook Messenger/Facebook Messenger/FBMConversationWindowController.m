@@ -13,6 +13,7 @@
 #import "FBMessageCellView.h"
 #import "FBMAppDelegate.h"
 #import "FBUser+Jabber.h"
+#import "FBConversation+Info.h"
 
 static void *KVOContext = &KVOContext;
 
