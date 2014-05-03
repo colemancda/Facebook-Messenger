@@ -42,4 +42,6 @@
 
 -(void)sentMessage:(NSNotification *)notification;
 
+-(void)recievedMessage:(NSNotification *)notification;
+
 @end

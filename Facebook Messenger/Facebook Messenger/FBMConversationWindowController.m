@@ -70,6 +70,11 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
                                                  name:FBMAPISentMessageNotification
                                                object:appDelegate.store];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(recievedMessage:)
+                                                 name:FBMAPIRecievedMessageNotification
+                                               object:appDelegate.store];
+    
     // KVO
     
     [self addObserver:self
@@ -146,13 +151,6 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
   viewForTableColumn:(NSTableColumn *)tableColumn
                  row:(NSInteger)row
 {
-    // scroll to bottom if last row
-    
-    if (row == tableView.numberOfRows - 1) {
-        
-        [self scrollToBottomOfTableView];
-    }
-    
     // get model object
     FBConversationComment *comment = self.arrayController.arrangedObjects[row];
     
@@ -298,7 +296,19 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
             self.textField.stringValue = @"";
         }
         
+        [self scrollToBottomOfTableView];
+        
     }];
+}
+
+-(void)recievedMessage:(NSNotification *)notification
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+       
+        [self scrollToBottomOfTableView];
+        
+    }];
+    
 }
 
 @end
