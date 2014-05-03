@@ -18,10 +18,6 @@
 
 @property (nonatomic, readonly) FBMPurchasesStore *purchasesStore;
 
-#pragma mark - In-App Purchases
-
-@property (readonly, nonatomic) BOOL photosPurchased;
-
 #pragma mark - Window Controllers
 
 @property (nonatomic, readonly) FBMInboxWindowController *inboxWC;

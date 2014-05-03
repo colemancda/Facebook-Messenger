@@ -65,6 +65,10 @@
 		6E5842201910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */; };
 		6E5969701915937A00764BA3 /* FBMPurchasesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E59696F1915937A00764BA3 /* FBMPurchasesStore.m */; };
 		6E5969711915937A00764BA3 /* FBMPurchasesStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E59696F1915937A00764BA3 /* FBMPurchasesStore.m */; };
+		6E5969811915A25D00764BA3 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E5969771915A25D00764BA3 /* MASPreferencesWindow.xib */; };
+		6E5969821915A25D00764BA3 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E5969771915A25D00764BA3 /* MASPreferencesWindow.xib */; };
+		6E5969831915A25D00764BA3 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5969791915A25D00764BA3 /* MASPreferencesWindowController.m */; };
+		6E5969841915A25D00764BA3 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5969791915A25D00764BA3 /* MASPreferencesWindowController.m */; };
 		6E653C1F1912C2D6004F288F /* FBUser+Jabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */; };
 		6E653C201912C2D6004F288F /* FBUser+Jabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */; };
 		6E764BCE191571F50056C535 /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E764BCD191571F50056C535 /* FBUser.m */; };
@@ -390,6 +394,10 @@
 		6E59696D1915885700764BA3 /* XMPPFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPFramework.h; sourceTree = "<group>"; };
 		6E59696E1915937A00764BA3 /* FBMPurchasesStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMPurchasesStore.h; sourceTree = "<group>"; };
 		6E59696F1915937A00764BA3 /* FBMPurchasesStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMPurchasesStore.m; sourceTree = "<group>"; };
+		6E5969761915A25D00764BA3 /* MASPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesViewController.h; sourceTree = "<group>"; };
+		6E5969771915A25D00764BA3 /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
+		6E5969781915A25D00764BA3 /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
+		6E5969791915A25D00764BA3 /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
 		6E653C1D1912C2D6004F288F /* FBUser+Jabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBUser+Jabber.h"; sourceTree = "<group>"; };
 		6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBUser+Jabber.m"; sourceTree = "<group>"; };
 		6E764BCC191571F50056C535 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUser.h; sourceTree = "<group>"; };
@@ -691,6 +699,7 @@
 		6E5833291910A03A00DDDCBE /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				6E5969721915A25D00764BA3 /* MASPreferences */,
 				6EB90BBD19155CE6003F335A /* INAppStoreWindow */,
 				6EC4F83B1911982200B87BDF /* libidn */,
 				6EC4F80C1911961C00B87BDF /* Lumberjack */,
@@ -869,6 +878,18 @@
 				6E58421E1910A0D400DDDCBE /* GCDAsyncSocket.m */,
 			);
 			name = GCDAsyncSocket;
+			sourceTree = "<group>";
+		};
+		6E5969721915A25D00764BA3 /* MASPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				6E5969761915A25D00764BA3 /* MASPreferencesViewController.h */,
+				6E5969771915A25D00764BA3 /* MASPreferencesWindow.xib */,
+				6E5969781915A25D00764BA3 /* MASPreferencesWindowController.h */,
+				6E5969791915A25D00764BA3 /* MASPreferencesWindowController.m */,
+			);
+			name = MASPreferences;
+			path = Dependencies/MASPreferences;
 			sourceTree = "<group>";
 		};
 		6E653C1C1912C2AC004F288F /* Categories */ = {
@@ -1445,8 +1466,8 @@
 		6E9FA37218138ECE00785A09 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6EB90BC819155FFD003F335A /* StoreKit.framework */,
 				6E5833291910A03A00DDDCBE /* Dependencies */,
+				6EB90BC819155FFD003F335A /* StoreKit.framework */,
 				6E4FE2F91872785C00646455 /* libresolv.dylib */,
 				6E4FE2F71872780900646455 /* SystemConfiguration.framework */,
 				6E4FE2F51872770F00646455 /* Security.framework */,
@@ -1779,6 +1800,7 @@
 				6E9FA37E18138ECE00785A09 /* InfoPlist.strings in Resources */,
 				6E9FA3B9181439E500785A09 /* FBMInboxWindowController.xib in Resources */,
 				6E9FA38C18138ECE00785A09 /* Images.xcassets in Resources */,
+				6E5969811915A25D00764BA3 /* MASPreferencesWindow.xib in Resources */,
 				6E9FA38418138ECE00785A09 /* Credits.rtf in Resources */,
 				6EC4F8391911961C00B87BDF /* README.txt in Resources */,
 				6E9FA38A18138ECE00785A09 /* MainMenu.xib in Resources */,
@@ -1792,6 +1814,7 @@
 			files = (
 				6EC4F83A1911961C00B87BDF /* README.txt in Resources */,
 				6EC4F8411911982200B87BDF /* build-libidn.sh in Resources */,
+				6E5969821915A25D00764BA3 /* MASPreferencesWindow.xib in Resources */,
 				6ECA431719131B5E00921652 /* FBMDirectoryWindowController.xib in Resources */,
 				6E9FA39C18138ECE00785A09 /* InfoPlist.strings in Resources */,
 			);
@@ -1944,6 +1967,7 @@
 				6E5842141910A0AD00DDDCBE /* RFImageToDataTransformer.m in Sources */,
 				6E58421F1910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */,
 				6E764CFC1915875C0056C535 /* XMPPMUC.m in Sources */,
+				6E5969831915A25D00764BA3 /* MASPreferencesWindowController.m in Sources */,
 				6E58420C1910A0AD00DDDCBE /* XMPPPresence.m in Sources */,
 				6E764D4A1915875C0056C535 /* XMPPMessage+XEP_0172.m in Sources */,
 				6E764CE21915875C0056C535 /* XMPPPrivacy.m in Sources */,
@@ -1960,6 +1984,7 @@
 				6E764D151915875C0056C535 /* XMPPvCardTempLabel.m in Sources */,
 				6E5842191910A0AD00DDDCBE /* XMPPSRVResolver.m in Sources */,
 				6E764D411915875C0056C535 /* XMPPMessageArchiving_Contact_CoreDataObject.m in Sources */,
+				6E5969841915A25D00764BA3 /* MASPreferencesWindowController.m in Sources */,
 				6E764D351915875C0056C535 /* XMPPCapabilities.xcdatamodel in Sources */,
 				6E764CED1915875C0056C535 /* XMPPRoomHybrid.xcdatamodeld in Sources */,
 				6E764D371915875C0056C535 /* XMPPCapabilitiesCoreDataStorage.m in Sources */,

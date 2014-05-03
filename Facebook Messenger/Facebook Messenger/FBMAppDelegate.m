@@ -29,7 +29,7 @@
     
     _purchasesStore = [[FBMPurchasesStore alloc] init];
     
-    _photosPurchased = YES;
+    [_purchasesStore verifyProducts];
     
     // register for notifications
     

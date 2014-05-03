@@ -16,6 +16,8 @@
 		<string>https://github.com/indragiek/INAppStoreWindow.git</string>
 		<key>986BE262-86B7-4B06-B629-5C4411ED2A31</key>
 		<string>https://github.com/robbiehanson/XMPPFramework.git</string>
+		<key>D8680858-63AD-414C-B455-94085144CF10</key>
+		<string>https://github.com/shpakovski/MASPreferences.git</string>
 		<key>D953D108-0691-452C-B1AE-DAFCD185E4AF</key>
 		<string>https://github.com/colemancda/Facebook-Messenger.git</string>
 		<key>E4B75E0F-2C52-4BD2-9C17-960E75C90FC5</key>
@@ -31,6 +33,8 @@
 		<string>../../Dependencies/INAppStoreWindow</string>
 		<key>986BE262-86B7-4B06-B629-5C4411ED2A31</key>
 		<string>../../Dependencies/XMPPFramework</string>
+		<key>D8680858-63AD-414C-B455-94085144CF10</key>
+		<string>../../Dependencies/MASPreferences</string>
 		<key>D953D108-0691-452C-B1AE-DAFCD185E4AF</key>
 		<string>../../..</string>
 		<key>E4B75E0F-2C52-4BD2-9C17-960E75C90FC5</key>
@@ -75,6 +79,14 @@
 			<string>91F2C4FD-E577-453C-B784-5FF48961CCE8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>INAppStoreWindow</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D8680858-63AD-414C-B455-94085144CF10</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MASPreferences</string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

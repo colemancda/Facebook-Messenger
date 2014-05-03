@@ -17,6 +17,8 @@
 
 #pragma mark - In-App Purchases
 
+@property (readonly) NSArray *availibleProducts;
+
 @property (readonly, nonatomic) BOOL photosPurchased;
 
 @end

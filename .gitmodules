@@ -13,3 +13,6 @@
 [submodule "Facebook Messenger/Dependencies/INAppStoreWindow"]
 	path = Facebook Messenger/Dependencies/INAppStoreWindow
 	url = https://github.com/indragiek/INAppStoreWindow.git
+[submodule "Facebook Messenger/Dependencies/MASPreferences"]
+	path = Facebook Messenger/Dependencies/MASPreferences
+	url = https://github.com/shpakovski/MASPreferences.git

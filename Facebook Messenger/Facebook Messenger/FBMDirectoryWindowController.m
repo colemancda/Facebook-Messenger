@@ -13,6 +13,7 @@
 #import "FBMAppDelegate.h"
 #import "FBMInboxWindowController.h"
 #import "FBPhoto.h"
+#import "FBMPurchasesStore.h"
 
 static void *KVOContext = &KVOContext;
 
@@ -153,7 +154,7 @@ static void *KVOContext = &KVOContext;
     
     // Profile image
     
-    if (appDelegate.photosPurchased) {
+    if (appDelegate.purchasesStore.photosPurchased) {
         
         if (user.profilePicture.image) {
             
