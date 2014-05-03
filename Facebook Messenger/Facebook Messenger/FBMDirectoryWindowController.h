@@ -29,4 +29,6 @@
 
 -(void)userPresenceUpdated:(NSNotification *)notification;
 
+-(void)disconnected:(NSNotification *)notification;
+
 @end

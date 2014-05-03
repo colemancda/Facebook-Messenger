@@ -14,7 +14,7 @@
 
 @property (assign) IBOutlet NSWindow *window;
 
-@property (readonly) FBMStore *store;
+@property (nonatomic, readonly) FBMStore *store;
 
 #pragma mark - In-App Purchases
 
@@ -22,7 +22,7 @@
 
 #pragma mark - Window Controllers
 
-@property (readonly) FBMInboxWindowController *inboxWC;
+@property (nonatomic, readonly) FBMInboxWindowController *inboxWC;
 
 #pragma mark - GUI
 

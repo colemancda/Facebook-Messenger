@@ -14,6 +14,8 @@
 #import "FBMInboxWindowController.h"
 #import "FBPhoto.h"
 
+static void *KVOContext = &KVOContext;
+
 @interface FBMDirectoryWindowController ()
 
 @end
@@ -58,6 +60,13 @@
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                            ascending:YES]];
     
+    // KVO
+    
+    [appDelegate.store addObserver:self
+                        forKeyPath:@"xmppConnected"
+                           options:NSKeyValueObservingOptionNew
+                           context:KVOContext];
+    
     // Notifications
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -86,12 +95,31 @@
     }];
 }
 
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == KVOContext) {
+        
+        if ([keyPath isEqualToString:@"xmppConnected"]) {
+            
+            [self.tableView reloadData];
+            
+        }
+        
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
 #pragma mark - NSTableViewDelegate
 
 -(NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
 {
     FBUserCellView *cell = [tableView makeViewWithIdentifier:tableColumn.identifier
                                                        owner:self];
+    
+    FBMAppDelegate *appDelegate = [NSApp delegate];
     
     // get model object
     FBUser *user = self.arrayController.arrangedObjects[row];
@@ -104,20 +132,26 @@
     
     NSImage *image;
     
-    if (user.userPresence.integerValue == FBUserOnlinePresence) {
+    if (!appDelegate.store.xmppConnected) {
         
-        image = [NSImage imageNamed:@"NSStatusAvailable"];
+        image = [NSImage imageNamed:@"NSStatusNone"];
     }
-    if (user.userPresence.integerValue == FBUserUnavailiblePresence) {
+    
+    else {
         
-        image = [NSImage imageNamed:@"NSStatusUnavailable"];
+        if (user.userPresence.integerValue == FBUserOnlinePresence) {
+            
+            image = [NSImage imageNamed:@"NSStatusAvailable"];
+        }
+        if (user.userPresence.integerValue == FBUserUnavailiblePresence) {
+            
+            image = [NSImage imageNamed:@"NSStatusUnavailable"];
+        }
     }
     
     cell.statusImageView.image = image;
     
     // Profile image
-    
-    FBMAppDelegate *appDelegate = [NSApp delegate];
     
     if (appDelegate.photosPurchased) {
         
@@ -185,7 +219,16 @@
 {
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         
-        [self.arrayController fetch:self];
+        [self.tableView reloadData];
+        
+    }];
+}
+
+-(void)disconnected:(NSNotification *)notification
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        [self.tableView reloadData];
         
     }];
 }

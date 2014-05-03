@@ -7,6 +7,7 @@
 //
 
 #import "FBMAPI.h"
+#import "XMPPReconnect.h"
 
 NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
 
@@ -17,6 +18,8 @@ NSString *const FBMAPISentMessageNotification = @"FBMAPISentMessageNotification"
 NSString *const FBMAPIRecievedMessageNotification = @"FBMAPIRecievedMessageNotification";
 
 NSString *const FBMAPIUserPresenceUpdatedNotification = @"FBMAPIUserPresenceUpdatedNotification";
+
+NSString *const FBMAPIXMPPStreamDisconnectedNotification = @"FBMAPIXMPPStreamDisconnectedNotification";
 
 NSString *const FBMAPIErrorKey = @"FBMAPIErrorKey";
 
@@ -57,6 +60,8 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
 @property (nonatomic) XMPPStream *xmppStream;
 
 @property (nonatomic) NSURLSession *urlSession;
+
+@property (nonatomic) BOOL xmppConnected;
 
 @end
 
@@ -161,6 +166,10 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
     
     [self.xmppStream addDelegate:self delegateQueue:_xmppStreamDelegateQueue];
     
+    _xmppReconnect = [[XMPPReconnect alloc] init];
+    
+    [_xmppReconnect activate:self.xmppStream];
+    
     NSError *error;
     
     // connect
@@ -225,6 +234,12 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
 
 -(void)xmppStreamDidAuthenticate:(XMPPStream *)sender
 {
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        self.xmppConnected = YES;
+        
+    }];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIFinishedAuthenticationNotification
                                                         object:self
                                                       userInfo:nil];
@@ -304,6 +319,20 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
                                                         object:self
                                                       userInfo:@{FBMAPIJIDKey: jid,
                                                                  FBMAPIUserPresenceKey: [NSNumber numberWithInteger:userPresence]}];
+    
+}
+
+-(void)xmppStreamDidDisconnect:(XMPPStream *)sender withError:(NSError *)error
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        self.xmppConnected = NO;
+        
+    }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIXMPPStreamDisconnectedNotification
+                                                        object:self
+                                                      userInfo:@{FBMAPIErrorKey: error}];
     
 }
 
