@@ -468,7 +468,7 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
 -(NSURLSessionDataTask *)fetchPhotoForUserWithUserID:(NSNumber *)userID
                                      completionBlock:(void (^)(NSError *, NSData *))completionBlock
 {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture", userID]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", userID]];
     
     NSURLSessionDataTask *task = [self.urlSession dataTaskWithRequest:[NSURLRequest requestWithURL:url] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         
