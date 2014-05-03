@@ -42,12 +42,4 @@
 
 -(void)sentMessage:(NSNotification *)notification;
 
-#pragma mark - Determine Row Height
-
--(CGFloat)heightforCommentWithUserNamed:(NSString *)userName
-                            messageBody:(NSString *)messageBody
-                                   date:(NSString *)dateString;
-
--(CGFloat)heightforCommentWithMessageBody:(NSString *)messageBody;
-
 @end

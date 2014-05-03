@@ -153,8 +153,6 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
         [self scrollToBottomOfTableView];
     }
     
-    FBMAppDelegate *appDelegate = [NSApp delegate];
-    
     // get model object
     FBConversationComment *comment = self.arrayController.arrangedObjects[row];
     
