@@ -10,7 +10,7 @@
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 #import "XMPP.h"
-@class XMPPReconnect;
+#import "XMPPReconnect.h"
 
 extern NSString *const FBMErrorDomain;
 
@@ -54,9 +54,9 @@ extern NSString *const FBMAPIJIDKey;
 
 extern NSString *const FBMAPIUserPresenceKey;
 
-@interface FBMAPI : NSObject <XMPPStreamDelegate>
+@interface FBMAPI : NSObject <XMPPStreamDelegate, XMPPReconnectDelegate>
 {
-    dispatch_queue_t _xmppStreamDelegateQueue;
+    dispatch_queue_t _xmppDelegateQueue;
     
     XMPPReconnect *_xmppReconnect;
 }

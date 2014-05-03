@@ -7,7 +7,6 @@
 //
 
 #import "FBMAPI.h"
-#import "XMPPReconnect.h"
 
 NSString *const FBMErrorDomain = @"com.ColemanCDA.Facebook-Messenger.ErrorDomain";
 
@@ -162,11 +161,11 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
 {
     self.xmppStream = [[XMPPStream alloc] initWithFacebookAppId:self.appID];
     
-    _xmppStreamDelegateQueue = dispatch_queue_create("com.ColemanCDA.Facebook-Messenger.XMPPStreamDelegateQueue", DISPATCH_QUEUE_CONCURRENT);
+    _xmppDelegateQueue = dispatch_queue_create("com.ColemanCDA.Facebook-Messenger.XMPPStreamDelegateQueue", DISPATCH_QUEUE_CONCURRENT);
     
-    [self.xmppStream addDelegate:self delegateQueue:_xmppStreamDelegateQueue];
+    [self.xmppStream addDelegate:self delegateQueue:_xmppDelegateQueue];
     
-    _xmppReconnect = [[XMPPReconnect alloc] init];
+    _xmppReconnect = [[XMPPReconnect alloc] initWithDispatchQueue:_xmppDelegateQueue];
     
     [_xmppReconnect activate:self.xmppStream];
     
@@ -334,6 +333,21 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
                                                         object:self
                                                       userInfo:@{FBMAPIErrorKey: error}];
     
+}
+
+#pragma mark - XMPPReconnectDelegate
+
+-(void)xmppReconnect:(XMPPReconnect *)sender didDetectAccidentalDisconnect:(SCNetworkReachabilityFlags)connectionFlags
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        self.xmppConnected = NO;
+        
+    }];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIXMPPStreamDisconnectedNotification
+                                                        object:self
+                                                      userInfo:nil];
 }
 
 #pragma mark - Requests
