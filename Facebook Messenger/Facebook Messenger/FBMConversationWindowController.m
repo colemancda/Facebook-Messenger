@@ -223,10 +223,10 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     if (row == tableView.numberOfRows - 1) {
         
-        lastRowPadding = 3;
+        lastRowPadding = 10;
     }
     
-    CGFloat messageHeight = ceil(size.width / maxWidth) * 18; // number of lines * height of one line
+    CGFloat messageHeight = ceil(size.width / maxWidth) * 18 + lastRowPadding; // number of lines * height of one line
     
     // determine whether the previous comment belongs to the same user as the current comment
     
