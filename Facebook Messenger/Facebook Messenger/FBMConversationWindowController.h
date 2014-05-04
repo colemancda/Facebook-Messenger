@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class FBConversation;
+@class FBConversation, FBUser;
 
 @interface FBMConversationWindowController : NSWindowController <NSTableViewDelegate, NSWindowDelegate>
 {
@@ -35,6 +35,8 @@
 #pragma mark - Properties
 
 @property (nonatomic, readonly) NSArray *conversationDataSourceArray;
+
+@property (nonatomic, readonly) FBUser *toUser;
 
 #pragma mark - Actions
 

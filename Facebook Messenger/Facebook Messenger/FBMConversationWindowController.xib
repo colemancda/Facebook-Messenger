@@ -178,6 +178,7 @@
                 </defaultToolbarItems>
             </toolbar>
             <connections>
+                <binding destination="-2" name="title" keyPath="self.toUser.name" id="m3M-aq-zgw"/>
                 <outlet property="delegate" destination="-2" id="4"/>
             </connections>
         </window>

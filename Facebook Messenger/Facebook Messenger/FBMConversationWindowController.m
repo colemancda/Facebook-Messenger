@@ -18,6 +18,7 @@
 #import "FBMConversationCommentView.h"
 #import "FBMConversationGroupView.h"
 #import "FBMPurchasesStore.h"
+#import "FBMStore.h"
 
 static void *KVOContext = &KVOContext;
 
@@ -28,6 +29,8 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
 @property (nonatomic) NSArray *conversationDataSourceArray;
 
 @property (nonatomic) NSImage *placeholderImage;
+
+@property (nonatomic) FBUser *toUser;
 
 @end
 
@@ -163,22 +166,38 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
 {
     if (context == KVOContext) {
         
+        FBMAppDelegate *appDelegate = [NSApp delegate];
+        
         // conversation name
         
         if ([keyPath isEqualToString:ConversationNameKeyPath]) {
             
             if (self.conversation) {
                 
-                NSString *toString = self.conversation.toString;
+                // determine user
                 
-                if (![self.window.title isEqualToString:toString]) {
+                if (self.conversation.to.count > 1) {
                     
-                    self.window.title = toString;
+                    for (FBUser *user in self.conversation.to) {
+                        
+                        if (user != appDelegate.store.user) {
+                            
+                            self.toUser = user;
+                            
+                            break;
+                        }
+                    }
+                }
+                else {
+                    
+                    self.toUser = self.conversation.to.allObjects.firstObject;
                 }
                 
-                if (![self.windowFrameAutosaveName isEqualToString:toString]) {
+                NSString *autoSaveName = [NSString stringWithFormat:@"com.ColemanCDA.FacebookMessenger.ConversationWC.%@", self.toUser.name];
+                
+                if (![self.windowFrameAutosaveName isEqualToString:autoSaveName]) {
                     
-                    self.windowFrameAutosaveName = toString;
+                    self.windowFrameAutosaveName = autoSaveName;
                 }
             }
             
