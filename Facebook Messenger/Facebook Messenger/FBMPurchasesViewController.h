@@ -15,5 +15,16 @@
 
 @property (strong) IBOutlet NSArrayController *arrayController;
 
+@property (weak) IBOutlet NSTableView *tableView;
+
+#pragma mark - Actions
+
+-(void)doubleClickedTableView:(id)sender;
+
+#pragma mark - Notifications
+
+-(void)verifyFailed:(NSNotification *)notification;
+
+-(void)purchaseFinished:(NSNotification *)notification;
 
 @end

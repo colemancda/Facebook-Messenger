@@ -94,7 +94,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
     
-    if (appDelegate.purchasesStore.photosPurchased) {
+    if ([appDelegate.purchasesStore purchasedProductWithProductID:FBMPicturesProductID]) {
         
         // check for profile pic
         
@@ -371,7 +371,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
 {
     FBMAppDelegate *appDelegate = [NSApp delegate];
     
-    if (appDelegate.purchasesStore.photosPurchased) {
+    if ([appDelegate.purchasesStore purchasedProductWithProductID:FBMPicturesProductID]) {
         
         // get user
         

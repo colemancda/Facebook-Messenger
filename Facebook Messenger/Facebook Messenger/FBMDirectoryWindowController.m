@@ -161,7 +161,7 @@ static void *KVOContext = &KVOContext;
     
     cell.imageView.image = self.placeholderImage;
     
-    if (appDelegate.purchasesStore.photosPurchased) {
+    if ([appDelegate.purchasesStore purchasedProductWithProductID:FBMPicturesProductID]) {
         
         if (user.profilePicture.image) {
             

@@ -56,6 +56,12 @@
 {
     [super awakeFromNib];
     
+    // setup tableView double action
+    
+    [self.tableView setDoubleAction:@selector(doubleClickedTableView:)];
+    
+    self.tableView.target = self;
+    
     [_purchasesStore verifyProducts];
 }
 
@@ -98,13 +104,58 @@
     
     if ([tableColumn.identifier isEqualToString:@"purchased"]) {
         
-        return NO;
+        return @([_purchasesStore purchasedProductWithProductID:FBMPicturesProductID]);
     }
     
     
     return [product valueForKey:tableColumn.identifier];
 }
 
-#pragma mark - NSTableViewDelegate
+#pragma mark - Actions
+
+-(void)doubleClickedTableView:(id)sender
+{
+    if (self.tableView.selectedRow == -1) {
+        
+        return;
+    }
+    
+    SKProduct *product = self.arrayController.arrangedObjects[self.tableView.selectedRow];
+    
+    [_purchasesStore purchaseProduct:product];
+}
+
+#pragma mark - First Responder
+
+-(void)keyDown:(NSEvent *)theEvent
+{
+    if (theEvent.keyCode == 36) {
+        
+        [self doubleClickedTableView:self];
+        
+        return;
+    }
+    
+    [super keyDown:theEvent];
+}
+
+#pragma mark - Notifications
+
+-(void)verifyFailed:(NSNotification *)notification
+{
+    NSError *error = notification.userInfo[FBMPurchasesStoreErrorKey];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+       
+        [NSApp presentError:error];
+        
+    }];
+}
+
+-(void)purchaseFinished:(NSNotification *)notification
+{
+    
+    
+}
 
 @end

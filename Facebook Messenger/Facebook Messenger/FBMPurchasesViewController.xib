@@ -7,6 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="FBMPurchasesViewController">
             <connections>
                 <outlet property="arrayController" destination="eyX-0K-RT0" id="xoF-d4-JgF"/>
+                <outlet property="tableView" destination="Io4-03-zaC" id="qMq-pv-acb"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
