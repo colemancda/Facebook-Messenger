@@ -27,7 +27,7 @@
 {
     // Insert code here to initialize your application
     
-    _store = [[FBMStore alloc] initWithAppID:@"700580906649633"];
+    _store = [[FBMStore alloc] initWithAppID:@"221240951333308"];
     
     // purchases
     
