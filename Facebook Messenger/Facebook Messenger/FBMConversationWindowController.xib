@@ -60,7 +60,7 @@
                                                     <rect key="frame" x="1" y="1" width="397" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4eY-a9-5aR">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4eY-a9-5aR">
                                                             <rect key="frame" x="8" y="4" width="244" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Alsey Coleman Miller" id="05y-Zu-D15">
@@ -162,7 +162,7 @@
                     <constraint firstItem="vwE-gc-IqF" firstAttribute="centerX" secondItem="Z98-Nx-KVP" secondAttribute="centerX" constant="1" id="uzQ-w2-L6D"/>
                 </constraints>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="5129D9AA-E6F3-47A9-A97F-01794284AEE8" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="7Ks-Af-l0N">
+            <toolbar key="toolbar" implicitIdentifier="5129D9AA-E6F3-47A9-A97F-01794284AEE8" displayMode="iconAndLabel" sizeMode="regular" id="7Ks-Af-l0N">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="004-au-Fkv"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="7AC-2d-Pmo"/>
