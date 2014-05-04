@@ -107,13 +107,30 @@ NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictur
 
 #pragma mark - SKPaymentTransactionObserver
 
--(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-    
-    
+    for (SKPaymentTransaction *transaction in transactions) {
+        
+        // save
+        
+        if (transaction.transactionState == SKPaymentTransactionStateRestored ||
+            transaction.transactionState == SKPaymentTransactionStatePurchased) {
+            
+            [[NSUserDefaults standardUserDefaults] setObject:@YES forKey:transaction.payment.productIdentifier];
+            
+            [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+            
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
+    }
 }
 
--(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+-(void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
+{
+    NSLog(@"Transactions finished %@", transactions);
+}
+
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
     
     

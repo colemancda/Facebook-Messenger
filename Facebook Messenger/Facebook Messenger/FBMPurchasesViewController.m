@@ -171,4 +171,33 @@
     }];
 }
 
+#pragma mark - SKPaymentTransactionObserver
+
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+       
+        [self.tableView reloadData];
+        
+    }];
+}
+
+-(void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        [self.tableView reloadData];
+        
+    }];
+}
+
+-(void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
+{
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        [NSApp presentError:error];
+        
+    }];
+}
+
 @end
