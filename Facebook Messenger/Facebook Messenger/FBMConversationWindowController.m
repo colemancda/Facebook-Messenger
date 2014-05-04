@@ -155,6 +155,10 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
                     self.window.title = toString;
                 }
                 
+                if (![self.windowFrameAutosaveName isEqualToString:toString]) {
+                    
+                    self.windowFrameAutosaveName = toString;
+                }
             }
             
         }
