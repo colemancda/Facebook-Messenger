@@ -13,6 +13,8 @@
 @interface FBMPurchasesViewController ()
 {
     FBMPurchasesStore *_purchasesStore;
+    
+    NSNumberFormatter *_numberFormatter;
 }
 
 @end
@@ -39,6 +41,12 @@
         FBMAppDelegate *appDelegate = [NSApp delegate];
         
         _purchasesStore = appDelegate.purchasesStore;
+        
+        // number formatter
+        
+        _numberFormatter = [[NSNumberFormatter alloc] init];
+        
+        _numberFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
         
     }
     return self;
@@ -81,9 +89,20 @@
 {
     SKProduct *product = self.arrayController.arrangedObjects[row];
     
+    if ([tableColumn.identifier isEqualToString:@"price"]) {
+        
+        _numberFormatter.locale = product.priceLocale;
+        
+        return [_numberFormatter stringFromNumber:product.price];
+    }
+    
+    if ([tableColumn.identifier isEqualToString:@"purchased"]) {
+        
+        return NO;
+    }
     
     
-    return NO;
+    return [product valueForKey:tableColumn.identifier];
 }
 
 #pragma mark - NSTableViewDelegate
