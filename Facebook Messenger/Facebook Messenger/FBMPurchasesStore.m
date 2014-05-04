@@ -8,7 +8,7 @@
 
 #import "FBMPurchasesStore.h"
 
-NSString *const FBMPhotoProductID = @"com.ColemanCDA.FacebookMessenger.photos";
+NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictures";
 
 @interface FBMPurchasesStore ()
 
@@ -29,7 +29,7 @@ NSString *const FBMPhotoProductID = @"com.ColemanCDA.FacebookMessenger.photos";
         
         // TEMP
         
-        NSArray *productIDs = @[FBMPhotoProductID];
+        NSArray *productIDs = @[FBMPicturesProductID];
         
         self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIDs]];
         
