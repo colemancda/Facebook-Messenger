@@ -329,9 +329,17 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
         
     }];
     
+    NSDictionary *userInfo = @{};
+    
+    if (error) {
+        
+        userInfo = @{FBMAPIErrorKey: error};
+        
+    }
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:FBMAPIXMPPStreamDisconnectedNotification
                                                         object:self
-                                                      userInfo:@{FBMAPIErrorKey: error}];
+                                                      userInfo:userInfo];
     
 }
 
