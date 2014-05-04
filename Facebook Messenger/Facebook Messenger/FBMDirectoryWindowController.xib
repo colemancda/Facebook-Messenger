@@ -123,10 +123,10 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </searchFieldCell>
                         <connections>
-                            <binding destination="2Va-Ba-KR5" name="predicate" keyPath="filterPredicate" id="C4G-AO-U2R">
+                            <binding destination="2Va-Ba-KR5" name="predicate" keyPath="filterPredicate" id="ufo-AP-Ez2">
                                 <dictionary key="options">
                                     <string key="NSDisplayName">predicate</string>
-                                    <string key="NSPredicateFormat">name BEGINSWITH[c] $value</string>
+                                    <string key="NSPredicateFormat">name CONTAINS[c] $value</string>
                                     <bool key="NSValidatesImmediately" value="YES"/>
                                 </dictionary>
                             </binding>
