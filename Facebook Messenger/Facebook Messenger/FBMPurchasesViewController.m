@@ -69,6 +69,10 @@
                                                  name:FBMPurchasesStoreProductsRequestFailedNotification
                                                object:_purchasesStore];
     
+    // payment observer
+    
+    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+    
     // load products
     
     [_purchasesStore verifyProducts];
@@ -198,6 +202,11 @@
         [NSApp presentError:error];
         
     }];
+}
+
+-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+    
 }
 
 @end
