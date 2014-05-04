@@ -11,6 +11,8 @@
 
 extern NSString *const FBMPurchasesStoreProductsRequestFailedNotification;
 
+extern NSString *const FBMPurchasesStoreProductsPurchasedUpdatedNotification;
+
 extern NSString *const FBMPurchasesStoreErrorKey;
 
 // Product IDs

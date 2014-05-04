@@ -10,6 +10,8 @@
 
 NSString *const FBMPurchasesStoreProductsRequestFailedNotification = @"FBMPurchasesStoreProductsRequestFailedNotification";
 
+NSString *const FBMPurchasesStoreProductsPurchasedUpdatedNotification = @"FBMPurchasesStoreProductsPurchasedUpdatedNotification";
+
 NSString *const FBMPurchasesStoreErrorKey = @"FBMPurchasesStoreErrorKey";
 
 // product ids
@@ -123,6 +125,11 @@ NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictur
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
+    
+    // notify
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:FBMPurchasesStoreProductsPurchasedUpdatedNotification
+                                                        object:self];
 }
 
 -(void)paymentQueue:(SKPaymentQueue *)queue removedTransactions:(NSArray *)transactions
