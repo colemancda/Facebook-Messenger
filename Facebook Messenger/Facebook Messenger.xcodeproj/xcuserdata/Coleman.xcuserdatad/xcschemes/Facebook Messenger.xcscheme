@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6E9FA36F18138ECD00785A09"
-               BuildableName = "FB Messenger.app"
+               BuildableName = "Facebook Messenger.app"
                BlueprintName = "Facebook Messenger"
                ReferencedContainer = "container:Facebook Messenger.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6E9FA39018138ECE00785A09"
-               BuildableName = "FB MessengerTests.xctest"
+               BuildableName = "Facebook MessengerTests.xctest"
                BlueprintName = "Facebook MessengerTests"
                ReferencedContainer = "container:Facebook Messenger.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E9FA36F18138ECD00785A09"
-            BuildableName = "FB Messenger.app"
+            BuildableName = "Facebook Messenger.app"
             BlueprintName = "Facebook Messenger"
             ReferencedContainer = "container:Facebook Messenger.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E9FA36F18138ECD00785A09"
-            BuildableName = "FB Messenger.app"
+            BuildableName = "Facebook Messenger.app"
             BlueprintName = "Facebook Messenger"
             ReferencedContainer = "container:Facebook Messenger.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E9FA36F18138ECD00785A09"
-            BuildableName = "FB Messenger.app"
+            BuildableName = "Facebook Messenger.app"
             BlueprintName = "Facebook Messenger"
             ReferencedContainer = "container:Facebook Messenger.xcodeproj">
          </BuildableReference>
