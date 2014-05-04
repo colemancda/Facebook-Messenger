@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @import StoreKit;
 
-@interface FBMPurchasesStore : NSObject <SKProductsRequestDelegate>
+@interface FBMPurchasesStore : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
 #pragma mark - Requests
 
@@ -17,7 +17,7 @@
 
 #pragma mark - In-App Purchases
 
-@property (readonly) NSArray *availibleProducts;
+@property (readonly, nonatomic) NSArray *availibleProducts;
 
 @property (readonly, nonatomic) BOOL photosPurchased;
 

@@ -69,6 +69,10 @@
 		6E5969821915A25D00764BA3 /* MASPreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E5969771915A25D00764BA3 /* MASPreferencesWindow.xib */; };
 		6E5969831915A25D00764BA3 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5969791915A25D00764BA3 /* MASPreferencesWindowController.m */; };
 		6E5969841915A25D00764BA3 /* MASPreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5969791915A25D00764BA3 /* MASPreferencesWindowController.m */; };
+		6E59698B1915A63A00764BA3 /* FBMPurchasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5969891915A63A00764BA3 /* FBMPurchasesViewController.m */; };
+		6E59698C1915A63A00764BA3 /* FBMPurchasesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5969891915A63A00764BA3 /* FBMPurchasesViewController.m */; };
+		6E59698D1915A63A00764BA3 /* FBMPurchasesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E59698A1915A63A00764BA3 /* FBMPurchasesViewController.xib */; };
+		6E59698E1915A63A00764BA3 /* FBMPurchasesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E59698A1915A63A00764BA3 /* FBMPurchasesViewController.xib */; };
 		6E653C1F1912C2D6004F288F /* FBUser+Jabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */; };
 		6E653C201912C2D6004F288F /* FBUser+Jabber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */; };
 		6E764BCE191571F50056C535 /* FBUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E764BCD191571F50056C535 /* FBUser.m */; };
@@ -398,6 +402,9 @@
 		6E5969771915A25D00764BA3 /* MASPreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MASPreferencesWindow.xib; sourceTree = "<group>"; };
 		6E5969781915A25D00764BA3 /* MASPreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASPreferencesWindowController.h; sourceTree = "<group>"; };
 		6E5969791915A25D00764BA3 /* MASPreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASPreferencesWindowController.m; sourceTree = "<group>"; };
+		6E5969881915A63A00764BA3 /* FBMPurchasesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMPurchasesViewController.h; sourceTree = "<group>"; };
+		6E5969891915A63A00764BA3 /* FBMPurchasesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMPurchasesViewController.m; sourceTree = "<group>"; };
+		6E59698A1915A63A00764BA3 /* FBMPurchasesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMPurchasesViewController.xib; sourceTree = "<group>"; };
 		6E653C1D1912C2D6004F288F /* FBUser+Jabber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBUser+Jabber.h"; sourceTree = "<group>"; };
 		6E653C1E1912C2D6004F288F /* FBUser+Jabber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBUser+Jabber.m"; sourceTree = "<group>"; };
 		6E764BCC191571F50056C535 /* FBUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBUser.h; sourceTree = "<group>"; };
@@ -585,23 +592,23 @@
 		6E764CB61915875C0056C535 /* XMPPMessage+XEP_0333.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XMPPMessage+XEP_0333.m"; sourceTree = "<group>"; };
 		6E764CB81915875C0056C535 /* NSXMLElement+XEP_0335.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSXMLElement+XEP_0335.h"; sourceTree = "<group>"; };
 		6E764CB91915875C0056C535 /* NSXMLElement+XEP_0335.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSXMLElement+XEP_0335.m"; sourceTree = "<group>"; };
-		6E9FA37018138ECE00785A09 /* Facebook Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Facebook Messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E9FA37018138ECE00785A09 /* FB Messenger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FB Messenger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9FA37318138ECE00785A09 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6E9FA37618138ECE00785A09 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		6E9FA37718138ECE00785A09 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		6E9FA37818138ECE00785A09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		6E9FA37B18138ECE00785A09 /* Facebook Messenger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Facebook Messenger-Info.plist"; sourceTree = "<group>"; };
+		6E9FA37B18138ECE00785A09 /* FB Messenger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FB Messenger-Info.plist"; sourceTree = "<group>"; };
 		6E9FA37D18138ECE00785A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6E9FA37F18138ECE00785A09 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6E9FA38118138ECE00785A09 /* Facebook Messenger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Facebook Messenger-Prefix.pch"; sourceTree = "<group>"; };
+		6E9FA38118138ECE00785A09 /* FB Messenger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FB Messenger-Prefix.pch"; sourceTree = "<group>"; };
 		6E9FA38318138ECE00785A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		6E9FA38518138ECE00785A09 /* FBMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBMAppDelegate.h; sourceTree = "<group>"; };
 		6E9FA38618138ECE00785A09 /* FBMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBMAppDelegate.m; sourceTree = "<group>"; };
 		6E9FA38918138ECE00785A09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		6E9FA38B18138ECE00785A09 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6E9FA39118138ECE00785A09 /* Facebook MessengerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Facebook MessengerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E9FA39118138ECE00785A09 /* FB MessengerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FB MessengerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E9FA39218138ECE00785A09 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		6E9FA39918138ECE00785A09 /* Facebook MessengerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Facebook MessengerTests-Info.plist"; sourceTree = "<group>"; };
+		6E9FA39918138ECE00785A09 /* FB MessengerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FB MessengerTests-Info.plist"; sourceTree = "<group>"; };
 		6E9FA39B18138ECE00785A09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6E9FA39D18138ECE00785A09 /* Facebook_MessengerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Facebook_MessengerTests.m; sourceTree = "<group>"; };
 		6E9FA3A718138F3A00785A09 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
@@ -896,8 +903,19 @@
 		6E5969871915A40500764BA3 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				6E59698F1915A64000764BA3 /* Purchases */,
 			);
 			name = Preferences;
+			sourceTree = "<group>";
+		};
+		6E59698F1915A64000764BA3 /* Purchases */ = {
+			isa = PBXGroup;
+			children = (
+				6E5969881915A63A00764BA3 /* FBMPurchasesViewController.h */,
+				6E5969891915A63A00764BA3 /* FBMPurchasesViewController.m */,
+				6E59698A1915A63A00764BA3 /* FBMPurchasesViewController.xib */,
+			);
+			name = Purchases;
 			sourceTree = "<group>";
 		};
 		6E653C1C1912C2AC004F288F /* Categories */ = {
@@ -1465,8 +1483,8 @@
 		6E9FA37118138ECE00785A09 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E9FA37018138ECE00785A09 /* Facebook Messenger.app */,
-				6E9FA39118138ECE00785A09 /* Facebook MessengerTests.xctest */,
+				6E9FA37018138ECE00785A09 /* FB Messenger.app */,
+				6E9FA39118138ECE00785A09 /* FB MessengerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1520,10 +1538,10 @@
 		6E9FA37A18138ECE00785A09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6E9FA37B18138ECE00785A09 /* Facebook Messenger-Info.plist */,
+				6E9FA37B18138ECE00785A09 /* FB Messenger-Info.plist */,
 				6E9FA37C18138ECE00785A09 /* InfoPlist.strings */,
 				6E9FA37F18138ECE00785A09 /* main.m */,
-				6E9FA38118138ECE00785A09 /* Facebook Messenger-Prefix.pch */,
+				6E9FA38118138ECE00785A09 /* FB Messenger-Prefix.pch */,
 				6E9FA38218138ECE00785A09 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -1541,7 +1559,7 @@
 		6E9FA39818138ECE00785A09 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6E9FA39918138ECE00785A09 /* Facebook MessengerTests-Info.plist */,
+				6E9FA39918138ECE00785A09 /* FB MessengerTests-Info.plist */,
 				6E9FA39A18138ECE00785A09 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -1719,9 +1737,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6E9FA36F18138ECD00785A09 /* Facebook Messenger */ = {
+		6E9FA36F18138ECD00785A09 /* FB Messenger */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E9FA3A118138ECE00785A09 /* Build configuration list for PBXNativeTarget "Facebook Messenger" */;
+			buildConfigurationList = 6E9FA3A118138ECE00785A09 /* Build configuration list for PBXNativeTarget "FB Messenger" */;
 			buildPhases = (
 				6E9FA36C18138ECD00785A09 /* Sources */,
 				6E9FA36D18138ECD00785A09 /* Frameworks */,
@@ -1731,14 +1749,14 @@
 			);
 			dependencies = (
 			);
-			name = "Facebook Messenger";
+			name = "FB Messenger";
 			productName = "Facebook Messenger";
-			productReference = 6E9FA37018138ECE00785A09 /* Facebook Messenger.app */;
+			productReference = 6E9FA37018138ECE00785A09 /* FB Messenger.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6E9FA39018138ECE00785A09 /* Facebook MessengerTests */ = {
+		6E9FA39018138ECE00785A09 /* FB MessengerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E9FA3A418138ECE00785A09 /* Build configuration list for PBXNativeTarget "Facebook MessengerTests" */;
+			buildConfigurationList = 6E9FA3A418138ECE00785A09 /* Build configuration list for PBXNativeTarget "FB MessengerTests" */;
 			buildPhases = (
 				6E9FA38D18138ECE00785A09 /* Sources */,
 				6E9FA38E18138ECE00785A09 /* Frameworks */,
@@ -1749,9 +1767,9 @@
 			dependencies = (
 				6E9FA39618138ECE00785A09 /* PBXTargetDependency */,
 			);
-			name = "Facebook MessengerTests";
+			name = "FB MessengerTests";
 			productName = "Facebook MessengerTests";
-			productReference = 6E9FA39118138ECE00785A09 /* Facebook MessengerTests.xctest */;
+			productReference = 6E9FA39118138ECE00785A09 /* FB MessengerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1777,7 +1795,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6E9FA36B18138ECD00785A09 /* Build configuration list for PBXProject "Facebook Messenger" */;
+			buildConfigurationList = 6E9FA36B18138ECD00785A09 /* Build configuration list for PBXProject "FB Messenger" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1792,8 +1810,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6E9FA36F18138ECD00785A09 /* Facebook Messenger */,
-				6E9FA39018138ECE00785A09 /* Facebook MessengerTests */,
+				6E9FA36F18138ECD00785A09 /* FB Messenger */,
+				6E9FA39018138ECE00785A09 /* FB MessengerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1806,6 +1824,7 @@
 				6ECA431619131B5E00921652 /* FBMDirectoryWindowController.xib in Resources */,
 				6E9FA3E2181466A900785A09 /* FBMConversationWindowController.xib in Resources */,
 				6E9FA37E18138ECE00785A09 /* InfoPlist.strings in Resources */,
+				6E59698D1915A63A00764BA3 /* FBMPurchasesViewController.xib in Resources */,
 				6E9FA3B9181439E500785A09 /* FBMInboxWindowController.xib in Resources */,
 				6E9FA38C18138ECE00785A09 /* Images.xcassets in Resources */,
 				6E5969811915A25D00764BA3 /* MASPreferencesWindow.xib in Resources */,
@@ -1823,6 +1842,7 @@
 				6EC4F83A1911961C00B87BDF /* README.txt in Resources */,
 				6EC4F8411911982200B87BDF /* build-libidn.sh in Resources */,
 				6E5969821915A25D00764BA3 /* MASPreferencesWindow.xib in Resources */,
+				6E59698E1915A63A00764BA3 /* FBMPurchasesViewController.xib in Resources */,
 				6ECA431719131B5E00921652 /* FBMDirectoryWindowController.xib in Resources */,
 				6E9FA39C18138ECE00785A09 /* InfoPlist.strings in Resources */,
 			);
@@ -1860,6 +1880,7 @@
 				6E764CE41915875C0056C535 /* XMPPRoom.xcdatamodeld in Sources */,
 				6E764D2C1915875C0056C535 /* XMPPMessage+XEP_0085.m in Sources */,
 				6E764D481915875C0056C535 /* XMPPvCardAvatarModule.m in Sources */,
+				6E59698B1915A63A00764BA3 /* FBMPurchasesViewController.m in Sources */,
 				6E764CC21915875C0056C535 /* XMPPReconnect.m in Sources */,
 				6E5841EC1910A0AD00DDDCBE /* XMPPDeprecatedDigestAuthentication.m in Sources */,
 				6E764D5E1915875C0056C535 /* XEP_0223.m in Sources */,
@@ -2025,6 +2046,7 @@
 				6E764D311915875C0056C535 /* XMPPTransports.m in Sources */,
 				6E764D4D1915875C0056C535 /* XMPPPresence+XEP_0172.m in Sources */,
 				6E5841EF1910A0AD00DDDCBE /* XMPPDeprecatedPlainAuthentication.m in Sources */,
+				6E59698C1915A63A00764BA3 /* FBMPurchasesViewController.m in Sources */,
 				6E764D571915875C0056C535 /* XMPPPing.m in Sources */,
 				6E764CCB1915875C0056C535 /* XMPPRosterCoreDataStorage.m in Sources */,
 				6EC4F82C1911961C00B87BDF /* DDASLLogger.m in Sources */,
@@ -2132,7 +2154,7 @@
 /* Begin PBXTargetDependency section */
 		6E9FA39618138ECE00785A09 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6E9FA36F18138ECD00785A09 /* Facebook Messenger */;
+			target = 6E9FA36F18138ECD00785A09 /* FB Messenger */;
 			targetProxy = 6E9FA39518138ECE00785A09 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2250,13 +2272,13 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Facebook Messenger/Facebook Messenger-Prefix.pch";
+				GCC_PREFIX_HEADER = "Facebook Messenger/FB Messenger-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/include/libxml2,
 				);
-				INFOPLIST_FILE = "Facebook Messenger/Facebook Messenger-Info.plist";
+				INFOPLIST_FILE = "Facebook Messenger/FB Messenger-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Coleman/Programming/My,
@@ -2280,7 +2302,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FB Messenger";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2294,13 +2316,13 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Facebook Messenger/Facebook Messenger-Prefix.pch";
+				GCC_PREFIX_HEADER = "Facebook Messenger/FB Messenger-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					/usr/include/libxml2,
 				);
-				INFOPLIST_FILE = "Facebook Messenger/Facebook Messenger-Info.plist";
+				INFOPLIST_FILE = "Facebook Messenger/FB Messenger-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Coleman/Programming/My,
@@ -2324,7 +2346,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lxml2";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FB Messenger";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2344,7 +2366,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Facebook MessengerTests/Facebook MessengerTests-Info.plist";
+				INFOPLIST_FILE = "Facebook MessengerTests/FB MessengerTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/XMPPFramework/Vendor/facebook-ios-sdk/vendor/OCMock/Examples/iOS5Example/usr/lib",
@@ -2352,7 +2374,7 @@
 					"$(PROJECT_DIR)/Dependencies/XMPPFramework/Vendor/libidn",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FB MessengerTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -2369,7 +2391,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Facebook Messenger/Facebook Messenger-Prefix.pch";
-				INFOPLIST_FILE = "Facebook MessengerTests/Facebook MessengerTests-Info.plist";
+				INFOPLIST_FILE = "Facebook MessengerTests/FB MessengerTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Dependencies/XMPPFramework/Vendor/facebook-ios-sdk/vendor/OCMock/Examples/iOS5Example/usr/lib",
@@ -2377,7 +2399,7 @@
 					"$(PROJECT_DIR)/Dependencies/XMPPFramework/Vendor/libidn",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "FB MessengerTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -2386,7 +2408,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6E9FA36B18138ECD00785A09 /* Build configuration list for PBXProject "Facebook Messenger" */ = {
+		6E9FA36B18138ECD00785A09 /* Build configuration list for PBXProject "FB Messenger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E9FA39F18138ECE00785A09 /* Debug */,
@@ -2395,7 +2417,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E9FA3A118138ECE00785A09 /* Build configuration list for PBXNativeTarget "Facebook Messenger" */ = {
+		6E9FA3A118138ECE00785A09 /* Build configuration list for PBXNativeTarget "FB Messenger" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E9FA3A218138ECE00785A09 /* Debug */,
@@ -2404,7 +2426,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E9FA3A418138ECE00785A09 /* Build configuration list for PBXNativeTarget "Facebook MessengerTests" */ = {
+		6E9FA3A418138ECE00785A09 /* Build configuration list for PBXNativeTarget "FB MessengerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6E9FA3A518138ECE00785A09 /* Debug */,

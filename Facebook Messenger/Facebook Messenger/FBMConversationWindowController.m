@@ -15,6 +15,7 @@
 #import "FBUser+Jabber.h"
 #import "FBConversation+Info.h"
 #import "FBPhoto.h"
+#import "FBMPurchasesStore.h"
 
 static void *KVOContext = &KVOContext;
 
@@ -93,7 +94,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
     
-    if (appDelegate.photosPurchased) {
+    if (appDelegate.purchasesStore.photosPurchased) {
         
         // check for profile pic
         
@@ -370,7 +371,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
 {
     FBMAppDelegate *appDelegate = [NSApp delegate];
     
-    if (appDelegate.photosPurchased) {
+    if (appDelegate.purchasesStore.photosPurchased) {
         
         // get user
         

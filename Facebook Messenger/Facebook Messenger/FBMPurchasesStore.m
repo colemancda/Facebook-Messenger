@@ -16,34 +16,57 @@ NSString *const FBMPhotosProductID = @"com.ColemanCDA.Facebook-Messenger.photos"
 
 @property NSArray *availibleProducts;
 
+@property SKProductsRequest *productsRequest;
+
 @end
 
 @implementation FBMPurchasesStore
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        
+        NSArray *productIDs = @[FBMPhotosProductID];
+        
+        self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIDs]];
+        
+        self.productsRequest.delegate = self;
+        
+    }
+    return self;
+}
 
 #pragma mark - Requests
 
 -(void)verifyProducts
 {
-    NSArray *productIDs = @[FBMPhotosProductID];
+    NSLog(@"Verifying products...");
     
-    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIDs]];
-    
-    [productsRequest start];
+    [self.productsRequest start];
 }
 
 #pragma mark - SKProductsRequestDelegate
 
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
-    self.availibleProducts = response.products;
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        
+        self.availibleProducts = response.products;
+    }];
     
+    NSLog(@"Products successfully verified");
 }
 
 #pragma mark - SKRequestDelegate
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    NSLog(@"%@ failed (%@)", request, error);
+    NSLog(@"Product verification failed. (%@)", error);
+    
+    // notify
+    
+    
 }
 
 @end

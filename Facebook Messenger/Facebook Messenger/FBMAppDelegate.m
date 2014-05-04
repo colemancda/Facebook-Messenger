@@ -13,6 +13,7 @@
 #import "FBMInboxWindowController.h"
 #import "FBMPurchasesStore.h"
 #import "MASPreferencesWindowController.h"
+#import "FBMPurchasesViewController.h"
 
 @interface FBMAppDelegate ()
 
@@ -31,8 +32,6 @@
     // purchases
     
     _purchasesStore = [[FBMPurchasesStore alloc] init];
-    
-    [_purchasesStore verifyProducts];
     
     // register for notifications
     
@@ -113,7 +112,14 @@
         
         NSString *title = NSLocalizedString(@"Preferences", @"Preferences Pane Title");
         
-        NSArray *viewControllers = @[];
+        NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+        
+        if ([SKPaymentQueue canMakePayments]) {
+            
+            FBMPurchasesViewController *purchasesVC = [[FBMPurchasesViewController alloc] init];
+            
+            [viewControllers addObject:purchasesVC];
+        }
         
         self.preferencesWC = [[MASPreferencesWindowController alloc] initWithViewControllers:viewControllers
                                                                                        title:title];

@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6E9FA36F18138ECD00785A09"
                BuildableName = "Facebook Messenger.app"
-               BlueprintName = "Facebook Messenger"
-               ReferencedContainer = "container:Facebook Messenger.xcodeproj">
+               BlueprintName = "FB Messenger"
+               ReferencedContainer = "container:FB Messenger.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,8 +34,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6E9FA39018138ECE00785A09"
                BuildableName = "Facebook MessengerTests.xctest"
-               BlueprintName = "Facebook MessengerTests"
-               ReferencedContainer = "container:Facebook Messenger.xcodeproj">
+               BlueprintName = "FB MessengerTests"
+               ReferencedContainer = "container:FB Messenger.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -44,8 +44,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E9FA36F18138ECD00785A09"
             BuildableName = "Facebook Messenger.app"
-            BlueprintName = "Facebook Messenger"
-            ReferencedContainer = "container:Facebook Messenger.xcodeproj">
+            BlueprintName = "FB Messenger"
+            ReferencedContainer = "container:FB Messenger.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -63,8 +63,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E9FA36F18138ECD00785A09"
             BuildableName = "Facebook Messenger.app"
-            BlueprintName = "Facebook Messenger"
-            ReferencedContainer = "container:Facebook Messenger.xcodeproj">
+            BlueprintName = "FB Messenger"
+            ReferencedContainer = "container:FB Messenger.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6E9FA36F18138ECD00785A09"
             BuildableName = "Facebook Messenger.app"
-            BlueprintName = "Facebook Messenger"
-            ReferencedContainer = "container:Facebook Messenger.xcodeproj">
+            BlueprintName = "FB Messenger"
+            ReferencedContainer = "container:FB Messenger.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
