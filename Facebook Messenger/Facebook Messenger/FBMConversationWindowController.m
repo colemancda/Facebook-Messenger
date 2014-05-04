@@ -40,9 +40,14 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
-    [self removeObserver:self forKeyPath:ConversationNameKeyPath];
+    [self removeObserver:self
+              forKeyPath:ConversationNameKeyPath];
     
-    [self removeObserver:self forKeyPath:@"arrayController.arrangedObjects"];
+    [self removeObserver:self
+              forKeyPath:@"arrayController.arrangedObjects"];
+    
+    [self removeObserver:self
+              forKeyPath:@"toUser"];
 }
 
 -(id)init
@@ -112,45 +117,15 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
               options:NSKeyValueObservingOptionNew
               context:KVOContext];
     
+    [self addObserver:self
+           forKeyPath:@"toUser"
+              options:NSKeyValueObservingOptionNew
+              context:KVOContext];
+    
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdTime" ascending:YES]];
     
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
-    
-    if ([appDelegate.purchasesStore purchasedProductWithProductID:FBMPicturesProductID]) {
-        
-        // check for profile pic
-        
-        FBUser *toUser = self.conversation.to.allObjects.firstObject;
-        
-        if (!toUser.profilePicture.image) {
-            
-            [appDelegate.store fetchPhotoForUserWithUserID:toUser.id completionBlock:^(NSError *error, NSData *data) {
-               
-                [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                   
-                    if (error) {
-                        
-                        [NSApp presentError:error
-                             modalForWindow:self.window
-                                   delegate:nil
-                         didPresentSelector:nil
-                                contextInfo:nil];
-                        
-                        return;
-                    }
-                    
-                    self.userProfileToolbarItem.image = toUser.profilePicture.image;
-                    
-                }];
-            }];
-            
-        }
-        
-        else {
-            
-            self.userProfileToolbarItem.image = toUser.profilePicture.image;
-        }
-    }
+
 }
 
 -(void)awakeFromNib
@@ -167,6 +142,47 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     if (context == KVOContext) {
         
         FBMAppDelegate *appDelegate = [NSApp delegate];
+        
+        // toUser
+        
+        if ([keyPath isEqualToString:@"toUser"]) {
+            
+            if ([appDelegate.purchasesStore purchasedProductWithProductID:FBMPicturesProductID]) {
+                
+                // check for profile pic
+                
+                FBUser *toUser = self.toUser;
+                
+                if (!toUser.profilePicture.image) {
+                    
+                    [appDelegate.store fetchPhotoForUserWithUserID:toUser.id completionBlock:^(NSError *error, NSData *data) {
+                        
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            
+                            if (error) {
+                                
+                                [NSApp presentError:error
+                                     modalForWindow:self.window
+                                           delegate:nil
+                                 didPresentSelector:nil
+                                        contextInfo:nil];
+                                
+                                return;
+                            }
+                            
+                            self.userProfileToolbarItem.image = toUser.profilePicture.image;
+                            
+                        }];
+                    }];
+                    
+                }
+                
+                else {
+                    
+                    self.userProfileToolbarItem.image = toUser.profilePicture.image;
+                }
+            }
+        }
         
         // conversation name
         
@@ -199,6 +215,10 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
                     
                     self.windowFrameAutosaveName = autoSaveName;
                 }
+                
+                // profile pic
+                
+                
             }
             
         }
@@ -461,12 +481,20 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
 
 -(void)recievedMessage:(NSNotification *)notification
 {
-    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-       
-        [self scrollToBottomOfTableView];
-        
-    }];
+    // check to see if its our user
     
+    NSString *jid = notification.userInfo[FBMAPIJIDKey];
+    
+    NSNumber *userID = [FBUser userIDFromJID:jid];
+    
+    if ([self.toUser.id isEqualToNumber:userID]) {
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            
+            [self scrollToBottomOfTableView];
+            
+        }];
+    }
 }
 
 -(void)contextObjectsDidChange:(NSNotification *)notification
