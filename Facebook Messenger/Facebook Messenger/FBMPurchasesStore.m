@@ -8,7 +8,7 @@
 
 #import "FBMPurchasesStore.h"
 
-NSString *const FBMPhotosProductID = @"com.ColemanCDA.Facebook-Messenger.photos";
+NSString *const FBMPhotoProductID = @"com.ColemanCDA.FacebookMessenger.photos";
 
 @interface FBMPurchasesStore ()
 
@@ -27,7 +27,7 @@ NSString *const FBMPhotosProductID = @"com.ColemanCDA.Facebook-Messenger.photos"
     self = [super init];
     if (self) {
         
-        NSArray *productIDs = @[FBMPhotosProductID];
+        NSArray *productIDs = @[FBMPhotoProductID];
         
         self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIDs]];
         
@@ -55,7 +55,7 @@ NSString *const FBMPhotosProductID = @"com.ColemanCDA.Facebook-Messenger.photos"
         self.availibleProducts = response.products;
     }];
     
-    NSLog(@"Products successfully verified");
+    NSLog(@"Products successfully verified %@", response.products);
 }
 
 #pragma mark - SKRequestDelegate

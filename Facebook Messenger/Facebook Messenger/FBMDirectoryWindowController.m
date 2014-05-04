@@ -19,6 +19,8 @@ static void *KVOContext = &KVOContext;
 
 @interface FBMDirectoryWindowController ()
 
+@property (nonatomic) NSImage *placeholderImage;
+
 @end
 
 @implementation FBMDirectoryWindowController
@@ -40,6 +42,9 @@ static void *KVOContext = &KVOContext;
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
+        
+        self.placeholderImage = [NSImage imageNamed:@"NSApplicationIcon"];
+        
     }
     return self;
 }
@@ -153,6 +158,8 @@ static void *KVOContext = &KVOContext;
     cell.statusImageView.image = image;
     
     // Profile image
+    
+    cell.imageView.image = self.placeholderImage;
     
     if (appDelegate.purchasesStore.photosPurchased) {
         
