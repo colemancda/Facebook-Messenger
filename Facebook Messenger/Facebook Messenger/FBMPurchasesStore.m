@@ -29,8 +29,6 @@ NSString *const FBMPhotoProductID = @"com.ColemanCDA.FacebookMessenger.photos";
         
         // TEMP
         
-        self.photosPurchased = YES;
-        
         NSArray *productIDs = @[FBMPhotoProductID];
         
         self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIDs]];
