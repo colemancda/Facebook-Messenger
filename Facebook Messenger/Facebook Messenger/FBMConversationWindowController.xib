@@ -35,7 +35,7 @@
                             <rect key="frame" x="1" y="1" width="400" height="299"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" viewBased="YES" id="vuo-mb-fIG">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" viewBased="YES" floatsGroupRows="NO" id="vuo-mb-fIG">
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="299"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -43,7 +43,7 @@
                                     <tableViewGridLines key="gridStyleMask" vertical="YES"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="FBMessageCellView" width="397" minWidth="40" maxWidth="1000" id="e0f-za-Y02">
+                                        <tableColumn identifier="" width="397" minWidth="40" maxWidth="1000" id="e0f-za-Y02">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -56,65 +56,64 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView identifier="FBMessageCellView" id="uBd-wG-u0W" customClass="FBMessageCellView">
-                                                    <rect key="frame" x="1" y="1" width="397" height="56"/>
+                                                <tableCellView identifier="FBMConversationGroupView" id="gYV-lu-DR8" customClass="FBMConversationGroupView">
+                                                    <rect key="frame" x="1" y="1" width="397" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Dv5-z8-Sgt">
-                                                            <rect key="frame" x="13" y="29" width="204" height="19"/>
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4eY-a9-5aR">
+                                                            <rect key="frame" x="44" y="4" width="208" height="23"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Name" usesSingleLineMode="YES" id="WB0-Q7-hn0">
-                                                                <font key="font" metaFont="system" size="16"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="05y-Zu-D15">
+                                                                <font key="font" size="15" name="HelveticaNeue-Thin"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="yu9-H6-93H">
-                                                            <rect key="frame" x="18" y="3" width="361" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Message text" id="72u-6s-rPN">
-                                                                <font key="font" size="13" name="Helvetica"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8kB-rm-LHg">
-                                                            <rect key="frame" x="209" y="29" width="175" height="19"/>
+                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R8y-0Y-yHY">
+                                                            <rect key="frame" x="3" y="3" width="35" height="24"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSApplicationIcon" id="2Jy-IP-ANf"/>
+                                                        </imageView>
+                                                        <textField appearanceType="lightContent" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="T3G-RV-p23">
+                                                            <rect key="frame" x="256" y="7" width="128" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="171" id="zLQ-Yd-LCL"/>
+                                                                <constraint firstAttribute="width" constant="124" id="YLm-zI-gIM"/>
                                                             </constraints>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Date" usesSingleLineMode="YES" id="CD3-uh-W88">
-                                                                <font key="font" metaFont="system" size="16"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="04/24/95 1:00:00 PM" usesSingleLineMode="YES" id="fTs-MR-XsL">
+                                                                <font key="font" size="13" name="PTSans-Regular"/>
                                                                 <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="8kB-rm-LHg" secondAttribute="trailing" constant="15" id="4RQ-7o-4hM"/>
-                                                        <constraint firstItem="Dv5-z8-Sgt" firstAttribute="leading" secondItem="uBd-wG-u0W" secondAttribute="leading" constant="15" id="6Mm-EJ-SUF"/>
-                                                        <constraint firstItem="Dv5-z8-Sgt" firstAttribute="top" secondItem="uBd-wG-u0W" secondAttribute="top" constant="8" id="Qub-9g-kT5"/>
-                                                        <constraint firstItem="8kB-rm-LHg" firstAttribute="top" secondItem="uBd-wG-u0W" secondAttribute="top" constant="8" id="Udh-SP-LeU"/>
-                                                        <constraint firstAttribute="trailing" secondItem="yu9-H6-93H" secondAttribute="trailing" constant="20" id="ejh-PH-pzB"/>
-                                                        <constraint firstItem="yu9-H6-93H" firstAttribute="leading" secondItem="uBd-wG-u0W" secondAttribute="leading" constant="20" id="kcu-bn-1r7"/>
-                                                        <constraint firstItem="yu9-H6-93H" firstAttribute="top" secondItem="8kB-rm-LHg" secondAttribute="bottom" constant="9" id="mWz-gJ-ShY"/>
-                                                        <constraint firstItem="8kB-rm-LHg" firstAttribute="leading" secondItem="Dv5-z8-Sgt" secondAttribute="trailing" constant="-4" id="xwY-4s-UFX"/>
+                                                        <constraint firstItem="4eY-a9-5aR" firstAttribute="top" secondItem="R8y-0Y-yHY" secondAttribute="top" id="20i-Pb-Wj4"/>
+                                                        <constraint firstItem="R8y-0Y-yHY" firstAttribute="top" secondItem="gYV-lu-DR8" secondAttribute="top" constant="3" id="6G5-Q2-Hoe"/>
+                                                        <constraint firstItem="4eY-a9-5aR" firstAttribute="leading" secondItem="gYV-lu-DR8" secondAttribute="leading" constant="71" id="BZA-zD-OL7"/>
+                                                        <constraint firstAttribute="trailing" secondItem="T3G-RV-p23" secondAttribute="trailing" constant="15" id="ErC-Dy-Mzn"/>
+                                                        <constraint firstItem="4eY-a9-5aR" firstAttribute="leading" secondItem="R8y-0Y-yHY" secondAttribute="trailing" constant="8" id="IwJ-aP-wTS"/>
+                                                        <constraint firstItem="4eY-a9-5aR" firstAttribute="centerY" secondItem="R8y-0Y-yHY" secondAttribute="centerY" id="Vy8-nF-VWN"/>
+                                                        <constraint firstAttribute="bottom" secondItem="R8y-0Y-yHY" secondAttribute="bottom" constant="3" id="WUf-Yl-yN7"/>
+                                                        <constraint firstItem="R8y-0Y-yHY" firstAttribute="leading" secondItem="gYV-lu-DR8" secondAttribute="leading" constant="3" id="ZRI-KU-V0W"/>
+                                                        <constraint firstItem="T3G-RV-p23" firstAttribute="leading" secondItem="4eY-a9-5aR" secondAttribute="trailing" constant="8" id="gTc-Sn-RX0"/>
+                                                        <constraint firstAttribute="centerY" secondItem="T3G-RV-p23" secondAttribute="centerY" id="jlJ-Mm-PST"/>
+                                                        <constraint firstItem="T3G-RV-p23" firstAttribute="leading" secondItem="4eY-a9-5aR" secondAttribute="trailing" constant="8" id="vEB-k9-XJj"/>
                                                     </constraints>
                                                     <connections>
-                                                        <outlet property="dateField" destination="8kB-rm-LHg" id="Aj1-8d-ZhI"/>
-                                                        <outlet property="nameField" destination="Dv5-z8-Sgt" id="ByU-dt-gXo"/>
-                                                        <outlet property="textField" destination="yu9-H6-93H" id="i7N-HI-noF"/>
+                                                        <outlet property="dateField" destination="T3G-RV-p23" id="Ami-gT-siZ"/>
+                                                        <outlet property="imageView" destination="R8y-0Y-yHY" id="Ys8-Qq-s7t"/>
+                                                        <outlet property="textField" destination="4eY-a9-5aR" id="a6o-Vt-rRn"/>
                                                     </connections>
                                                 </tableCellView>
-                                                <tableCellView identifier="NSTableCellView" id="pEx-tV-HSb">
-                                                    <rect key="frame" x="1" y="59" width="397" height="23"/>
+                                                <tableCellView identifier="FBMConversationCommentView" id="pEx-tV-HSb" customClass="FBMConversationCommentView">
+                                                    <rect key="frame" x="1" y="33" width="397" height="23"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="2Re-fe-Ibb">
-                                                            <rect key="frame" x="18" y="3" width="361" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                                            <textFieldCell key="cell" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Message text" id="KK3-fB-wPb">
+                                                        <textField appearanceType="lightContent" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="326-Wu-QQD">
+                                                            <rect key="frame" x="6" y="3" width="385" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" id="1Wu-6W-1ui">
                                                                 <font key="font" size="13" name="Helvetica"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -122,20 +121,20 @@
                                                         </textField>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="2Re-fe-Ibb" secondAttribute="trailing" constant="20" id="5bs-0E-dEp"/>
-                                                        <constraint firstItem="2Re-fe-Ibb" firstAttribute="top" secondItem="pEx-tV-HSb" secondAttribute="top" constant="3" id="NSL-UL-eYv"/>
-                                                        <constraint firstItem="2Re-fe-Ibb" firstAttribute="leading" secondItem="pEx-tV-HSb" secondAttribute="leading" constant="20" id="hRp-Kh-Z0j"/>
-                                                        <constraint firstAttribute="bottom" secondItem="2Re-fe-Ibb" secondAttribute="bottom" constant="3" id="qEP-xw-pgo"/>
+                                                        <constraint firstItem="326-Wu-QQD" firstAttribute="leading" secondItem="pEx-tV-HSb" secondAttribute="leading" constant="8" id="2gH-UQ-pIN"/>
+                                                        <constraint firstAttribute="trailing" secondItem="326-Wu-QQD" secondAttribute="trailing" constant="8" id="3vs-eG-rTZ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="326-Wu-QQD" secondAttribute="bottom" constant="3" id="B9m-UB-Eps"/>
+                                                        <constraint firstItem="326-Wu-QQD" firstAttribute="top" secondItem="pEx-tV-HSb" secondAttribute="top" constant="3" id="cv9-r7-6Ri"/>
                                                     </constraints>
                                                     <connections>
-                                                        <outlet property="textField" destination="2Re-fe-Ibb" id="o04-KX-ghu"/>
+                                                        <outlet property="multilineTextField" destination="326-Wu-QQD" id="ijD-DK-tPn"/>
                                                     </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
                                     </tableColumns>
                                     <connections>
-                                        <binding destination="K2L-xn-Jea" name="content" keyPath="arrangedObjects" id="EKS-Go-0Nc"/>
+                                        <binding destination="-2" name="content" keyPath="self.conversationDataSourceArray" id="EFF-oV-CLM"/>
                                         <outlet property="delegate" destination="-2" id="8xD-Ya-BqO"/>
                                     </connections>
                                 </tableView>

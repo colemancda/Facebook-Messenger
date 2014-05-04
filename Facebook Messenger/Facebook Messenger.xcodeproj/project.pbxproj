@@ -279,7 +279,6 @@
 		6E9FA3DB18144DDC00785A09 /* FBConversationComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DA18144DDC00785A09 /* FBConversationComment.m */; };
 		6E9FA3E1181466A900785A09 /* FBMConversationWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */; };
 		6E9FA3E2181466A900785A09 /* FBMConversationWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */; };
-		6E9FA3E618146FAB00785A09 /* FBMessageCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */; };
 		6EB90BBB19154AB6003F335A /* FBConversation+Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BBA19154AB6003F335A /* FBConversation+Info.m */; };
 		6EB90BBC19154AB6003F335A /* FBConversation+Info.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BBA19154AB6003F335A /* FBConversation+Info.m */; };
 		6EB90BC219155CE6003F335A /* INAppStoreWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB90BBF19155CE6003F335A /* INAppStoreWindow.m */; };
@@ -315,6 +314,10 @@
 		6EC4F8411911982200B87BDF /* build-libidn.sh in Resources */ = {isa = PBXBuildFile; fileRef = 6EC4F83C1911982200B87BDF /* build-libidn.sh */; };
 		6EC4F8421911982200B87BDF /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC4F83E1911982200B87BDF /* libidn.a */; };
 		6EC4F8431911982200B87BDF /* libidn.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC4F83E1911982200B87BDF /* libidn.a */; };
+		6EC7CE101916C47500A7F3CA /* FBMConversationGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7CE0F1916C47500A7F3CA /* FBMConversationGroupView.m */; };
+		6EC7CE111916C47500A7F3CA /* FBMConversationGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7CE0F1916C47500A7F3CA /* FBMConversationGroupView.m */; };
+		6EC7CE141916CB8500A7F3CA /* FBMConversationCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7CE131916CB8500A7F3CA /* FBMConversationCommentView.m */; };
+		6EC7CE151916CB8500A7F3CA /* FBMConversationCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC7CE131916CB8500A7F3CA /* FBMConversationCommentView.m */; };
 		6ECA431419131B5E00921652 /* FBMDirectoryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA431219131B5E00921652 /* FBMDirectoryWindowController.m */; };
 		6ECA431519131B5E00921652 /* FBMDirectoryWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ECA431219131B5E00921652 /* FBMDirectoryWindowController.m */; };
 		6ECA431619131B5E00921652 /* FBMDirectoryWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6ECA431319131B5E00921652 /* FBMDirectoryWindowController.xib */; };
@@ -626,8 +629,6 @@
 		6E9FA3DE181466A900785A09 /* FBMConversationWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMConversationWindowController.h; sourceTree = "<group>"; };
 		6E9FA3DF181466A900785A09 /* FBMConversationWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMConversationWindowController.m; sourceTree = "<group>"; };
 		6E9FA3E0181466A900785A09 /* FBMConversationWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMConversationWindowController.xib; sourceTree = "<group>"; };
-		6E9FA3E418146FAB00785A09 /* FBMessageCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMessageCellView.h; sourceTree = "<group>"; };
-		6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMessageCellView.m; sourceTree = "<group>"; };
 		6EB90BB919154AB6003F335A /* FBConversation+Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBConversation+Info.h"; sourceTree = "<group>"; };
 		6EB90BBA19154AB6003F335A /* FBConversation+Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FBConversation+Info.m"; sourceTree = "<group>"; };
 		6EB90BBE19155CE6003F335A /* INAppStoreWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INAppStoreWindow.h; sourceTree = "<group>"; };
@@ -664,6 +665,10 @@
 		6EC4F83D1911982200B87BDF /* idn-int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "idn-int.h"; sourceTree = "<group>"; };
 		6EC4F83E1911982200B87BDF /* libidn.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libidn.a; sourceTree = "<group>"; };
 		6EC4F83F1911982200B87BDF /* stringprep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringprep.h; sourceTree = "<group>"; };
+		6EC7CE0E1916C47500A7F3CA /* FBMConversationGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMConversationGroupView.h; sourceTree = "<group>"; };
+		6EC7CE0F1916C47500A7F3CA /* FBMConversationGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMConversationGroupView.m; sourceTree = "<group>"; };
+		6EC7CE121916CB8500A7F3CA /* FBMConversationCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMConversationCommentView.h; sourceTree = "<group>"; };
+		6EC7CE131916CB8500A7F3CA /* FBMConversationCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMConversationCommentView.m; sourceTree = "<group>"; };
 		6ECA431119131B5E00921652 /* FBMDirectoryWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBMDirectoryWindowController.h; sourceTree = "<group>"; };
 		6ECA431219131B5E00921652 /* FBMDirectoryWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBMDirectoryWindowController.m; sourceTree = "<group>"; };
 		6ECA431319131B5E00921652 /* FBMDirectoryWindowController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FBMDirectoryWindowController.xib; sourceTree = "<group>"; };
@@ -1637,10 +1642,12 @@
 		6E9FA3E318146F8600785A09 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6E9FA3E418146FAB00785A09 /* FBMessageCellView.h */,
-				6E9FA3E518146FAB00785A09 /* FBMessageCellView.m */,
 				6ECA431819131D8900921652 /* FBUserCellView.h */,
 				6ECA431919131D8900921652 /* FBUserCellView.m */,
+				6EC7CE0E1916C47500A7F3CA /* FBMConversationGroupView.h */,
+				6EC7CE0F1916C47500A7F3CA /* FBMConversationGroupView.m */,
+				6EC7CE121916CB8500A7F3CA /* FBMConversationCommentView.h */,
+				6EC7CE131916CB8500A7F3CA /* FBMConversationCommentView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1937,7 +1944,6 @@
 				6EC4F8311911961C00B87BDF /* DDTTYLogger.m in Sources */,
 				6E764D681915875C0056C535 /* XMPPMessage+XEP_0333.m in Sources */,
 				6E764D6A1915875C0056C535 /* NSXMLElement+XEP_0335.m in Sources */,
-				6E9FA3E618146FAB00785A09 /* FBMessageCellView.m in Sources */,
 				6E58421A1910A0AD00DDDCBE /* XMPPStringPrep.m in Sources */,
 				6E764D0C1915875C0056C535 /* XMPPvCardTempAdr.m in Sources */,
 				6E9FA3D818144DDC00785A09 /* FBConversation.m in Sources */,
@@ -1980,6 +1986,7 @@
 				6E764CC61915875C0056C535 /* XMPPResourceCoreDataStorageObject.m in Sources */,
 				6E764D441915875C0056C535 /* XMPPMessageArchivingCoreDataStorage.m in Sources */,
 				6E764D3A1915875C0056C535 /* XMPPCapsResourceCoreDataStorageObject.m in Sources */,
+				6EC7CE101916C47500A7F3CA /* FBMConversationGroupView.m in Sources */,
 				6E764D1C1915875C0056C535 /* XMPPResultSet.m in Sources */,
 				6E764D301915875C0056C535 /* XMPPTransports.m in Sources */,
 				6E764D041915875C0056C535 /* XMPPvCardCoreDataStorage.m in Sources */,
@@ -1992,6 +1999,7 @@
 				6E764D561915875C0056C535 /* XMPPPing.m in Sources */,
 				6E764D2A1915875C0056C535 /* XMPPDateTimeProfiles.m in Sources */,
 				6E764CE01915875C0056C535 /* XMPPLastActivity.m in Sources */,
+				6EC7CE141916CB8500A7F3CA /* FBMConversationCommentView.m in Sources */,
 				6E764D001915875C0056C535 /* XMPPvCard.xcdatamodeld in Sources */,
 				6E5842141910A0AD00DDDCBE /* RFImageToDataTransformer.m in Sources */,
 				6E58421F1910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */,
@@ -2038,6 +2046,7 @@
 				6E653C201912C2D6004F288F /* FBUser+Jabber.m in Sources */,
 				6E764CCF1915875C0056C535 /* XMPPResourceMemoryStorageObject.m in Sources */,
 				6E5842071910A0AD00DDDCBE /* XMPPMessage.m in Sources */,
+				6EC7CE111916C47500A7F3CA /* FBMConversationGroupView.m in Sources */,
 				6E764CF51915875C0056C535 /* XMPPRoomMemoryStorage.m in Sources */,
 				6E764D251915875C0056C535 /* XMPPIQ+XEP_0066.m in Sources */,
 				6E5842201910A0D400DDDCBE /* GCDAsyncSocket.m in Sources */,
@@ -2143,6 +2152,7 @@
 				6E764D331915875C0056C535 /* NSString+XEP_0106.m in Sources */,
 				6E5842151910A0AD00DDDCBE /* RFImageToDataTransformer.m in Sources */,
 				6E764D031915875C0056C535 /* XMPPvCardAvatarCoreDataStorageObject.m in Sources */,
+				6EC7CE151916CB8500A7F3CA /* FBMConversationCommentView.m in Sources */,
 				6E764D471915875C0056C535 /* XMPPMessageArchiving.m in Sources */,
 				6E764BD3191571F50056C535 /* FBPhoto.m in Sources */,
 				6E764D5D1915875C0056C535 /* NSXMLElement+XEP_0203.m in Sources */,

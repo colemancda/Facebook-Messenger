@@ -32,6 +32,10 @@
 
 @property (weak) IBOutlet NSToolbarItem *userProfileToolbarItem;
 
+#pragma mark - Properties
+
+@property (nonatomic, readonly) NSArray *conversationDataSourceArray;
+
 #pragma mark - Actions
 
 -(IBAction)enteredText:(NSTextField *)sender;

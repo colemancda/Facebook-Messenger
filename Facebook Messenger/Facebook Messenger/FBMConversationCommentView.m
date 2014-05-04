@@ -1,14 +1,14 @@
 //
-//  FBMessageCellView.m
+//  FBMConversationCommentView.m
 //  Facebook Messenger
 //
-//  Created by Alsey Coleman Miller on 10/20/13.
-//  Copyright (c) 2013 CDA. All rights reserved.
+//  Created by Alsey Coleman Miller on 5/4/14.
+//  Copyright (c) 2014 ColemanCDA. All rights reserved.
 //
 
-#import "FBMessageCellView.h"
+#import "FBMConversationCommentView.h"
 
-@implementation FBMessageCellView
+@implementation FBMConversationCommentView
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -21,8 +21,8 @@
 
 - (void)drawRect:(NSRect)dirtyRect
 {
-	[super drawRect:dirtyRect];
-	
+    [super drawRect:dirtyRect];
+    
     // Drawing code here.
 }
 
