@@ -374,15 +374,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
         lastRowPadding = 10;
     }
     
-    return ceil(size.width / maxWidth) * 18 + lastRowPadding + 6; // number of lines * height of one line + horizontal padding
-}
-
--(BOOL)tableView:(NSTableView *)tableView isGroupRow:(NSInteger)row
-{
-    // get model object
-    id entity = self.conversationDataSourceArray[row];
-    
-    return [entity isKindOfClass:[FBUser class]];
+    return (ceil(size.width / maxWidth) * 18) + lastRowPadding + 6; // number of lines * height of one line + horizontal padding
 }
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
