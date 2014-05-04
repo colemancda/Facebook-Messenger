@@ -30,7 +30,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn width="104" minWidth="40" maxWidth="1000" id="tA9-uX-ivY">
+                                    <tableColumn editable="NO" width="104" minWidth="40" maxWidth="1000" id="tA9-uX-ivY">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Title">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -46,7 +46,7 @@
                                             <binding destination="eyX-0K-RT0" name="value" keyPath="arrangedObjects.localizedTitle" id="NTc-cL-MIX"/>
                                         </connections>
                                     </tableColumn>
-                                    <tableColumn width="241" minWidth="40" maxWidth="1000" id="8Tf-Dh-AOa">
+                                    <tableColumn editable="NO" width="241" minWidth="40" maxWidth="1000" id="8Tf-Dh-AOa">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -62,7 +62,7 @@
                                             <binding destination="eyX-0K-RT0" name="value" keyPath="arrangedObjects.localizedDescription" id="3nd-Ih-DPn"/>
                                         </connections>
                                     </tableColumn>
-                                    <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="sOv-C5-tHZ">
+                                    <tableColumn editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="sOv-C5-tHZ">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Price">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -76,7 +76,7 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                     </tableColumn>
-                                    <tableColumn width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="bUu-xd-cYO">
+                                    <tableColumn editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="bUu-xd-cYO">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Purchased">
                                             <font key="font" metaFont="smallSystem"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>

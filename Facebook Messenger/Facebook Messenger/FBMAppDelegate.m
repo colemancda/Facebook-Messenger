@@ -27,7 +27,7 @@
 {
     // Insert code here to initialize your application
     
-    _store = [[FBMStore alloc] initWithAppID:@"221240951333308"];
+    _store = [[FBMStore alloc] initWithAppID:@"700580906649633"];
     
     // purchases
     
@@ -112,13 +112,13 @@
         
         NSString *title = NSLocalizedString(@"Preferences", @"Preferences Pane Title");
         
-        NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+        NSArray *viewControllers = @[];
         
         if ([SKPaymentQueue canMakePayments]) {
             
             FBMPurchasesViewController *purchasesVC = [[FBMPurchasesViewController alloc] init];
             
-            [viewControllers addObject:purchasesVC];
+            viewControllers = [viewControllers arrayByAddingObject:purchasesVC];
         }
         
         self.preferencesWC = [[MASPreferencesWindowController alloc] initWithViewControllers:viewControllers

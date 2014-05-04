@@ -2303,6 +2303,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "Facebook Messenger";
+				PROVISIONING_PROFILE = "0658367F-933C-41C2-A3B7-32531D60A17D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2347,6 +2348,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_NAME = "Facebook Messenger";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
