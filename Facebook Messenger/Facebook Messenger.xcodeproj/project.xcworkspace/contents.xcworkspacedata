@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:FB Messenger.xcodeproj">
+      location = "self:Facebook Messenger.xcodeproj">
    </FileRef>
 </Workspace>
