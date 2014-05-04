@@ -305,25 +305,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
             
             // check for profile pic
             
-            if (!user.profilePicture.image) {
-                
-                [appDelegate.store fetchPhotoForUserWithUserID:user.id completionBlock:^(NSError *error, NSData *data) {
-                    
-                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                        
-                        if (error) {
-                            
-                            return;
-                        }
-                        
-                        self.userProfileToolbarItem.image = user.profilePicture.image;
-                        
-                    }];
-                }];
-                
-            }
-            
-            else {
+            if (user.profilePicture.image) {
                 
                 self.userProfileToolbarItem.image = user.profilePicture.image;
             }
