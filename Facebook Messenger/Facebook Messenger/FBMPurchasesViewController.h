@@ -8,8 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import "MASPreferencesViewController.h"
+@import StoreKit;
 
-@interface FBMPurchasesViewController : NSViewController <MASPreferencesViewController, NSTableViewDelegate, NSTableViewDataSource>
+@interface FBMPurchasesViewController : NSViewController <MASPreferencesViewController, NSTableViewDelegate, NSTableViewDataSource, SKPaymentTransactionObserver>
 
 #pragma mark - IB Outlets
 
@@ -21,10 +22,12 @@
 
 -(void)doubleClickedTableView:(id)sender;
 
+-(IBAction)restorePurchases:(id)sender;
+
+-(IBAction)refreshProducts:(id)sender;
+
 #pragma mark - Notifications
 
 -(void)verifyFailed:(NSNotification *)notification;
-
--(void)purchaseFinished:(NSNotification *)notification;
 
 @end

@@ -62,6 +62,15 @@
     
     self.tableView.target = self;
     
+    // notifications
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(verifyFailed:)
+                                                 name:FBMPurchasesStoreProductsRequestFailedNotification
+                                               object:_purchasesStore];
+    
+    // load products
+    
     [_purchasesStore verifyProducts];
 }
 
@@ -125,6 +134,16 @@
     [_purchasesStore purchaseProduct:product];
 }
 
+-(void)restorePurchases:(id)sender
+{
+    [_purchasesStore restorePurchases];
+}
+
+-(void)refreshProducts:(id)sender
+{
+    [_purchasesStore verifyProducts];
+}
+
 #pragma mark - First Responder
 
 -(void)keyDown:(NSEvent *)theEvent
@@ -150,12 +169,6 @@
         [NSApp presentError:error];
         
     }];
-}
-
--(void)purchaseFinished:(NSNotification *)notification
-{
-    
-    
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "FBMPurchasesStore.h"
 
-NSString *const FBMPurchasesStoreProductsRequestFailed = @"FBMPurchasesStoreProductsRequestFailed";
+NSString *const FBMPurchasesStoreProductsRequestFailedNotification = @"FBMPurchasesStoreProductsRequestFailedNotification";
 
 NSString *const FBMPurchasesStoreErrorKey = @"FBMPurchasesStoreErrorKey";
 
@@ -20,8 +20,6 @@ NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictur
 
 @property (nonatomic) NSArray *availibleProducts;
 
-@property (nonatomic) SKProductsRequest *productsRequest;
-
 @end
 
 @implementation FBMPurchasesStore
@@ -30,14 +28,6 @@ NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictur
 {
     self = [super init];
     if (self) {
-        
-        // products request
-        
-        NSArray *productIDs = @[FBMPicturesProductID];
-        
-        self.productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIDs]];
-        
-        self.productsRequest.delegate = self;
         
         // delegate
         
@@ -51,9 +41,17 @@ NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictur
 
 -(void)verifyProducts
 {
+    // products request
+    
+    NSArray *productIDs = @[FBMPicturesProductID];
+    
+    SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:productIDs]];
+    
+    productsRequest.delegate = self;
+    
     NSLog(@"Verifying products...");
     
-    [self.productsRequest start];
+    [productsRequest start];
 }
 
 -(void)purchaseProduct:(SKProduct *)product
@@ -65,7 +63,7 @@ NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictur
 
 -(void)restorePurchases
 {
-    
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
 #pragma mark - Cache
@@ -91,13 +89,13 @@ NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictur
 
 -(void)request:(SKRequest *)request didFailWithError:(NSError *)error
 {
-    if (request == _productsRequest) {
+    if ([request isKindOfClass:[SKProductsRequest class]]) {
         
         NSLog(@"Product verification failed. (%@)", error);
         
         // notify
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:FBMPurchasesStoreProductsRequestFailed
+        [[NSNotificationCenter defaultCenter] postNotificationName:FBMPurchasesStoreProductsRequestFailedNotification
                                                             object:self
                                                           userInfo:@{FBMPurchasesStoreErrorKey: error}];
         
@@ -111,6 +109,7 @@ NSString *const FBMPicturesProductID = @"com.ColemanCDA.FacebookMessenger.pictur
 
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue
 {
+    
     
 }
 

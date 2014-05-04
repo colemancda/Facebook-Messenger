@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @import StoreKit;
 
-extern NSString *const FBMPurchasesStoreProductsRequestFailed;
+extern NSString *const FBMPurchasesStoreProductsRequestFailedNotification;
 
 extern NSString *const FBMPurchasesStoreErrorKey;
 
