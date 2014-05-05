@@ -288,10 +288,8 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
     
     // user to send to...
     
-    FBUser *toUser = self.conversation.to.allObjects.firstObject;
-    
     [appDelegate.store sendMessage:sender.stringValue
-                     toUserWithJID:toUser.jid];
+                     toUserWithJID:self.toUser.jid];
     
 }
 
@@ -299,11 +297,9 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
     
     // get user
     
-    FBUser *toUser = self.conversation.to.allObjects.firstObject;
-    
     NSURL *facebookURL = [NSURL URLWithString:@"http://facebook.com"];
     
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", toUser.id] relativeToURL:facebookURL]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@", self.toUser.id] relativeToURL:facebookURL]];
     
 }
 
@@ -453,6 +449,17 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
 
 -(void)sentMessage:(NSNotification *)notification
 {
+    // check to see if the sent message belongs to this conversation
+    
+    NSString *jid = notification.userInfo[FBMAPIJIDKey];
+    
+    NSNumber *messageUserID = [FBUser userIDFromJID:jid];
+    
+    if (![messageUserID isEqualToNumber:self.toUser.id]) {
+        
+        return;
+    }
+    
     NSError *error = notification.userInfo[FBMErrorDomain];
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
