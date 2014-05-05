@@ -52,6 +52,9 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
     
     [self removeObserver:self
               forKeyPath:@"toUser.profilePicture.data"];
+    
+    [self removeObserver:self
+              forKeyPath:@"toUser.userPresence"];
 }
 
 -(id)init
@@ -154,6 +157,11 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
               options:NSKeyValueObservingOptionNew
               context:KVOContext];
     
+    [self addObserver:self
+           forKeyPath:@"toUser.userPresence"
+              options:NSKeyValueObservingOptionNew
+              context:KVOContext];
+    
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"createdTime" ascending:YES]];
     
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
@@ -167,6 +175,22 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
     if (context == KVOContext) {
         
         FBMAppDelegate *appDelegate = [NSApp delegate];
+        
+        if ([keyPath isEqualToString:@"toUser.userPresence"]) {
+            
+            NSImage *image;
+            
+            if (self.toUser.userPresence.integerValue == FBUserOnlinePresence) {
+                
+                image = [NSImage imageNamed:@"NSStatusAvailable"];
+            }
+            if (self.toUser.userPresence.integerValue == FBUserUnavailiblePresence) {
+                
+                image = [NSImage imageNamed:@"NSStatusUnavailable"];
+            }
+            
+            self.titleBarStatusImageView.image = image;
+        }
         
         // toUser
         
