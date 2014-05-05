@@ -33,6 +33,10 @@
     
     _purchasesStore = [[FBMPurchasesStore alloc] init];
     
+    // cleanup notification center UI
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] removeAllDeliveredNotifications];
+    
     // register for notifications
     
     [[NSNotificationCenter defaultCenter] addObserver:self
