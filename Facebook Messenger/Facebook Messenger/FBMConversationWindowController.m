@@ -336,12 +336,6 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
         
         FBUser *user = entity;
         
-        FBMAppDelegate *appDelegate = [NSApp delegate];
-        
-        // configure cell
-        
-        cellView.imageView.image = self.placeholderImage;
-        
         // user name
         
         cellView.textField.stringValue = user.name;
