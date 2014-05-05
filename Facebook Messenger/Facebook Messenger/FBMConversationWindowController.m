@@ -534,6 +534,10 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
         
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
+            FBMAppDelegate *appDelegate = [NSApp delegate];
+            
+            [appDelegate.store markConversationAsRead:self.conversation];
+            
             [self scrollToBottomOfTableView];
             
         }];

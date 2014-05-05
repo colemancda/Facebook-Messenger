@@ -765,7 +765,7 @@
         
         conversation.unseen = @0;
         
-        conversation.unread = @NO;
+        conversation.unread = @0;
         
         // save
         
