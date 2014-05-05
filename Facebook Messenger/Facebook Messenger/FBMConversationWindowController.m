@@ -169,6 +169,10 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
                 
                 if (!self.toUser.profilePicture.image) {
                     
+                    // set placeholder image
+                    
+                    self.userProfileToolbarItem.image = self.placeholderImage;
+                    
                     [appDelegate.store fetchPhotoForUserWithUserID:self.toUser.id completionBlock:^(NSError *error, NSData *data) {
                         
                         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
