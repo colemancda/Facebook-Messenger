@@ -19,6 +19,7 @@
 #import "FBMConversationGroupView.h"
 #import "FBMPurchasesStore.h"
 #import "FBMStore.h"
+#import "INAppStoreWindow.h"
 
 static void *KVOContext = &KVOContext;
 
@@ -83,6 +84,34 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
     return self;
 }
 
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    // setup title bar
+    
+    INAppStoreWindow *window = (INAppStoreWindow *)self.window;
+    
+    window.titleBarView = self.titlebarView;
+    
+    window.titleBarHeight = 72;
+    
+    window.verticalTrafficLightButtons = YES;
+    
+    window.verticallyCenterTitle = YES;
+    
+    window.centerFullScreenButton = YES;
+    
+    window.centerTrafficLightButtons = YES;
+    
+    window.fullScreenButtonRightMargin = 10;
+    
+    // scroll to bottom
+    
+    [self scrollToBottomOfTableView];
+}
+
+
 - (void)windowDidLoad
 {
     [super windowDidLoad];
@@ -129,13 +158,6 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
     
     self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"conversation == %@", self.conversation];
 
-}
-
--(void)awakeFromNib
-{
-    [super awakeFromNib];
-    
-    [self scrollToBottomOfTableView];
 }
 
 #pragma mark - KVO
