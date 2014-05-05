@@ -171,7 +171,7 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
                     
                     // set placeholder image
                     
-                    self.userProfileToolbarItem.image = self.placeholderImage;
+                    self.titleBarProfileImageView.image = self.placeholderImage;
                     
                     [appDelegate.store fetchPhotoForUserWithUserID:self.toUser.id completionBlock:^(NSError *error, NSData *data) {
                         
@@ -188,7 +188,7 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
                                 return;
                             }
                             
-                            self.userProfileToolbarItem.image = self.toUser.profilePicture.image;
+                            self.titleBarProfileImageView.image = self.toUser.profilePicture.image;
                             
                         }];
                     }];
@@ -197,7 +197,7 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
                 
                 else {
                     
-                    self.userProfileToolbarItem.image = self.toUser.profilePicture.image;
+                    self.titleBarProfileImageView.image = self.toUser.profilePicture.image;
                 }
             }
         }
@@ -341,16 +341,6 @@ NSString *const ConversationRecipientsKeyPath = @"conversation.to";
         // configure cell
         
         cellView.imageView.image = self.placeholderImage;
-        
-        if ([appDelegate.purchasesStore purchasedProductWithProductID:FBMPicturesProductID]) {
-            
-            // check for profile pic
-            
-            if (user.profilePicture.image) {
-                
-                self.userProfileToolbarItem.image = user.profilePicture.image;
-            }
-        }
         
         // user name
         

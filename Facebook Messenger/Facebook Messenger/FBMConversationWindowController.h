@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class FBConversation, FBUser;
+@class FBConversation, FBUser, INTitlebarView;
 
 @interface FBMConversationWindowController : NSWindowController <NSTableViewDelegate, NSWindowDelegate>
 {
@@ -30,7 +30,13 @@
 
 @property (strong) IBOutlet NSArrayController *arrayController;
 
-@property (weak) IBOutlet NSToolbarItem *userProfileToolbarItem;
+@property (strong) IBOutlet INTitlebarView *titlebarView;
+
+@property (weak) IBOutlet NSButton *titleBarButton;
+
+@property (weak) IBOutlet NSImageView *titleBarProfileImageView;
+
+@property (weak) IBOutlet NSImageView *titleBarStatusImageView;
 
 #pragma mark - Properties
 
@@ -42,7 +48,7 @@
 
 -(IBAction)enteredText:(NSTextField *)sender;
 
--(IBAction)showUserProfile:(NSToolbarItem *)sender;
+-(IBAction)showUserProfile:(id)sender;
 
 #pragma mark - Change GUI
 
