@@ -30,7 +30,7 @@
                             <rect key="frame" x="1" y="17" width="387" height="400"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="nyT-u1-ZY5" viewBased="YES" id="M3U-QF-nXb">
+                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="none" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveName="InboxWCTableView" rowSizeStyle="automatic" headerView="nyT-u1-ZY5" viewBased="YES" id="M3U-QF-nXb">
                                     <rect key="frame" x="0.0" y="0.0" width="387" height="400"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
