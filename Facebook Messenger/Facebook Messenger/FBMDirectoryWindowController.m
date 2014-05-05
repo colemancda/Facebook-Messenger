@@ -63,8 +63,14 @@ static void *KVOContext = &KVOContext;
     
     self.tableView.target = self;
     
+    // array controller
+    
     self.arrayController.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
                                                                            ascending:YES]];
+    
+    // exclude authenticated user
+    
+    self.arrayController.fetchPredicate = [NSPredicate predicateWithFormat:@"id != %@", appDelegate.store.user.id];
     
     // KVO
     
