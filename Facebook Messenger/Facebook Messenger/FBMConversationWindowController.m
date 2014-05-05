@@ -22,7 +22,7 @@
 
 static void *KVOContext = &KVOContext;
 
-NSString *const ConversationNameKeyPath = @"conversation.to";
+NSString *const ConversationRecipientsKeyPath = @"conversation.to";
 
 @interface FBMConversationWindowController ()
 
@@ -41,13 +41,16 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     [self removeObserver:self
-              forKeyPath:ConversationNameKeyPath];
+              forKeyPath:ConversationRecipientsKeyPath];
     
     [self removeObserver:self
               forKeyPath:@"arrayController.arrangedObjects"];
     
     [self removeObserver:self
               forKeyPath:@"toUser"];
+    
+    [self removeObserver:self
+              forKeyPath:@"toUser.profilePicture.data"];
 }
 
 -(id)init
@@ -100,15 +103,10 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
                                                  name:FBMAPIRecievedMessageNotification
                                                object:appDelegate.store];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(contextObjectsDidChange:)
-                                                 name:NSManagedObjectContextObjectsDidChangeNotification
-                                               object:appDelegate.store.context];
-    
     // KVO
     
     [self addObserver:self
-           forKeyPath:ConversationNameKeyPath
+           forKeyPath:ConversationRecipientsKeyPath
               options:NSKeyValueObservingOptionNew
               context:KVOContext];
     
@@ -119,6 +117,11 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
     
     [self addObserver:self
            forKeyPath:@"toUser"
+              options:NSKeyValueObservingOptionNew
+              context:KVOContext];
+    
+    [self addObserver:self
+           forKeyPath:@"toUser.profilePicture.data"
               options:NSKeyValueObservingOptionNew
               context:KVOContext];
     
@@ -147,15 +150,26 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
         
         if ([keyPath isEqualToString:@"toUser"]) {
             
+            NSString *autoSaveName = [NSString stringWithFormat:@"com.ColemanCDA.FacebookMessenger.ConversationWC.%@", self.toUser.name];
+            
+            if (![self.windowFrameAutosaveName isEqualToString:autoSaveName]) {
+                
+                self.windowFrameAutosaveName = autoSaveName;
+            }
+            
+        }
+        
+        // profile pic
+        
+        if ([keyPath isEqualToString:@"toUser.profilePicture.data"]) {
+            
             if ([appDelegate.purchasesStore purchasedProductWithProductID:FBMPicturesProductID]) {
                 
                 // check for profile pic
                 
-                FBUser *toUser = self.toUser;
-                
-                if (!toUser.profilePicture.image) {
+                if (!self.toUser.profilePicture.image) {
                     
-                    [appDelegate.store fetchPhotoForUserWithUserID:toUser.id completionBlock:^(NSError *error, NSData *data) {
+                    [appDelegate.store fetchPhotoForUserWithUserID:self.toUser.id completionBlock:^(NSError *error, NSData *data) {
                         
                         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                             
@@ -170,7 +184,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
                                 return;
                             }
                             
-                            self.userProfileToolbarItem.image = toUser.profilePicture.image;
+                            self.userProfileToolbarItem.image = self.toUser.profilePicture.image;
                             
                         }];
                     }];
@@ -179,14 +193,14 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
                 
                 else {
                     
-                    self.userProfileToolbarItem.image = toUser.profilePicture.image;
+                    self.userProfileToolbarItem.image = self.toUser.profilePicture.image;
                 }
             }
         }
         
         // conversation name
         
-        if ([keyPath isEqualToString:ConversationNameKeyPath]) {
+        if ([keyPath isEqualToString:ConversationRecipientsKeyPath]) {
             
             if (self.conversation) {
                 
@@ -208,19 +222,7 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
                     
                     self.toUser = self.conversation.to.allObjects.firstObject;
                 }
-                
-                NSString *autoSaveName = [NSString stringWithFormat:@"com.ColemanCDA.FacebookMessenger.ConversationWC.%@", self.toUser.name];
-                
-                if (![self.windowFrameAutosaveName isEqualToString:autoSaveName]) {
-                    
-                    self.windowFrameAutosaveName = autoSaveName;
-                }
-                
-                // profile pic
-                
-                
             }
-            
         }
         
         // array controller
@@ -494,25 +496,6 @@ NSString *const ConversationNameKeyPath = @"conversation.to";
             [self scrollToBottomOfTableView];
             
         }];
-    }
-}
-
--(void)contextObjectsDidChange:(NSNotification *)notification
-{
-    FBMAppDelegate *appDelegate = [NSApp delegate];
-    
-    if ([appDelegate.purchasesStore purchasedProductWithProductID:FBMPicturesProductID]) {
-        
-        // get user
-        
-        FBUser *toUser = self.conversation.to.allObjects.firstObject;
-        
-        // update user profile picture
-        
-        if (self.userProfileToolbarItem.image != toUser.profilePicture.image && toUser.profilePicture.image) {
-            
-            self.userProfileToolbarItem.image = toUser.profilePicture.image;
-        }
     }
 }
 

@@ -54,6 +54,4 @@
 
 -(void)recievedMessage:(NSNotification *)notification;
 
--(void)contextObjectsDidChange:(NSNotification *)notification;
-
 @end
