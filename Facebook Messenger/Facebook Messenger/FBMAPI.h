@@ -19,6 +19,9 @@ typedef NS_ENUM(NSInteger, FBMAPIErrorCode) {
     /** FB Account not enabled */
     FBMAPIAccountNotEnabledErrorCode,
     
+    /** FB Account not setup */
+    FBMAPIAccountNotSetupErrorCode,
+    
     /** Error authenticating with XMPP server */
     FBMAPIXMPPAuthenticationErrorCode
     

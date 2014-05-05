@@ -110,8 +110,28 @@ NSString *const FBMAPIUserPresenceKey = @"FBMAPIUserPresenceKey";
         // access denied
         if (!granted) {
             
+            // NO account setup
+            
+            if (error.code == 6) {
+                
+                NSString *description = NSLocalizedString(@"Facebook Account not setup", @"FBMAPIAccountNotSetup Error description");
+                
+                NSString *suggestion = NSLocalizedString(@"Open the Internet Accounts preference pane in System Preferences and add your Facebook Account.",
+                                                         @"FBMAPIAccountNotSetup Error suggestion");
+                
+                NSError *noAccountError = [NSError errorWithDomain:FBMErrorDomain
+                                                              code:FBMAPIAccountNotSetupErrorCode
+                                                          userInfo:@{NSLocalizedDescriptionKey: description,
+                                                                     NSLocalizedRecoverySuggestionErrorKey: suggestion}];
+                
+                completionBlock(noAccountError);
+                
+                return;
+            }
+            
             
             completionBlock(error);
+            
             return;
         }
         
